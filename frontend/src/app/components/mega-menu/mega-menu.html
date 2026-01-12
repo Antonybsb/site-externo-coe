@@ -1,0 +1,142 @@
+<div class="w-full flex justify-center bg-azul-coe-escurissimo fixed top-[80px] z-40">
+    <div class="w-7xl">
+        <nav class="relative flex w-full items-center justify-between bg-azul-coe-escurissimo py-2  dark:bg-neutral-700 lg:flex-wrap lg:justify-start"
+            data-twe-navbar-ref>
+            <div class="px-6 lg:px-0">
+                <button
+                    class="block border-0 bg-transparent px-2 text-black/50 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
+                    type="button" data-twe-collapse-init data-twe-target="#navbarSupportedContent3"
+                    aria-controls="navbarSupportedContent3" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="[&>svg]:w-7 [&>svg]:stroke-black/50 dark:[&>svg]:stroke-neutral-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                </button>
+
+                <div class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
+                    id="navbarSupportedContent3" data-twe-collapse-item>
+                    <div class="!visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto"
+                        id="navbarSupportedContent1" data-twe-collapse-item>
+                        <!-- Logo -->
+                        <a class="mb-4 me-5 ms-0 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
+                            href="#">
+                            <img src="/assets/logo/logoCOE.svg" style="height: 48px" alt="TE Logo" loading="lazy" />
+                        </a>
+
+                    </div>
+                    <ul class="me-auto flex flex-row" data-twe-navbar-nav-ref>
+
+                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                            <!-- Início link -->
+                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="#" data-twe-nav-link-ref>Início</a>
+                        </li>
+                        <!-- Sobre link -->
+                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="#" data-twe-nav-link-ref>Sobre</a>
+                        </li>
+
+
+
+                        <li class="static" data-twe-nav-item-ref data-twe-dropdown-ref>
+                            <a class="flex items-center whitespace-nowrap py-2 pe-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="#" type="button" id="dropdownMenuButtonX" data-twe-dropdown-toggle-ref
+                                aria-expanded="false" data-twe-nav-link-ref>
+                                Esportes
+                                <span class="ms-2 [&>svg]:h-5 [&>svg]:w-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div class="absolute left-0 right-0 top-full z-[1000] mt-0 hidden w-full border-none bg-white bg-clip-padding shadow-lg data-[twe-dropdown-show]:block dark:bg-neutral-700"
+                                aria-labelledby="dropdownMenuButtonX" data-twe-dropdown-menu-ref>
+                                <div class="px-6 py-5 lg:px-8">
+                                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+                                        @for (esporte of listaEsportes; track esporte.id) {
+                                        <div>
+
+                                            <a [routerLink]="['/modalidades', esporte.slug]" aria-current="true"
+                                                class="flex w-full items-center border-b border-neutral-100 bg-white px-6 py-2 text-texto-info hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:border-white/10 dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25">
+                                                {{ esporte.nome }}
+                                                <span class="ml-2">
+                                                    <img src="/assets/icons/external-link.svg" style="height: 20px"
+                                                        alt="TE Logo" loading="lazy" />
+                                                </span>
+                                            </a>
+                                            <!-- <a href="#!" aria-current="true"
+                                                    class="flex w-full items-center border-b border-neutral-100 bg-white px-6 py-2 text-texto-info hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:border-white/10 dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25">
+                                                    Futebol
+                                                    <span class="ml-2">
+                                                        <img src="/assets/icons/external-link.svg" style="height: 20px"
+                                                            alt="TE Logo" loading="lazy" />
+                                                    </span>
+                                                </a>
+                                                <a href="#!" aria-current="true"
+                                                    class="flex w-full items-center border-b border-neutral-100 bg-white px-6 py-2 text-texto-info hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:border-white/10 dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25">
+                                                    Futebol
+                                                    <span class="ml-2">
+                                                        <img src="/assets/icons/external-link.svg" style="height: 20px"
+                                                            alt="TE Logo" loading="lazy" />
+                                                    </span>
+                                                </a>
+                                                <a href="#!" aria-current="true"
+                                                    class="flex w-full items-center border-b border-neutral-100 bg-white px-6 py-2 text-texto-info hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:border-white/10 dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25">
+                                                    Futebol
+                                                    <span class="ml-2">
+                                                        <img src="/assets/icons/external-link.svg" style="height: 20px"
+                                                            alt="TE Logo" loading="lazy" />
+                                                    </span>
+                                                </a> -->
+
+
+
+                                        </div>
+                                        } @empty {
+                                        <div class="px-6 py-2 text-gray-500">Nenhum esporte encontrado</div>
+                                        }
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Eventos link -->
+                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="#" data-twe-nav-link-ref>Eventos</a>
+                        </li>
+                        <!-- Depoimentos link -->
+                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="#" data-twe-nav-link-ref>Depoimentos</a>
+                        </li>
+                        <!-- Notícias link -->
+                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="#" data-twe-nav-link-ref>Notícias</a>
+                        </li>
+                        <!-- Contatos link -->
+                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                href="contatos" data-twe-nav-link-ref>Contatos</a>
+                        </li>
+                        <!-- Right elements -->
+
+
+                        <!-- Right elements -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

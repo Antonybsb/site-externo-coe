@@ -1,0 +1,12 @@
+<section class="w-full h-screen flex justify-center relative bg-cover"
+    [style.backgroundImage]="'url(' + imagemUrl() + ')'" [style.backgroundPosition]="posicaoImagem()">
+
+    <div class="absolute inset-0" [class]="classeCorOverlay()"></div>
+
+    <div class="w-full max-w-7xl px-6 lg:px-0 flex items-center h-full z-10 pt-24">
+        <h1 class="text-6xl lg:text-8xl font-bold text-white break-words">
+            {{ titulo() | uppercase }}
+        </h1>
+    </div>
+
+</section>

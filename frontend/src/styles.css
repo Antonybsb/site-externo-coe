@@ -1,0 +1,36 @@
+/* 1. Imports Globais */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import "tailwindcss";
+
+/* Lê os arquivos JS da biblioteca */
+@source "../node_modules/tw-elements/js/**/*.js";
+
+/* Carrega o plugin do TW Elements */
+@plugin "tw-elements/plugin.cjs";
+
+/* 3. Sua Configuração Visual */
+@theme {
+  /* Tipografia */
+  --font-sans: "Roboto", sans-serif;
+
+  /* Cores Personalizadas */
+  --color-texto-suporte-neutro-clarissimo: #FEFEFE;
+  --color-texto-suporte-primario-escurissimo: #0D264A;
+  --color-texto-conteudo-primario: #2D2D2F;
+  --color-texto-conteudo-terciario: #717172;
+  --color-azul-coe-escurissimo: #1C519B;
+  --color-texto-info: #3A71C7;
+  --color-borda-neutro-claro: #B6B6B7;
+  --color-backgroud-superficie: #F2F2F2;
+  --color-backgroud-suporte-alerta: #FFC72E;
+
+  /* Cores da Marca */
+  --color-brand-light: #60A5FA;
+  --color-brand-default: #2563EB;
+  --color-brand-dark: #1E40AF;
+}
+
+/* 4. Estilos Globais */
+body {
+  font-family: var(--font-sans);
+}
