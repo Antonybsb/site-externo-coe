@@ -18,6 +18,7 @@ import { Contatos } from './components/screens/contatos/contatos';
 import { HeroPadrao } from './components/hero-padrao/hero-padrao';
 import { EspacoIntegracao } from './components/espaco-integracao/espaco-integracao';
 import { Parceiros } from './components/parceiros/parceiros';
+import { Eventos } from './components/screens/eventos/eventos';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +38,7 @@ import { Parceiros } from './components/parceiros/parceiros';
     HeroPadrao,
     EspacoIntegracao,
     Parceiros,
+    Eventos,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
