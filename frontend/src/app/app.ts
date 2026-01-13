@@ -19,6 +19,7 @@ import { HeroPadrao } from './components/hero-padrao/hero-padrao';
 import { EspacoIntegracao } from './components/espaco-integracao/espaco-integracao';
 import { Parceiros } from './components/parceiros/parceiros';
 import { Eventos } from './components/screens/eventos/eventos';
+import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-detalhes';
 
 @Component({
   selector: 'app-root',
@@ -39,6 +40,7 @@ import { Eventos } from './components/screens/eventos/eventos';
     EspacoIntegracao,
     Parceiros,
     Eventos,
+    EventosDetalhes,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
