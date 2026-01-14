@@ -20,6 +20,7 @@ import { EspacoIntegracao } from './components/espaco-integracao/espaco-integrac
 import { Parceiros } from './components/parceiros/parceiros';
 import { Eventos } from './components/screens/eventos/eventos';
 import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-detalhes';
+import { Calendario } from './components/calendario/calendario';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +42,7 @@ import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-d
     Parceiros,
     Eventos,
     EventosDetalhes,
+    Calendario,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

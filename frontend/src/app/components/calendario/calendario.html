@@ -1,0 +1,43 @@
+<div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 w-full max-w-sm mx-auto">
+
+    <div class="flex items-center justify-between mb-6">
+        <span class="font-bold text-lg text-azul-coe-escurissimo capitalize">
+            {{ displayMes }}
+        </span>
+        <div class="flex gap-2">
+            <button (click)="changeMonth(-1)"
+                class="p-1 hover:bg-gray-100 rounded-full text-gray-500 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button (click)="changeMonth(1)" class="p-1 hover:bg-gray-100 rounded-full text-gray-500 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-7 mb-2 text-center">
+        <div *ngFor="let d of ['D','S','T','Q','Q','S','S']"
+            class="text-xs font-bold text-gray-400 uppercase tracking-wide">
+            {{ d }}
+        </div>
+    </div>
+
+    <div class="grid grid-cols-7 gap-1 text-center text-sm font-medium text-gray-600">
+
+        <ng-container *ngFor="let day of arrayDias">
+            <div *ngIf="!day" class="p-2"></div>
+
+            <div *ngIf="day" class="p-2 rounded-lg cursor-pointer transition-colors" [ngClass]="{
+             'bg-backgroud-suporte-sucesso-base text-white font-bold shadow-md scale-110 hover:bg-emerald-600': isEventDate(day),
+             'hover:bg-gray-50': !isEventDate(day)
+           }">
+                {{ day }}
+            </div>
+        </ng-container>
+
+    </div>
+</div>

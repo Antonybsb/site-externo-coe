@@ -1,1 +1,163 @@
-<p>eventos-detalhes works!</p>
+<app-hero-padrao titulo="" imagemUrl="assets/imagens/content.jpeg" classeCorOverlay="bg-[#2B2171]/30"
+    posicaoImagem="top">
+</app-hero-padrao>
+
+<app-container-padrao>
+    <app-section-header titulo="Detalhes do Evento" />
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+
+        <main class="lg:col-span-2 space-y-12">
+
+            <section>
+                <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Sobre o evento</h2>
+                <p class="text-texto-conteudo-primario leading-relaxed text-justify">
+                    As Olimpíadas de Integração dos Tribunais (OIT-2025)...
+                </p>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Modalidades</h2>
+                <div class="bg-backgroud-superficie p-6 rounded-xl border border-gray-100">
+                    <p class="mb-4 text-gray-700">Incluem esportes coletivos e individuais:</p>
+                    <ul class="list-disc list-inside grid grid-cols-2 gap-2 text-texto-conteudo-primario font-medium">
+                        <li>Futsal</li>
+                        <li>Vôlei</li>
+                        <li>Natação</li>
+                        <li>Tênis de mesa</li>
+                        <li>Corrida</li>
+                        <li>Xadrez</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-500">
+                        A lista completa está no <a href="#"
+                            class="text-brand-default underline hover:text-brand-dark">regulamento</a>.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Informações gerais</h2>
+                <div class="space-y-4 text-gray-700">
+                    <div>
+                        <strong class="block text-gray-900">Período:</strong>
+                        <span>De 8 a 10 de agosto de 2026, em Brasília (DF)</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-900">Local:</strong>
+                        <span>ASTCU. Outros locais serão definidos conforme a modalidade.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Equipe TCU</h2>
+
+                <div
+                    class="w-full flex flex-col sm:flex-row gap-6 items-center rounded-lg border border-gray-200 p-6 bg-white shadow-sm">
+                    <div class="shrink-0">
+                        <img src="assets/logo/logoTCU.svg" alt="TCU" class="h-8 w-auto" />
+                    </div>
+                    <div class="flex flex-row items-center gap-3 lg:ml-auto text-base text-texto-info font-medium">
+                        <p>Fale com um lider da delegação.</p>
+                        <a href="https://wa.me/5561999999999" target="_blank" rel="noopener noreferrer">
+
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="40" height="40" rx="10" fill="#CFF4E2" />
+                                <path
+                                    d="M19.9988 9.5C14.2088 9.5 9.49876 14.21 9.49876 20C9.49876 21.89 10.0013 23.7275 10.9538 25.34L9.57376 28.925C9.40876 29.345 9.51376 29.825 9.82126 30.1475C10.1288 30.47 10.6313 30.5825 11.0363 30.4325L14.7638 29.105C16.3613 30.02 18.1613 30.5 19.9988 30.5C25.7888 30.5 30.4988 25.79 30.4988 20C30.4988 14.21 25.7888 9.5 19.9988 9.5ZM19.9988 29C18.3188 29 16.6763 28.5275 15.2513 27.6425C15.1313 27.5675 14.9963 27.53 14.8538 27.53C14.7713 27.53 14.6813 27.545 14.5988 27.575L11.2463 28.775L12.4913 25.535C12.5738 25.31 12.5513 25.0625 12.4238 24.86C11.4938 23.4125 10.9988 21.7325 10.9988 20C10.9988 15.035 15.0338 11 19.9988 11C24.9638 11 28.9988 15.035 28.9988 20C28.9988 24.965 24.9638 29 19.9988 29Z"
+                                    fill="#407C5F" />
+                                <path
+                                    d="M24.9788 20.9975C24.9788 20.9975 24.9713 20.9975 24.9713 20.99C24.9113 20.96 23.9738 20.495 23.3738 20.1875C22.6538 19.82 21.8138 19.9925 20.9663 20.675C20.6738 20.525 20.3138 20.3 20.0063 19.9925C19.6988 19.685 19.4738 19.325 19.3238 19.0325C20.0063 18.185 20.1788 17.345 19.8113 16.6325C19.5563 16.1375 19.1963 15.41 19.0613 15.1325C19.0388 15.095 19.0238 15.0575 19.0088 15.0275C18.8138 14.6375 18.4088 14.3825 17.9738 14.3825H17.1638C15.7313 14.3825 14.3813 15.935 14.3813 17.57C14.3813 19.22 16.1888 21.89 17.1563 22.8575C18.1238 23.825 20.7938 25.6325 22.4438 25.6325C24.0788 25.6325 25.6313 24.2825 25.6313 22.85V22.04C25.6238 21.59 25.3763 21.1925 24.9788 20.9975ZM24.1238 22.8425C24.1238 23.3225 23.3363 24.125 22.4363 24.125C21.4838 24.125 19.2113 22.79 18.2138 21.785C17.2163 20.7875 15.8738 18.515 15.8738 17.5625C15.8738 16.6625 16.6688 15.875 17.1563 15.875H17.7563C17.9138 16.1975 18.2438 16.8575 18.4763 17.315C18.5588 17.4725 18.3863 17.885 17.9063 18.3725C17.6963 18.5825 17.6363 18.8975 17.7413 19.175C17.9063 19.595 18.2813 20.3975 18.9413 21.065C19.6163 21.74 20.4113 22.1075 20.8313 22.2725C21.1088 22.3775 21.4238 22.3175 21.6263 22.1075C22.1063 21.635 22.5263 21.4625 22.6763 21.5375C23.4263 21.92 23.8538 22.1375 24.1163 22.265V22.8425H24.1238Z"
+                                    fill="#407C5F" />
+                            </svg>
+                        </a>
+
+
+
+                    </div>
+                </div>
+            </section>
+
+
+
+        </main>
+
+        <aside class="hidden lg:block lg:col-span-1 space-y-8 sticky top-[168px] self-start">
+
+            <app-calendario dataInicial="2026-08-01" [dataEvento]="diasDoEvento">
+            </app-calendario>
+
+            <div class="mt-8 rounded-xl shadow-lg p-4 border border-gray-100">
+                <span
+                    class="bg-backgroud-suporte-alerta text-texto-suporte-primario-escurissimo text-xs font-bold px-2 py-1 rounded mb-2 inline-block">Próximo
+                    evento</span>
+                <img src="assets/imagens/banner-evento.jpg" class="w-full h-32 object-cover rounded-lg mb-3" alt="">
+                <h4 class="font-bold text-gray-900 leading-tight mb-2">Copa e Sarau Sindilegis</h4>
+                <div class="text-sm text-texto-conteudo-primario space-y-1">
+                    <p>📅 17 a 23/11/2025</p>
+                    <p>📍 Salvador - BA</p>
+                </div>
+                <button
+                    class="mt-4 w-full bg-backgroud-suporte-alerta hover:bg-yellow-500 text-texto-suporte-primario-escurissimo font-bold py-2 rounded text-sm transition-colors">
+                    Inscrever-se
+                </button>
+            </div>
+
+        </aside>
+
+    </div>
+    <div class="mt-16 border-t border-gray-200 pt-12">
+        <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-6">Outros eventos</h2>
+
+        <div class="flex overflow-x-auto pb-4 gap-4 lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible scrollbar-hide">
+
+            <div
+                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
+                <div class="h-32 bg-gray-200 overflow-hidden relative">
+                    <img src="assets/imagens/tenis.jpg"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt="">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <span class="absolute bottom-2 left-3 text-white font-bold text-lg">Open de Tênis</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-500 mb-2">Um torneio que une tradição e competitividade...</p>
+                    <div class="text-xs font-medium text-blue-600 space-y-1">
+                        <div class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            20 a 25/06/2026
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Belo Horizonte - BH
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
+                <div class="h-32 bg-blue-100 flex items-center justify-center text-gray-400">Card 2</div>
+            </div>
+            <div
+                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
+                <div class="h-32 bg-blue-100 flex items-center justify-center text-gray-400">Card 3</div>
+            </div>
+            <div
+                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
+                <div class="h-32 bg-blue-100 flex items-center justify-center text-gray-400">Card 4</div>
+            </div>
+
+        </div>
+    </div>
+
+</app-container-padrao>
