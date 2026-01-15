@@ -21,6 +21,7 @@ import { Parceiros } from './components/parceiros/parceiros';
 import { Eventos } from './components/screens/eventos/eventos';
 import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-detalhes';
 import { Calendario } from './components/calendario/calendario';
+import { NoticiasHome } from './components/noticias-home/noticias-home';
 
 @Component({
   selector: 'app-root',
@@ -43,6 +44,7 @@ import { Calendario } from './components/calendario/calendario';
     Eventos,
     EventosDetalhes,
     Calendario,
+    NoticiasHome,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

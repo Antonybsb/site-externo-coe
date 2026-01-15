@@ -8,10 +8,11 @@ import { Contatos } from '../contatos/contatos';
 import { RouterLink } from '@angular/router';
 import { EspacoIntegracao } from '../../espaco-integracao/espaco-integracao';
 import { Parceiros } from '../../parceiros/parceiros';
+import { NoticiasHome } from '../../noticias-home/noticias-home';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionHeader, Footer, Contatos, RouterLink, EspacoIntegracao, Parceiros],
+  imports: [SectionHeader, Footer, Contatos, RouterLink, EspacoIntegracao, Parceiros, NoticiasHome],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
