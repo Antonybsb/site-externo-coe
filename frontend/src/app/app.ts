@@ -22,7 +22,9 @@ import { Eventos } from './components/screens/eventos/eventos';
 import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-detalhes';
 import { Calendario } from './components/calendario/calendario';
 import { NoticiasHome } from './components/noticias-home/noticias-home';
-import { ListaNoticias } from './components/screens/lista-noticias/lista-noticias';
+import { NoticiasLista } from './components/screens/noticias-lista/noticias-lista';
+import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artigo';
+import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +48,9 @@ import { ListaNoticias } from './components/screens/lista-noticias/lista-noticia
     EventosDetalhes,
     Calendario,
     NoticiasHome,
-    ListaNoticias,
+    NoticiasLista,
+    NoticiaArtigo,
+    DepoimentosLista,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

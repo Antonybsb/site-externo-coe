@@ -2,7 +2,7 @@
     <div class="w-7xl">
         <nav class="relative flex w-full items-center justify-between bg-azul-coe-escurissimo py-2  dark:bg-neutral-700 lg:flex-wrap lg:justify-start"
             data-twe-navbar-ref>
-            <div class="px-6 lg:px-0">
+            <div class="px-6 lg:px-0 w-full flex">
                 <button
                     class="block border-0 bg-transparent px-2 text-black/50 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
                     type="button" data-twe-collapse-init data-twe-target="#navbarSupportedContent3"
@@ -27,7 +27,7 @@
                         </a>
 
                     </div>
-                    <ul class="me-auto flex flex-row" data-twe-navbar-nav-ref>
+                    <ul class="ml-auto flex flex-row" data-twe-navbar-nav-ref>
 
                         <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
                             <!-- Início link -->
@@ -111,26 +111,34 @@
                         </li>
 
                         <!-- Eventos link -->
-                        <a routerLink="/eventos"></a>
-                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                                href="eventos" data-twe-nav-link-ref>Eventos</a>
-                        </li>
+                        <a routerLink="/eventos">
+
+                            <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                                <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                    data-twe-nav-link-ref>Eventos</a>
+                            </li>
+                        </a>
                         <!-- Depoimentos link -->
-                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                                href="#" data-twe-nav-link-ref>Depoimentos</a>
-                        </li>
+                        <a routerLink="depoimentos">
+                            <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                                <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                    href="#" data-twe-nav-link-ref>Depoimentos</a>
+                            </li>
+                        </a>
                         <!-- Notícias link -->
-                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                                href="#" data-twe-nav-link-ref>Notícias</a>
-                        </li>
+                        <a routerLink="noticias">
+                            <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                                <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                    data-twe-nav-link-ref>Notícias</a>
+                            </li>
+                        </a>
                         <!-- Contatos link -->
-                        <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
-                            <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
-                                href="contatos" data-twe-nav-link-ref>Contatos</a>
-                        </li>
+                        <a routerLink="contatos">
+                            <li class="mb-4 lg:mb-0 lg:pe-2" data-twe-nav-item-ref>
+                                <a class="flex items-center whitespace-nowrap py-2 text-white transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
+                                    data-twe-nav-link-ref>Contatos</a>
+                            </li>
+                        </a>
                         <!-- Right elements -->
 
 

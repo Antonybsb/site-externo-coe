@@ -1,0 +1,83 @@
+<app-section-header titulo="Experiências que inspiram e transformam" class="block mt-[168px]">
+</app-section-header>
+<app-container-padrao>
+    <div class="mt-10 mb-12">
+        <p class="text-gray-600 text-lg">Confira o relato de quem já faz parte dessa comunidade.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg-gap-8 mb-16">
+        @for (item of depoimentos; track item.id) {
+        <a [routerLink]="['/depoimentos', item.id]"
+            class="group block relative h-[480px] rounded-2xl overflow-hidden shadow-lg cursor-pointer">
+            <img [src]="item.imagem" [alt]="item.nome"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div
+                class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#8711C1] via-[#8711C1] to-transparent opacity-95 transition-opacity group-hover:opacity-100">
+            </div>
+            <!-- Icon -->
+            <!-- <div
+                class="absolute inset-0 bg-gradiente-to-t from-blue-600 via-blue-600/70 to-transparent opacity-90 transition-opacity group-hover:opacity-100">
+                <div class="absolute top-4 right-4 text-white/70 group-hover:text-white transitions-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                </div>
+            </div> -->
+            <!-- Icon fim-->
+            <div class="absolute bottom-0 left-0 w-full p-6 text-white z-10">
+                <div class="mb-2 text-yellow-400">
+                    <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.6867 15.2941V30H0V16.1345L7.6747 0H15.6867L9.6988 15.2941H15.6867ZM35 15.2941V30H19.3133V16.1345L26.988 0H35L29.0121 15.2941H35Z"
+                            fill="#FFEBA3" />
+                        <path
+                            d="M15.6867 15.2941V30H0V16.1345L7.6747 0H15.6867L9.6988 15.2941H15.6867ZM35 15.2941V30H19.3133V16.1345L26.988 0H35L29.0121 15.2941H35Z"
+                            fill="#FFC72E" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">
+                    {{ item.nome }}
+                </h3>
+                <p class="text-sm md:text-base leading-relaxed text-gray-100 line-clamp-4 font-medium opacity-95 pr-8">
+                    "{{ item.resumo }}"
+
+                </p>
+            </div>
+            <div class="absolute bottom-4 right-4 text-yellow-400  pointer-events-none">
+                <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M19.3133 15.2941V30H35V16.1345L27.3253 0H19.3133L25.3012 15.2941H19.3133ZM0 15.2941V30H15.6867V16.1345L8.01205 0H0L5.98795 15.2941H0Z"
+                        fill="#FFEBA3" />
+                    <path
+                        d="M19.3133 15.2941V30H35V16.1345L27.3253 0H19.3133L25.3012 15.2941H19.3133ZM0 15.2941V30H15.6867V16.1345L8.01205 0H0L5.98795 15.2941H0Z"
+                        fill="#FFC72E" />
+                </svg>
+
+            </div>
+
+        </a>
+        }
+    </div>
+    <div
+        class="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-gray-200 text-sm text-gray-500 gap-4 mb-12">
+        <span>Exibindo 1-6 de 18 itens</span>
+        <div class="flex items-center gap-2">
+            <button class="p-2 rounded hover:bg-gray-100"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg></button>
+            @for (pag of paginasArray; track pag) {
+            <button class="w-8 h-8 rounded border flex items-center justify-center transition-colors hover:bg-gray-50"
+                [class.bg-blue-50]="pag === 1" [class.text-blue-600]="pag === 1" [class.border-blue-200]="pag === 1"
+                [class.border-gray-200]="pag !== paginaAtual" [class.hover:bg-gray-50]="pag !== paginaAtual">
+                {{ pag }}
+            </button>
+            }
+            <button class="p-2 rounded hover:bg-gray-100"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg></button>
+        </div>
+    </div>
+</app-container-padrao>

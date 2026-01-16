@@ -4,7 +4,9 @@ import { Home } from './components/screens/home/home';
 import { Contatos } from './components/screens/contatos/contatos';
 import { Eventos } from './components/screens/eventos/eventos';
 import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-detalhes';
-import { ListaNoticias } from './components/screens/lista-noticias/lista-noticias';
+import { NoticiasLista } from './components/screens/noticias-lista/noticias-lista';
+import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artigo';
+import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -12,5 +14,7 @@ export const routes: Routes = [
   { path: 'contatos', component: Contatos },
   { path: 'eventos', component: Eventos },
   { path: 'eventos/:id', component: EventosDetalhes },
-  { path: 'noticias', component: ListaNoticias },
+  { path: 'noticias', component: NoticiasLista },
+  { path: 'noticia-artigo/:id', component: NoticiaArtigo },
+  { path: 'depoimentos', component: DepoimentosLista },
 ];
