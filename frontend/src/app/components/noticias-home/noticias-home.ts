@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ContainerPadrao } from '../container-padrao/container-padrao';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-noticias-home',
-  imports: [ContainerPadrao, CommonModule],
+  imports: [ContainerPadrao, CommonModule, RouterLink],
   templateUrl: './noticias-home.html',
   styleUrl: './noticias-home.css',
 })

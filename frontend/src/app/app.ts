@@ -22,6 +22,7 @@ import { Eventos } from './components/screens/eventos/eventos';
 import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-detalhes';
 import { Calendario } from './components/calendario/calendario';
 import { NoticiasHome } from './components/noticias-home/noticias-home';
+import { ListaNoticias } from './components/screens/lista-noticias/lista-noticias';
 
 @Component({
   selector: 'app-root',
@@ -45,6 +46,7 @@ import { NoticiasHome } from './components/noticias-home/noticias-home';
     EventosDetalhes,
     Calendario,
     NoticiasHome,
+    ListaNoticias,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
