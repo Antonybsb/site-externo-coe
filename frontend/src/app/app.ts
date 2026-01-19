@@ -26,6 +26,7 @@ import { NoticiasLista } from './components/screens/noticias-lista/noticias-list
 import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artigo';
 import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
 import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
+import { CarrosselEventosHome } from './components/carrossel-eventos-home/carrossel-eventos-home';
 
 @Component({
   selector: 'app-root',
@@ -53,6 +54,7 @@ import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoi
     NoticiaArtigo,
     DepoimentosLista,
     DepoimentosArtigo,
+    CarrosselEventosHome,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

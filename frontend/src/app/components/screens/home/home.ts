@@ -9,10 +9,20 @@ import { RouterLink } from '@angular/router';
 import { EspacoIntegracao } from '../../espaco-integracao/espaco-integracao';
 import { Parceiros } from '../../parceiros/parceiros';
 import { NoticiasHome } from '../../noticias-home/noticias-home';
+import { CarrosselEventosHome } from '../../carrossel-eventos-home/carrossel-eventos-home';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionHeader, Footer, Contatos, RouterLink, EspacoIntegracao, Parceiros, NoticiasHome],
+  imports: [
+    SectionHeader,
+    Footer,
+    Contatos,
+    RouterLink,
+    EspacoIntegracao,
+    Parceiros,
+    NoticiasHome,
+    CarrosselEventosHome,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
