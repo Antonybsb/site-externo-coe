@@ -25,6 +25,7 @@ import { NoticiasHome } from './components/noticias-home/noticias-home';
 import { NoticiasLista } from './components/screens/noticias-lista/noticias-lista';
 import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artigo';
 import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
+import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
 
 @Component({
   selector: 'app-root',
@@ -51,6 +52,7 @@ import { DepoimentosLista } from './components/screens/depoimentos-lista/depoime
     NoticiasLista,
     NoticiaArtigo,
     DepoimentosLista,
+    DepoimentosArtigo,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

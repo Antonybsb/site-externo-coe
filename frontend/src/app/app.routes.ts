@@ -7,6 +7,7 @@ import { EventosDetalhes } from './components/screens/eventos-detalhes/eventos-d
 import { NoticiasLista } from './components/screens/noticias-lista/noticias-lista';
 import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artigo';
 import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
+import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'noticias', component: NoticiasLista },
   { path: 'noticia-artigo/:id', component: NoticiaArtigo },
   { path: 'depoimentos', component: DepoimentosLista },
+  { path: 'depoimento-artigo/:id', component: DepoimentosArtigo },
 ];

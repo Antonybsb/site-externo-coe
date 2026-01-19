@@ -38,10 +38,12 @@
                     <span> {{ noticia.data }}</span>
                 </div>
             </header>
-            <figure class="mb-2 rounded-2xl overflow-hidden shadow-sm">
+            <figure class="mb-2 overflow-hidden">
                 <img [src]="noticia.imagem" alt="Imagem da notícia" class="w-full object-cover">
+                <figcaption class="mt-3 text-sm text-gray-500 text-left leading-snug">
+                    Divulgação/TCU
+                </figcaption>
             </figure>
-            <figcaption class="text-xs text-gray-500 mt-2 text-left px-1">Divulgação/TCU</figcaption>
             <article class="text-texto-conteudo-primario text-lg leading-relaxed text-justify space-y-6 mt-8"
                 [innerHTML]="noticia.conteudo">
             </article>

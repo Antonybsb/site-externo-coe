@@ -6,7 +6,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg-gap-8 mb-16">
         @for (item of depoimentos; track item.id) {
-        <a [routerLink]="['/depoimentos', item.id]"
+        <a [routerLink]="['/depoimento-artigo', item.id]"
             class="group block relative h-[480px] rounded-2xl overflow-hidden shadow-lg cursor-pointer">
             <img [src]="item.imagem" [alt]="item.nome"
                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">

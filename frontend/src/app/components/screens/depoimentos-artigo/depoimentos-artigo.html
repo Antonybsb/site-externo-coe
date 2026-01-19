@@ -1,0 +1,62 @@
+<app-container-padrao>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-[168px] mb-20">
+
+        <article class="lg:col-span-8 lg:col-start-3 flex flex-col gap-8">
+
+            <header class="border-b border-gray-100 pb-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-azul-coe-escurissimo leading-tight mb-3">
+                    {{ artigo.titulo }}
+                </h1>
+
+                <div class="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-wide">
+                    <span class="text-gray-900">{{ artigo.autor }}</span>
+                    <span>•</span>
+                    <span>{{ artigo.data }}</span>
+                </div>
+            </header>
+
+            <figure class="rounded-2xl overflow-hidden shadow-sm">
+                <img [src]="artigo.imagemCapa" [alt]="artigo.titulo" class="w-full h-auto object-cover">
+            </figure>
+
+            <div class="text-lg text-gray-600 leading-relaxed space-y-6 text-justify" [innerHTML]="artigo.textoParte1">
+            </div>
+
+            <figure class="overflow-hidden my-4">
+                <img [src]="artigo.imagemMeio" alt="Momento do evento" class="w-full h-auto object-cover">
+                <figcaption class="mt-3 text-sm text-gray-500 text-left leading-snug">
+                    Registro durante a Maratona de
+                    Brasília
+                </figcaption>
+            </figure>
+
+            <div class="text-lg text-gray-600 leading-relaxed space-y-6 text-justify">
+                <div [innerHTML]="artigo.textoParte2"></div>
+
+                <div
+                    class="border-l-4 border-yellow-400 pl-6 py-2 my-8 italic text-xl text-gray-800 font-medium bg-gray-50 rounded-r-lg">
+                    "O COE não apenas me ajudou a criar uma rotina saudável — ele me ajudou a transformar minha relação
+                    com o bem-estar."
+                </div>
+
+                <div [innerHTML]="artigo.textoParte3"></div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <a routerLink="/depoimentos">
+                    <button
+                        class="flex items-center text-emerald-600 font-bold hover:text-emerald-700 transition-colors gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Voltar para depoimentos
+                    </button>
+                </a>
+            </div>
+        </article>
+
+    </div>
+
+</app-container-padrao>
