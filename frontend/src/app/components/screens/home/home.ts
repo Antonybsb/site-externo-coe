@@ -10,6 +10,7 @@ import { EspacoIntegracao } from '../../espaco-integracao/espaco-integracao';
 import { Parceiros } from '../../parceiros/parceiros';
 import { NoticiasHome } from '../../noticias-home/noticias-home';
 import { CarrosselEventosHome } from '../../carrossel-eventos-home/carrossel-eventos-home';
+import { DepoimentosCta } from '../../depoimentos-cta/depoimentos-cta';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import { CarrosselEventosHome } from '../../carrossel-eventos-home/carrossel-eve
     Parceiros,
     NoticiasHome,
     CarrosselEventosHome,
+    DepoimentosCta,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

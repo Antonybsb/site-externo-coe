@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ApiService } from './services/api';
@@ -27,6 +27,7 @@ import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artig
 import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
 import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
 import { CarrosselEventosHome } from './components/carrossel-eventos-home/carrossel-eventos-home';
+import { DepoimentosCta } from './components/depoimentos-cta/depoimentos-cta';
 
 @Component({
   selector: 'app-root',
@@ -55,6 +56,7 @@ import { CarrosselEventosHome } from './components/carrossel-eventos-home/carros
     DepoimentosLista,
     DepoimentosArtigo,
     CarrosselEventosHome,
+    DepoimentosCta,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
