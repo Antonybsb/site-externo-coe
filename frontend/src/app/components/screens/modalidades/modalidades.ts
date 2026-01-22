@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { Parceiros } from '../../parceiros/parceiros';
 
 @Component({
   selector: 'app-modalidades',
-  imports: [CommonModule],
+  imports: [CommonModule, Parceiros],
   templateUrl: './modalidades.html',
   styleUrl: './modalidades.css',
 })
@@ -20,8 +21,7 @@ export class Modalidades implements OnInit {
   ngOnInit() {
     // <--- 3. Ouvinte da URL (paramMap)
     // Sempre que a URL mudar (ex: clicar de Futebol para Vôlei), isso roda de novo
-    this.route.paramMap.subscribe(params => {
-
+    this.route.paramMap.subscribe((params) => {
       const slugAtual = params.get('slug'); // Pega o que está na URL
 
       if (slugAtual) {
@@ -45,7 +45,7 @@ export class Modalidades implements OnInit {
           this.cd.detectChanges();
         }
       },
-      error: (erro) => console.error("Erro ao carregar slug:", erro)
+      error: (erro) => console.error('Erro ao carregar slug:', erro),
     });
   }
 
@@ -58,7 +58,7 @@ export class Modalidades implements OnInit {
           this.modalidadeDestaque = dados[0];
           this.cd.detectChanges();
         }
-      }
+      },
     });
   }
 }

@@ -37,3 +37,17 @@
 body {
   font-family: var(--font-sans);
 }
+
+@keyframes slide-track {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  } 
+}
+
+.animate-infinite-scroll {
+  animation: slide-track 20s linear infinite;
+  width: max-content;
+}
