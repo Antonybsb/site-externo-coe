@@ -1,0 +1,32 @@
+<a [routerLink]="['/eventos', data().slug]" class="block h-full group">
+    <article
+        class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300  hover: shadow-xl flex flex-col h-full border border-gray-100">
+        <div class="relative h-48 overflow-hidden">
+            <img [src]="data().imagemUrl" [alt]="data().titulo"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+            <h3
+                class="text-xl font-bold text-gray-900 leading-tight mb-3 group-hover:text-emerald-600 transition-colors">
+                {{ data().titulo }}
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
+                {{ data().descricao }}
+            </p>
+            <div
+                class="flex items-center justify-between text-xs font-medium text-gray-500 pt-4 border-t border-gray-100 mt-auto">
+                <span class="flex items-center gap-1">
+                    📅 {{ data().dataInicio | date:'dd/MM/yyyy' }}
+                </span>
+                <span class="flex items-center gap-1">
+                    📍 {{ data().local }}
+                </span>
+            </div>
+
+        </div>
+    </article>
+</a>

@@ -13,6 +13,18 @@
         Carregando destaque...
     </div>
     }
+
+    <app-container-padrao class="mt-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+
+            @for (evento of eventosTeste; track $index) {
+            <app-card-evento [data]="evento" />
+            }
+
+        </div>
+    </app-container-padrao>
+
     <section class="w-full bg-backgroud-superficie py-8 lg:py-12 mt-8">
 
         <div class="w-full mt-8 mb-8 max-w-[1280px] mx-auto px-6 lg:px-0">

@@ -28,6 +28,7 @@ import { DepoimentosLista } from './components/screens/depoimentos-lista/depoime
 import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
 import { CarrosselEventosHome } from './components/carrossel-eventos-home/carrossel-eventos-home';
 import { DepoimentosCta } from './components/depoimentos-cta/depoimentos-cta';
+import { CardEvento } from './components/card-evento/card-evento';
 
 @Component({
   selector: 'app-root',
@@ -57,6 +58,7 @@ import { DepoimentosCta } from './components/depoimentos-cta/depoimentos-cta';
     DepoimentosArtigo,
     CarrosselEventosHome,
     DepoimentosCta,
+    CardEvento,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
