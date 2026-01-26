@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../../services/api';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -33,6 +33,8 @@ export class Modalidades implements OnInit {
   protected modalidadeDestaque: ModalidadeModel | null = null;
 
   protected listaEventos: Evento[] = [];
+
+  protected mostrarTextoCompleto = signal(false);
 
   // Variável para controlar o estado de carregamento
   protected isLoading = true;
@@ -88,5 +90,9 @@ export class Modalidades implements OnInit {
         this.cd.detectChanges(); // Atualiza a tela mesmo com erro
       },
     });
+  }
+
+  alternarTexto() {
+    this.mostrarTextoCompleto.update((valor) => !valor);
   }
 }
