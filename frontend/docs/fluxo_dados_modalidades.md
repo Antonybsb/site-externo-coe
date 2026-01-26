@@ -208,3 +208,67 @@ export class HeroPadraoComponent {
     classeCorOverlay="bg-green-600/60">
 </app-hero-padrao>
 ```
+
+# 📘 Documentação Técnica: Estratégia de Formatação de Dados (Strapi → Angular)
+
+## 1. Visão Geral
+
+A estratégia de formatação de dados tem como objetivo evitar o uso direto do JSON bruto retornado pelo Strapi nos templates Angular.
+
+> **Problema:** Utilizar o objeto cru do Strapi (ex.: `{{ evento.attributes.imagem.data.attributes.url }}`) em múltiplos arquivos gera alta dependência da estrutura interna da API.  
+> Em caso de atualização de versão (ex.: Strapi v4 → v5), mudanças na estrutura podem quebrar o projeto em diversos pontos simultaneamente.
+
+**Exemplo de quebra estrutural:**
+
+| Versão | Estrutura |
+|--------|-----------|
+| v4     | `evento.attributes.imagem.data.attributes.url` |
+| v5     | `evento.imagem.url` |
+
+---
+
+## 2. Estratégia de Formatação
+
+A formatação é feita por meio de métodos helpers específicos para cada coleção (ex.: `formatarEvento`, `formatarModalidade`, `formatarNoticia`).  
+Esses métodos atuam como camada intermediária entre o JSON da API e os componentes Angular.
+
+### Benefícios
+
+- **Blindagem Estrutural**  
+  Alterações futuras na API são tratadas em um único ponto (`api.service.ts`).  
+  O restante da aplicação permanece estável.
+
+- **Renomeação de Campos**  
+  Campos com nomes complexos podem ser convertidos para nomes mais legíveis.  
+  Exemplo: `data_inicio_evento_principal` → `dataInicio`.
+
+- **Tratamento de Dados**  
+  Correção de URLs (ex.: remoção de `localhost:1337`).  
+  Formatação de datas.  
+  Prevenção contra valores `null`.
+
+---
+
+## 3. Redução de Repetição
+
+Embora cada coleção tenha seu próprio formatador, a lógica comum (ex.: tratamento de imagem, datas) pode ser centralizada em métodos privados auxiliares.
+
+### Métodos recomendados
+
+| Método        | Finalidade                          |
+|---------------|-------------------------------------|
+| `tratarImagem()` | Normaliza URLs e valida presença de imagem |
+| `tratarData()`   | Formata datas e aplica fallback para valores nulos |
+
+Esses métodos mantêm os formatadores enxutos e reutilizáveis.
+
+---
+
+## 4. Boas Práticas
+
+- ❌ Não utilizar o JSON cru do Strapi diretamente nos templates.
+- ✅ Criar um formatador dedicado para cada coleção.
+- ✅ Central
+
+
+

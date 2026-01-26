@@ -125,6 +125,8 @@ export class ApiService {
       dataInicio: dados.dataInicio,
       local: dados.local,
       slug: dados.slug,
+      telefone: dados.contato || dados.telefone,
+      horario: dados.horario,
       imagemUrl: urlRelativa
         ? urlRelativa.startsWith('http')
           ? urlRelativa
