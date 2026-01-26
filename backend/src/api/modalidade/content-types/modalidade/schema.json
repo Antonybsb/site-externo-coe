@@ -50,6 +50,12 @@
     "slug": {
       "type": "uid",
       "targetField": "nome"
+    },
+    "eventos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::evento.evento",
+      "mappedBy": "modalidades"
     }
   }
 }

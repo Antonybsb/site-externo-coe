@@ -77,8 +77,8 @@ export class App implements OnInit {
       next: (response) => {
         console.log('2. Resposta bruta recebida:', response);
 
-        if (response.data) {
-          this.modalidades = response.data;
+        if (response) {
+          this.modalidades = response;
         } else {
           this.modalidades = response;
         }

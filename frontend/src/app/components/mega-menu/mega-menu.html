@@ -60,14 +60,14 @@
                                 <div class="px-6 py-5 lg:px-8">
                                     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-                                        @for (esporte of listaEsportes; track esporte.id) {
+                                        @for (esporte of listaEsportes; track $index) {
                                         <div>
 
                                             <a [routerLink]="['/modalidades', esporte.slug]" aria-current="true"
                                                 class="flex w-full items-center border-b border-neutral-100 bg-white px-6 py-2 text-texto-info hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:border-white/10 dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25">
                                                 {{ esporte.nome }}
                                                 <span class="ml-2">
-                                                    <img src="/assets/icons/external-link.svg" style="height: 20px"
+                                                    <img src="/assets/icons/arrow-right.svg" style="height: 12px"
                                                         alt="TE Logo" loading="lazy" />
                                                 </span>
                                             </a>

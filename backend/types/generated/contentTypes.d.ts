@@ -500,6 +500,48 @@ export interface ApiBannerBanner extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
+  collectionName: 'eventos';
+  info: {
+    displayName: 'Evento';
+    pluralName: 'eventos';
+    singularName: 'evento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contato: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dataFim: Schema.Attribute.Date;
+    dataInicio: Schema.Attribute.Date;
+    descricao: Schema.Attribute.Text;
+    imagem: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    local: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evento.evento'
+    > &
+      Schema.Attribute.Private;
+    modalidades: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::modalidade.modalidade'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    regulamento: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    slug: Schema.Attribute.UID<'titulo'>;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
   collectionName: 'modalidades';
   info: {
@@ -514,6 +556,7 @@ export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    eventos: Schema.Attribute.Relation<'manyToMany', 'api::evento.evento'>;
     icone: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imagem_hero: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
@@ -1049,6 +1092,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::banner.banner': ApiBannerBanner;
+      'api::evento.evento': ApiEventoEvento;
       'api::modalidade.modalidade': ApiModalidadeModalidade;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
