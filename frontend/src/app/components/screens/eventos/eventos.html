@@ -4,17 +4,20 @@
 
 <app-container-padrao>
     <app-section-header titulo="O que vem por ai" />
-    <h3 class="mb-6 ms-68 text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+    <h3 class="mb-12 ms-68 text-2xl font-bold text-azul-coe-escurissimo dark:text-neutral-300">
         Próximos eventos
     </h3>
 
 
     <ol class="w-full max-w-6xl mx-auto">
 
+        @for (grupo of grupoDeEventos(); track $index) {
+
         <li class="grid grid-cols-[100px_50px_1fr] gap-4 mb-4">
 
             <div class="text-right pt-[2px]">
-                <h3 class="text-lg font-bold text-gray-900">Agosto</h3>
+                <h3 class="text-lg font-bold text-gray-900">{{ grupo.nomeMes }}</h3>
+                <span class="text-xs text-gray-500 font-bold">{{ grupo.ano }}</span>
             </div>
 
             <div class="relative flex flex-col items-center h-full">
@@ -34,12 +37,14 @@
 
             <div class="flex flex-col gap-8 pb-12">
 
+                @for (evento of grupo.eventos; track evento.id) {
+
                 <!-- Início do primeiro card -->
                 <div
                     class="relative w-full max-w-[842px] h-[253px] rounded-3xl overflow-hidden shadow-lg ms-6 mb-10 flex">
 
                     <div class="absolute top-0 right-0 bottom-0 left-[280px] bg-cover bg-center z-0"
-                        style="background-image: url('assets/imagens/content.jpeg');">
+                        [style.background-image]="'url(' + evento.imagemUrl + ')'">
 
                         <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
                     </div>
@@ -62,10 +67,10 @@
                         </svg>
                     </div>
 
-                    <div class="relative z-30 h-full flex flex-col justify-center pl-8 pr-2 w-[380px]">
+                    <div class="relative z-30 h-full flex flex-col justify-center pl-8 pr-2 w-[320px]">
 
                         <h2 class="text-2xl font-bold text-texto-conteudo-primario mb-4 leading-tight">
-                            Olimpíadas de Integração <br> dos Tribunais
+                            {{ evento.titulo }}
                         </h2>
 
                         <div class="space-y-2 mb-6">
@@ -77,7 +82,8 @@
                                         fill="#3A71C7" />
                                 </svg>
 
-                                <span>08 a 10/08/2026</span>
+                                <span>{{ evento.dataInicio | date:'dd/MM/yyyy' }}
+                                    @if(evento.dataFim) { a {{ evento.dataFim | date:'dd/MM/yyyy' }} }</span>
                             </div>
 
                             <div class="flex items-center gap-3 text-texto-conteudo-primario font-medium text-sm">
@@ -91,7 +97,7 @@
                                         fill="#3A71C7" />
                                 </svg>
 
-                                <span>A partir das 09h</span>
+                                <span>{{ evento.horario || 'A definir' }}</span>
                             </div>
 
                             <div class="flex items-center gap-3 text-texto-conteudo-primario font-medium text-sm">
@@ -105,23 +111,23 @@
                                         fill="#3A71C7" />
                                 </svg>
 
-                                <span>ASTCU - DF</span>
+                                <span class="truncate">{{ evento.local }}</span>
                             </div>
                         </div>
 
                         <div>
-                            <button routerLink="/eventos/1"
+                            <button [routerLink]="['/eventos', evento.slug]"
                                 class="bg-backgroud-suporte-sucesso hover:bg-emerald-500 text-white text-sm font-bold py-2 px-4 rounded shadow-md transition-colors">
-                                Página do evento
+                                Saiba mais
                             </button>
                         </div>
 
                     </div>
 
                 </div>
-
+                }
                 <!-- inicio do segundo card -->
-                <div
+                <!-- <div
                     class="relative w-full max-w-[842px] h-[253px] rounded-3xl overflow-hidden shadow-lg ms-6 mb-10 flex">
 
                     <div class="absolute top-0 right-0 bottom-0 left-[280px] bg-cover bg-center z-0"
@@ -204,32 +210,15 @@
 
                     </div>
 
-                </div>
+                </div> -->
 
             </div>
         </li>
-
-        <li class="grid grid-cols-[100px_50px_1fr] gap-4 mb-4">
-
-            <div class="text-right pt-[2px]">
-                <h3 class="text-lg font-bold text-gray-900">Outubro</h3>
-            </div>
-
-            <div class="relative flex flex-col items-center h-full">
-                <div class="absolute top-0 bottom-0 border-s-2 border-info-100"></div>
-                <div
-                    class="z-10 flex h-[25px] w-[25px] flex-none items-center justify-center rounded-full bg-info-100 text-info-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
-                        <path fill-rule="evenodd"
-                            d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 3v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zm13.5 9a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-8 pb-12">
-            </div>
-        </li>
+        } @empty {
+        <div class="text-center py-12 text-gray-500">
+            <p>Nenhum evento encontrado no momento.</p>
+        </div>
+        }
 
     </ol>
 

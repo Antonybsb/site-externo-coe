@@ -19,7 +19,7 @@ export class ApiService {
         // Strapi v5 retorna { data: [...] }
         const lista = response.data || [];
         return lista.map((item: any) => this.formatarModalidade(item));
-      })
+      }),
     );
   }
 
@@ -33,7 +33,7 @@ export class ApiService {
           return this.formatarModalidade(lista[0]);
         }
         return null;
-      })
+      }),
     );
   }
 
@@ -97,14 +97,34 @@ export class ApiService {
   /* Fim dos Métodos relacionados às Modalidades Eventos */
 
   /* Início dos Métodos relacionados aos eventos Eventos */
-  // /modalidades?populate=*&sort=nome:asc`
 
   getEventos(): Observable<Evento[]> {
     return this.http.get<any>(`${this.apiUrl}/eventos?populate=*&sort=dataInicio:asc`).pipe(
       map((response) => {
         const lista = response.data || [];
         return lista.map((item: any) => this.formatarEvento(item));
-      })
+      }),
+    );
+  }
+
+  getEventoPorSlug(slug: string): Observable<Evento> {
+    const query = `?filters[slug][$eq]=${slug}&populate[0]=imagem&populate[1]=modalidades&populate[2]=regulamento`;
+    const url = `${this.apiUrl}/eventos${query}`;
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const dados = response.data || [];
+
+        if (dados.length > 0) {
+          // CORREÇÃO: Verificação segura antes de logar
+          const itemDebug = dados[0].attributes || dados[0];
+          console.log('📦 Modalidades (Raw):', itemDebug.modalidades);
+
+          return this.formatarEvento(dados[0]);
+        }
+
+        throw new Error('Evento não encontrado');
+      }),
     );
   }
 
@@ -112,11 +132,12 @@ export class ApiService {
   private formatarEvento(item: any): Evento {
     const dados = item.attributes || item;
 
-    // 1. Pega o caminho que veio do Strapi (ex: /uploads/foto.jpg)
     const urlRelativa = this.extrairUrl(dados.imagem);
-
-    // 2. Define a base do Strapi
     const baseUrl = 'http://localhost:1337';
+
+    // LÓGICA HÍBRIDA PARA LISTA DE MODALIDADES
+    // Tenta pegar .data (v4) ou pega direto (v5) ou array vazio
+    const listaModalidades = dados.modalidades?.data || dados.modalidades || [];
 
     return {
       id: item.id,
@@ -127,6 +148,21 @@ export class ApiService {
       slug: dados.slug,
       telefone: dados.contato || dados.telefone,
       horario: dados.horario,
+      regulamentoUrl: this.extrairUrl(dados.regulamento),
+
+      modalidades: listaModalidades.map((m: any) => {
+        const mod = m.attributes || m;
+        return {
+          id: m.id,
+          nome: mod.nome,
+          slug: mod.slug,
+          texto_historia: '',
+          imagem_hero: { url: '', texto_alternativo: '' },
+          imagem_historia: { url: '' },
+          icone: { url: '' },
+        };
+      }),
+
       imagemUrl: urlRelativa
         ? urlRelativa.startsWith('http')
           ? urlRelativa

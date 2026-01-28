@@ -1,9 +1,9 @@
-<app-hero-padrao titulo="" imagemUrl="assets/imagens/content.jpeg" classeCorOverlay="bg-[#2B2171]/30"
-    posicaoImagem="top">
+@if (evento(); as evt) {
+
+<app-hero-padrao titulo="" [imagemUrl]="evt.imagemUrl || ''" classeCorOverlay="bg-[#2B2171]/30" posicaoImagem="top">
 </app-hero-padrao>
 
-<app-section-header titulo="Detalhes do Evento" />
-<app-container-padrao>
+<app-section-header [titulo]="evt.titulo" /> <app-container-padrao>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
@@ -11,27 +11,40 @@
 
             <section>
                 <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Sobre o evento</h2>
-                <p class="text-texto-conteudo-primario leading-relaxed text-justify">
-                    As Olimpíadas de Integração dos Tribunais (OIT-2025)...
+                <p class="text-texto-conteudo-primario leading-relaxed text-justify whitespace-pre-line">
+                    {{ evt.descricao }}
                 </p>
             </section>
 
             <section>
                 <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Modalidades</h2>
                 <div class="bg-backgroud-superficie p-6 rounded-xl border border-gray-100">
+
+                    @if (evt.modalidades && evt.modalidades.length > 0) {
                     <p class="mb-4 text-gray-700">Incluem esportes coletivos e individuais:</p>
                     <ul class="list-disc list-inside grid grid-cols-2 gap-2 text-texto-conteudo-primario font-medium">
-                        <li>Futsal</li>
-                        <li>Vôlei</li>
-                        <li>Natação</li>
-                        <li>Tênis de mesa</li>
-                        <li>Corrida</li>
-                        <li>Xadrez</li>
+                        @for (mod of evt.modalidades; track mod.id) {
+                        <li>
+                            <a [routerLink]="['/modalidades', mod.slug]"
+                                class="hover:text-azul-primario transition-colors">
+                                {{ mod.nome }}
+                            </a>
+                        </li>
+                        }
                     </ul>
+                    } @else {
+                    <p class="text-gray-500 italic">Modalidades a definir.</p>
+                    }
+
+                    @if (evt.regulamentoUrl) {
                     <p class="mt-4 text-sm text-gray-500">
-                        A lista completa está no <a href="#"
-                            class="text-brand-default underline hover:text-brand-dark">regulamento</a>.
+                        A lista completa está no
+                        <a [href]="evt.regulamentoUrl" target="_blank"
+                            class="text-brand-default underline hover:text-brand-dark font-bold">
+                            regulamento
+                        </a>.
                     </p>
+                    }
                 </div>
             </section>
 
@@ -40,17 +53,26 @@
                 <div class="space-y-4 text-gray-700">
                     <div>
                         <strong class="block text-gray-900">Período:</strong>
-                        <span>De 8 a 10 de agosto de 2026, em Brasília (DF)</span>
+                        <span>
+                            De {{ evt.dataInicio | date:'dd' }}
+                            @if (evt.dataFim) { a {{ evt.dataFim | date:'dd/MM/yyyy' }} } @else { / {{ evt.dataInicio |
+                            date:'MM/yyyy' }} }
+                        </span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-900">Horário:</strong>
+                        <span>{{ evt.horario || 'A definir' }}</span>
                     </div>
                     <div>
                         <strong class="block text-gray-900">Local:</strong>
-                        <span>ASTCU. Outros locais serão definidos conforme a modalidade.</span>
+                        <span>{{ evt.local }}</span>
                     </div>
                 </div>
             </section>
 
+            @if (evt.telefone) {
             <section>
-                <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Equipe TCU</h2>
+                <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-4">Contato / Dúvidas</h2>
 
                 <div
                     class="w-full flex flex-col sm:flex-row gap-6 items-center rounded-lg border border-gray-200 p-6 bg-white shadow-sm">
@@ -58,9 +80,9 @@
                         <img src="assets/logo/logoTCU.svg" alt="TCU" class="h-8 w-auto" />
                     </div>
                     <div class="flex flex-row items-center gap-3 lg:ml-auto text-base text-texto-info font-medium">
-                        <p>Fale com um lider da delegação.</p>
-                        <a href="https://wa.me/5561999999999" target="_blank" rel="noopener noreferrer">
-
+                        <p>Fale com a organização:</p>
+                        <a [href]="'https://wa.me/55' + whatsappLimpo" target="_blank" rel="noopener noreferrer"
+                            class="hover:scale-110 transition-transform duration-300">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <rect width="40" height="40" rx="10" fill="#CFF4E2" />
@@ -72,92 +94,104 @@
                                     fill="#407C5F" />
                             </svg>
                         </a>
-
-
-
                     </div>
                 </div>
             </section>
-
-
+            }
 
         </main>
 
         <aside class="hidden lg:block lg:col-span-1 space-y-8 sticky top-[168px] self-start">
 
-            <app-calendario dataInicial="2026-08-01" [dataEvento]="diasDoEvento">
+            <app-calendario [dataInicial]="evt.dataInicio" [dataEvento]="diasDoEvento">
             </app-calendario>
 
-            <div class="mt-8 rounded-xl shadow-lg p-4 border border-gray-100">
+            @if (outrosEventos().length > 0) {
+            <div class="mt-8 rounded-xl shadow-lg p-4 border border-gray-100 bg-white">
                 <span
-                    class="bg-backgroud-suporte-alerta text-texto-suporte-primario-escurissimo text-xs font-bold px-2 py-1 rounded mb-2 inline-block">Próximo
-                    evento</span>
-                <img src="assets/imagens/banner-evento.jpg" class="w-full h-32 object-cover rounded-lg mb-3" alt="">
-                <h4 class="font-bold text-gray-900 leading-tight mb-2">Copa e Sarau Sindilegis</h4>
-                <div class="text-sm text-texto-conteudo-primario space-y-1">
-                    <p>📅 17 a 23/11/2025</p>
-                    <p>📍 Salvador - BA</p>
-                </div>
-                <button
-                    class="mt-4 w-full bg-backgroud-suporte-alerta hover:bg-yellow-500 text-texto-suporte-primario-escurissimo font-bold py-2 rounded text-sm transition-colors">
-                    Inscrever-se
-                </button>
+                    class="bg-backgroud-suporte-alerta text-texto-suporte-primario-escurissimo text-xs font-bold px-2 py-1 rounded mb-2 inline-block">
+                    Veja também
+                </span>
+
+                <a [routerLink]="['/eventos', outrosEventos()[0].slug]" class="block group">
+                    <div class="overflow-hidden rounded-lg mb-3 h-32">
+                        <img [src]="outrosEventos()[0].imagemUrl"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="">
+                    </div>
+                    <h4 class="font-bold text-gray-900 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
+                        {{ outrosEventos()[0].titulo }}
+                    </h4>
+                    <div class="text-sm text-texto-conteudo-primario space-y-1">
+                        <p>📅 {{ outrosEventos()[0].dataInicio | date:'dd/MM/yyyy' }}</p>
+                        <p>📍 {{ outrosEventos()[0].local }}</p>
+                    </div>
+                </a>
+
+                <a [routerLink]="['/eventos', outrosEventos()[0].slug]"
+                    class="mt-4 block text-center w-full bg-backgroud-suporte-alerta hover:bg-yellow-500 text-texto-suporte-primario-escurissimo font-bold py-2 rounded text-sm transition-colors">
+                    Ver detalhes
+                </a>
             </div>
+            }
 
         </aside>
 
     </div>
+
     <div class="mt-16 border-t border-gray-200 pt-12">
         <h2 class="text-2xl font-bold text-azul-coe-escurissimo mb-6">Outros eventos</h2>
 
         <div class="flex overflow-x-auto pb-4 gap-4 lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible scrollbar-hide">
 
-            <div
-                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
+            @for (outro of outrosEventos(); track outro.id) {
+            <a [routerLink]="['/eventos', outro.slug]"
+                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group block h-full">
                 <div class="h-32 bg-gray-200 overflow-hidden relative">
-                    <img src="assets/imagens/tenis.jpg"
+                    <img [src]="outro.imagemUrl"
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        alt="">
+                        [alt]="outro.titulo">
+
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <span class="absolute bottom-2 left-3 text-white font-bold text-lg">Open de Tênis</span>
+                    <span class="absolute bottom-2 left-3 text-white font-bold text-lg leading-tight pr-2">
+                        {{ outro.titulo }}
+                    </span>
                 </div>
                 <div class="p-4">
-                    <p class="text-xs text-gray-500 mb-2">Um torneio que une tradição e competitividade...</p>
+                    <p class="text-xs text-gray-500 mb-2 line-clamp-2 min-h-[2.5em]">
+                        {{ outro.descricao }}
+                    </p>
                     <div class="text-xs font-medium text-blue-600 space-y-1">
                         <div class="flex items-center gap-1">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            20 a 25/06/2026
+                            {{ outro.dataInicio | date:'dd/MM' }}
                         </div>
-                        <div class="flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="flex items-center gap-1 truncate">
+                            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
-                            Belo Horizonte - BH
+                            <span class="truncate">{{ outro.local }}</span>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div
-                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
-                <div class="h-32 bg-blue-100 flex items-center justify-center text-gray-400">Card 2</div>
-            </div>
-            <div
-                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
-                <div class="h-32 bg-blue-100 flex items-center justify-center text-gray-400">Card 3</div>
-            </div>
-            <div
-                class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group">
-                <div class="h-32 bg-blue-100 flex items-center justify-center text-gray-400">Card 4</div>
-            </div>
+            </a>
+            } @empty {
+            <p class="text-gray-400 col-span-4">Nenhum outro evento encontrado.</p>
+            }
 
         </div>
     </div>
 
 </app-container-padrao>
+
+} @else {
+<div class="min-h-screen flex items-center justify-center">
+    <p class="text-gray-500">Carregando evento...</p>
+</div>
+}
