@@ -96,4 +96,41 @@ export class EventosDetalhes implements OnInit {
     const tel = this.evento()?.telefone || '';
     return tel.replace(/\D/g, ''); // Remove tudo que não é número
   }
+
+  // Getter para analisar as datas e formatar as frases prontas.
+  get periodoFormatado(): string {
+    const evt = this.evento();
+    if (!evt || !evt.dataInicio) return '';
+
+    // Converte as strings para Objetos de Data REAIS
+    // O replace substitui hífen por barra para evitar bugs de fuso horário em navegadores antigos
+    const inicio = new Date(evt.dataInicio.replace(/-/g, '/'));
+
+    // Opções para escrever o mês por extenso (Ex: "outubro")
+    const formatoMes = new Intl.DateTimeFormat('pt-BR', { month: 'long' });
+    const mesInicio = formatoMes.format(inicio);
+    const anoInicio = inicio.getFullYear();
+
+    // CENÁRIO 1: SÓ TEM DATA DE INÍCIO
+    if (!evt.dataFim) {
+      return `${inicio.getDate()} de ${mesInicio} de ${anoInicio}`;
+    }
+
+    const fim = new Date(evt.dataFim.replace(/-/g, '/'));
+    const mesFim = formatoMes.format(fim);
+    const anoFim = fim.getFullYear();
+
+    // CENÁRIO 2: MESMO MÊS E MESMO ANO (Ex: De 08 a 10 de agosto de 2026)
+    if (mesInicio === mesFim && anoInicio === anoFim) {
+      return `De ${inicio.getDate()} a ${fim.getDate()} de ${mesInicio} de ${anoInicio}`;
+    }
+
+    // CENÁRIO 3: MÊS DIFERENTE, MESMO ANO (Ex: De 28 de setembro a 02 de outubro de 2026)
+    if (anoInicio === anoFim) {
+      return `De ${inicio.getDate()} de ${mesInicio} a ${fim.getDate()} de ${mesFim} de ${anoInicio}`;
+    }
+
+    // CENÁRIO 4: ANOS DIFERENTES (Ex: De 30 de dezembro de 2025 a 05 de janeiro de 2026)
+    return `De ${inicio.getDate()} de ${mesInicio} de ${anoInicio} a ${fim.getDate()} de ${mesFim} de ${anoFim}`;
+  }
 }
