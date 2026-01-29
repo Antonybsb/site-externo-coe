@@ -8,12 +8,29 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './calendario.css',
 })
 export class Calendario implements OnInit {
-  @Input() dataEvento: { dia: number; mes: number; ano: number }[] = [];
+  private _diasEvento: { dia: number; mes: number; ano: number }[] = [];
 
-  // Uma data inicial para o calendário abrir focado nela
-  @Input() dataInicial: string | null = null;
+  @Input() set dataEvento(dias: { dia: number; mes: number; ano: number }[]) {
+    this._diasEvento = dias;
+  }
+
+  @Input() set dataInicial(dataIso: string | undefined | null) {
+    if (dataIso) {
+      // Ajuste de Fuso Horário seguro: Cria a data e força o meio-dia
+      const partes = dataIso.split('-'); // ['2026', '08', '08']
+      if (partes.length >= 3) {
+        this.dataCorrente = new Date(
+          parseInt(partes[0]),
+          parseInt(partes[1]) - 1, // Mês 0-11
+          parseInt(partes[2]),
+        );
+        this.renderizarCalendario();
+      }
+    }
+  }
 
   dataCorrente: Date = new Date();
+
   mesNomes: string[] = [
     'Janeiro',
     'Fevereiro',
@@ -33,10 +50,6 @@ export class Calendario implements OnInit {
   displayMes: string = '';
 
   ngOnInit() {
-    if (this.dataInicial) {
-      this.dataCorrente = new Date(this.dataInicial + 'T12:00:00');
-    }
-
     this.renderizarCalendario();
   }
 
@@ -46,7 +59,7 @@ export class Calendario implements OnInit {
 
     this.displayMes = `${this.mesNomes[month]} ${year}`;
 
-    const firstDay = new Date(year, month, 1).getDay(); // Dia da semana que começa (0-6)
+    const firstDay = new Date(year, month, 1).getDay(); // Dia da semana (0-Domingo)
     const daysInMonth = new Date(year, month + 1, 0).getDate(); // Total dias no mês
 
     this.arrayDias = [];
@@ -67,13 +80,12 @@ export class Calendario implements OnInit {
     this.renderizarCalendario();
   }
 
-  // Verifica se o dia deve ser verde (evento)
   isEventDate(day: number | null): boolean {
     if (!day) return false;
-    const year = this.dataCorrente.getFullYear();
-    const month = this.dataCorrente.getMonth(); // 0 a 11
 
-    // Compara dia, mês e ano com a lista recebida via Input
-    return this.dataEvento.some((e) => e.ano === year && e.mes === month + 1 && e.dia === day);
+    const year = this.dataCorrente.getFullYear();
+    const month = this.dataCorrente.getMonth(); // 0 a 11 (Ex: Agosto = 7)
+
+    return this._diasEvento.some((e) => e.ano === year && e.mes === month && e.dia === day);
   }
 }
