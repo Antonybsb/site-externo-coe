@@ -8,13 +8,13 @@
             <div class="flex h-full transition-transform duration-500 ease-out"
                 [style.transform]="'translateX(-' + (indiceAtual() * 100) + '%)'">
 
-                @for (evento of eventos; track evento.id; let i = $index) {
+                @for (evento of eventos(); track evento.id; let i = $index) {
 
                 <div class="min-w-full h-full relative">
 
-                    @if (evento.tipo === 'imagem') {
+                    @if (evento.tipo === 'imagem_completa') {
                     <a [routerLink]="[evento.link]" class="block w-full h-full cursor-pointer">
-                        <img [src]="evento.imagem" [alt]="evento.titulo" class="w-full h-full object-cover">
+                        <img [src]="evento.imagemUrl" [alt]="evento.titulo" class="w-full h-full object-cover">
                     </a>
                     }
 
@@ -22,7 +22,7 @@
                     <div class="relative w-full h-full flex flex-col md:block">
 
                         <div class="absolute top-0 right-0 left-0 md:left-[280px] h-[200px] md:h-full bg-cover bg-center z-0"
-                            [style.background-image]="'url(' + evento.imagem + ')'">
+                            [style.background-image]="'url(' + evento.imagemUrl + ')'">
 
                             <div class="hidden md:block absolute inset-0 bg-gradient-to-r from-white/20 to-transparent">
                             </div>
@@ -62,7 +62,8 @@
                                             d="M16.5825 1.635H14.895V0.75C14.895 0.3375 14.5575 0 14.145 0C13.7325 0 13.395 0.3375 13.395 0.75V1.635H5.9625V0.75C5.9625 0.3375 5.625 0 5.2125 0C4.8 0 4.4625 0.3375 4.4625 0.75V1.635H2.7825C1.245 1.635 0 2.88 0 4.4175V18.2175C0 19.7475 1.245 21 2.7825 21H16.5825C18.12 21 19.365 19.7475 19.365 18.2175V4.4175C19.365 2.88 18.12 1.635 16.5825 1.635ZM2.7825 3.135H4.47V4.02C4.47 4.4325 4.8075 4.77 5.22 4.77C5.6325 4.77 5.97 4.4325 5.97 4.02V3.135H13.4025V4.02C13.4025 4.4325 13.74 4.77 14.1525 4.77C14.565 4.77 14.9025 4.4325 14.9025 4.02V3.135H16.59C17.295 3.135 17.8725 3.7125 17.8725 4.4175V7.215H1.5V4.4175C1.5 3.705 2.0775 3.135 2.7825 3.135ZM16.5825 19.5H2.7825C2.0775 19.5 1.5 18.9225 1.5 18.2175V8.715H17.865V18.2175C17.865 18.9225 17.2875 19.5 16.5825 19.5Z"
                                             fill="#3A71C7" />
                                     </svg>
-                                    <span>{{ evento.data }}</span>
+                                    <span>{{ evento.dataInicio | date:'dd/MM/yyyy' }}
+                                        @if(evento.dataFim) { a {{ evento.dataFim | date:'dd/MM/yyyy' }} }</span>
                                 </div>
                                 <div class="flex items-center gap-3 text-texto-conteudo-primario font-medium text-sm">
                                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -113,7 +114,7 @@
                 </svg>
             </button>
             <div class="flex items-center gap-2">
-                @for (evento of eventos; track evento.id; let i = $index) {
+                @for (evento of eventos(); track evento.id; let i = $index) {
                 <button (click)="indiceAtual.set(i); iniciarRotacaoAutomatica()"
                     class="rounded-full transition-all duration-300" [class.w-8]="i === indiceAtual()"
                     [class.h-2]="i === indiceAtual()" [class.bg-azul-coe-escurissimo]="i === indiceAtual()"

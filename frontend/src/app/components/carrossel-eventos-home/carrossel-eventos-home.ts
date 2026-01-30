@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { SectionHeader } from '../section-header/section-header';
 import { ContainerPadrao } from '../container-padrao/container-padrao';
 import { RouterModule } from '@angular/router';
+import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-carrossel-eventos-home',
@@ -11,7 +12,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './carrossel-eventos-home.css',
 })
 export class CarrosselEventosHome implements OnInit, OnDestroy {
-  eventos = [
+  private apiService = new ApiService();
+
+  eventos = signal<any[]>([]);
+
+  /* eventos = [
     // CASO 1: Evento Interno (Usa o Layout Padrão com HTML)
     {
       id: 1,
@@ -38,13 +43,28 @@ export class CarrosselEventosHome implements OnInit, OnDestroy {
       imagem: 'assets/bannerEventosHome/5662256.jpg',
       link: '/eventos/3',
     },
-  ];
+  ]; */
 
   indiceAtual = signal(0);
   intervalo: any;
 
   ngOnInit() {
+    this.carregarEventos();
     this.iniciarRotacaoAutomatica();
+  }
+
+  carregarEventos() {
+    this.apiService.getEventosHome().subscribe({
+      next: (dados) => {
+        this.eventos.set(dados);
+
+        // Só inicia a rotação se tiver mais de 1 evento
+        if (dados.length > 1) {
+          this.iniciarRotacaoAutomatica();
+        }
+      },
+      error: (err) => console.error('Erro ao carregar banner home:', err),
+    });
   }
 
   ngOnDestroy(): void {
@@ -53,13 +73,13 @@ export class CarrosselEventosHome implements OnInit, OnDestroy {
 
   proximo() {
     this.pararRotacaoAutomatica();
-    this.indiceAtual.update((valor) => (valor + 1) % this.eventos.length);
+    this.indiceAtual.update((valor) => (valor + 1) % this.eventos().length);
     this.iniciarRotacaoAutomatica();
   }
 
   anterior() {
     this.pararRotacaoAutomatica();
-    this.indiceAtual.update((valor) => (valor - 1 + this.eventos.length) % this.eventos.length);
+    this.indiceAtual.update((valor) => (valor - 1 + this.eventos().length) % this.eventos().length);
     this.iniciarRotacaoAutomatica();
   }
 
@@ -68,7 +88,7 @@ export class CarrosselEventosHome implements OnInit, OnDestroy {
 
     this.intervalo = setInterval(() => {
       // O Signal garante a atualização da tela, mesmo dentro do setInterval
-      this.indiceAtual.update((valor) => (valor + 1) % this.eventos.length);
+      this.indiceAtual.update((valor) => (valor + 1) % this.eventos().length);
     }, 5000);
   }
 

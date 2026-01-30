@@ -511,6 +511,9 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    banner_carrossel_home: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     contato: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -536,6 +539,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     slug: Schema.Attribute.UID<'titulo'>;
+    tipo_exibicao: Schema.Attribute.Boolean;
     titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

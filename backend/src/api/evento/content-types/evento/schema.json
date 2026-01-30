@@ -61,6 +61,19 @@
     },
     "horario": {
       "type": "string"
+    },
+    "tipo_exibicao": {
+      "type": "boolean"
+    },
+    "banner_carrossel_home": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

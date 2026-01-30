@@ -171,5 +171,50 @@ export class ApiService {
         : '',
     };
   }
+
+  // Busca os últimos 3 eventos para o carrossel
+  getEventosHome(): Observable<any[]> {
+    // Filtros:
+    // - sort=dataInicio:desc (Do mais novo para o mais antigo) ou :asc (próximos a acontecer)
+    // - pagination[limit]=3 (Só traz 3)
+    // populate=* traz tudo, inclusive o novo 'banner_carrossel_home'
+    const url = `${this.apiUrl}/eventos?sort=dataInicio:asc&pagination[limit]=3&populate=*`;
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const lista = response.data || [];
+        return lista.map((item: any) => {
+          const dados = item.attributes || item;
+          const formatado = this.formatarEvento(item);
+
+          // LÓGICA ESPECIAL PARA O CARROSSEL
+
+          // 1. Resolve a imagem do banner.
+          // Se tiver 'banner_carrossel_home', usa ela. Se não, usa a 'imagem' padrão.
+          const bannerUrlRaw = dados.banner_carrossel_home || dados.imagem;
+          const bannerUrl = this.extrairUrl(bannerUrlRaw);
+          const baseUrl = 'http://localhost:1337';
+
+          const bannerFinal = bannerUrl
+            ? bannerUrl.startsWith('http')
+              ? bannerUrl
+              : `${baseUrl}${bannerUrl}`
+            : '';
+
+          return {
+            ...formatado,
+            // Aqui adaptamos para o seu Boolean (TRUE = imagem_completa, FALSE = padrao)
+            tipo: dados.tipo_exibicao === true ? 'imagem_completa' : 'padrao',
+
+            // Sobrescrevemos a imagemUrl apenas para o carrossel usar o banner wide
+            imagemUrl: bannerFinal,
+
+            link: `/eventos/${dados.slug}`,
+          };
+        });
+      }),
+    );
+  }
+
   /*  Fim Métodos relacionados aos eventos Eventos */
 }
