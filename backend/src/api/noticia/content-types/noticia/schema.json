@@ -35,6 +35,9 @@
     },
     "autor": {
       "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
     }
   }
 }

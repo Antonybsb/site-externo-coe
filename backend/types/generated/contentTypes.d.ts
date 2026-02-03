@@ -613,6 +613,7 @@ export interface ApiNoticiaNoticia extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     resumo: Schema.Attribute.Text;
+    subtitulo: Schema.Attribute.String;
     titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

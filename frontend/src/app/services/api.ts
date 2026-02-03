@@ -134,7 +134,8 @@ export class ApiService {
   private formatarEvento(item: any): Evento {
     const dados = item.attributes || item;
 
-    const urlRelativa = this.extrairUrl(dados.imagem);
+    const imgParaUsar = dados.imagem || dados.banner_carrossel_home;
+    const urlRelativa = this.extrairUrl(imgParaUsar);
     const baseUrl = 'http://localhost:1337';
 
     // LÓGICA HÍBRIDA PARA LISTA DE MODALIDADES
@@ -218,6 +219,22 @@ export class ApiService {
     );
   }
 
+  getProximoEvento(): Observable<any> {
+    // sort=dataInicio:asc -> O mais breve possível (o próximo)
+    // pagination[limit]=1 -> Apenas um
+    const url = `${this.apiUrl}/eventos?sort=dataInicio:asc&pagination[limit]=1&populate=*`;
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const lista = response.data || [];
+        if (lista.length > 0) {
+          return this.formatarEvento(lista[0]);
+        }
+        return null;
+      }),
+    );
+  }
+
   /*  Fim Métodos relacionados aos eventos Eventos */
 
   /* --- MÉTODOS DE NOTÍCIAS --- */
@@ -249,24 +266,116 @@ export class ApiService {
     );
   }
 
+  getNoticiaPorId(id: number): Observable<NoticiaModel> {
+    // ESTRATÉGIA SEGURA V5:
+    // Em vez de /noticias/2 (que exige documentId), usamos filtro:
+    // /noticias?filters[id][$eq]=2
+    const url = `${this.apiUrl}/noticias?filters[id][$eq]=${id}&populate=*`;
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const lista = response.data || [];
+
+        // Como usamos filtro, o Strapi devolve um Array. Pegamos o primeiro item.
+        if (lista.length > 0) {
+          return this.formatarNoticia(lista[0]);
+        }
+
+        throw new Error('Notícia não encontrada');
+      }),
+    );
+  }
+
   // Helper para formatar Notícia (Blindado v4/v5)
   private formatarNoticia(item: any): NoticiaModel {
     const dados = item.attributes || item;
     const baseUrl = 'http://localhost:1337';
-
-    // Reutiliza seu método extrairUrl que já criamos antes
     const urlRelativa = this.extrairUrl(dados.imagem_capa);
 
     return {
       id: item.id,
       titulo: dados.titulo,
+      // Se não tiver subtítulo no Strapi, deixamos vazio ou undefined
+      subtitulo: dados.subtitulo || '',
+      // Se não tiver autor cadastrado, colocamos um padrão
+      autor: dados.autor || 'Assessoria COE',
+      conteudo: this.converterBlocksParaHtml(dados.conteudo),
       resumo: dados.resumo,
       data: dados.data_publicacao,
       imagem: urlRelativa
         ? urlRelativa.startsWith('http')
           ? urlRelativa
           : `${baseUrl}${urlRelativa}`
-        : '', // Coloque uma imagem placeholder aqui se quiser
+        : '',
     };
+  }
+
+  // --- MÉTODO NOVO: O TRADUTOR DE BLOCKS ---
+  // Transforma o JSON louco do Strapi v5 em HTML legível
+  private converterBlocksParaHtml(blocks: any[]): string {
+    if (!blocks || !Array.isArray(blocks)) {
+      return '';
+    }
+
+    return blocks
+      .map((block) => {
+        // Função interna para processar negrito, itálico, etc.
+        const renderChildren = (children: any[]): string => {
+          if (!children) return '';
+          return children
+            .map((child: any) => {
+              let text = child.text || '';
+
+              // Tratamento de estilos básicos
+              if (child.bold) text = `<strong>${text}</strong>`;
+              if (child.italic) text = `<em>${text}</em>`;
+              if (child.underline) text = `<u>${text}</u>`;
+              if (child.strikethrough) text = `<s>${text}</s>`;
+              if (child.code) text = `<code class="bg-gray-100 p-1 rounded">${text}</code>`;
+
+              // Tratamento de Links no texto
+              if (child.type === 'link') {
+                return `<a href="${child.url}" class="text-blue-600 underline">${renderChildren(child.children)}</a>`;
+              }
+
+              return text;
+            })
+            .join('');
+        };
+
+        // Switch para decidir qual tag HTML criar
+        switch (block.type) {
+          case 'paragraph':
+            return `<p class="mb-4 text-gray-700 leading-relaxed">${renderChildren(block.children)}</p>`;
+
+          case 'heading':
+            // Cria h1, h2, h3... dinamicamente
+            const sizes: any = { 1: 'text-3xl', 2: 'text-2xl', 3: 'text-xl', 4: 'text-lg' };
+            const sizeClass = sizes[block.level] || 'text-lg';
+            return `<h${block.level} class="${sizeClass} font-bold text-azul-coe-escurissimo mt-6 mb-3">${renderChildren(block.children)}</h${block.level}>`;
+
+          case 'list':
+            const tag = block.format === 'ordered' ? 'ol' : 'ul';
+            const listStyle = block.format === 'ordered' ? 'list-decimal' : 'list-disc';
+
+            const itens = block.children
+              .map((li: any) => `<li class="ml-4 mb-1">${renderChildren(li.children)}</li>`)
+              .join('');
+
+            return `<${tag} class="${listStyle} list-inside mb-4 ml-4">${itens}</${tag}>`;
+
+          case 'image':
+            const imgUrl = block.image.url;
+            const alt = block.image.alternativeText || '';
+            return `<img src="${imgUrl}" alt="${alt}" class="w-full rounded-lg my-6" />`;
+
+          case 'quote':
+            return `<blockquote class="border-l-4 border-emerald-500 pl-4 italic my-4 bg-gray-50 py-2">${renderChildren(block.children)}</blockquote>`;
+
+          default:
+            return '';
+        }
+      })
+      .join('');
   }
 }

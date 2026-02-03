@@ -96,30 +96,36 @@
 
         <aside class="lg:col-span-4 space-y-8 sticky top-[168px] self-start">
 
+            @if (proximoEvento(); as evento) {
             <div class="bg-white rounded-xl shadow-lg p-4 border border-gray-100">
+
                 <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">
                     Próximo evento
                 </span>
-                <img src="assets/imagens/banner-evento.jpg" class="w-full h-40 object-cover rounded-lg mb-3" alt="">
-                <h4 class="font-bold text-gray-900 leading-tight mb-2">Copa e Sarau Sindilegis</h4>
+
+                <a [routerLink]="['/eventos', evento.slug]" class="block group overflow-hidden rounded-lg mb-3 h-40">
+                    <img [src]="evento.imagemUrl" [alt]="evento.titulo"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </a>
+
+                <h4 class="font-bold text-gray-900 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
+                    <a [routerLink]="['/eventos', evento.slug]">
+                        {{ evento.titulo }}
+                    </a>
+                </h4>
+
                 <div class="text-sm text-gray-600 space-y-1 mb-4">
-                    <p>📅 17 a 23/11/2025</p>
-                    <p>📍 Salvador - BA</p>
+                    <p>📅 {{ evento.dataInicio | date:'dd/MM/yyyy' }}</p>
+                    <p>📍 {{ evento.local }}</p>
                 </div>
-                <button
-                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 rounded text-sm transition-colors">
+
+                <a [routerLink]="['/eventos', evento.slug]"
+                    class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 rounded text-sm transition-colors cursor-pointer">
                     Inscrever-se
-                </button>
-            </div>
-
-            <div class="flex justify-center w-full">
-
-                <div
-                    class="w-full max-w-[280px] bg-blue-600 rounded-xl overflow-hidden shadow-md text-white transition-transform hover:scale-105 cursor-pointer">
-                    <img src="assets/imagens/sicoob.jpg" alt="Propaganda Brasal" class="w-full h-auto object-cover">
-                </div>
+                </a>
 
             </div>
+            }
 
         </aside>
 

@@ -1,52 +1,61 @@
 <app-container-padrao>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-[168px] mb-12">
+
+    @if (isLoading()) {
+    <div class="flex justify-center items-center py-32">
+        <div class="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+    }
+    @else if (noticia(); as item) { <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-[168px] mb-12">
 
         <main class="lg:col-span-8">
             <nav class="w-full mb-6 text-sm">
                 <ol class="list-reset flex text-gray-500">
                     <li>
-                        <a [routerLink]="['/']" class="hover:text-emerald-600 transition-colors">
-                            Home
-                        </a>
+                        <a [routerLink]="['/']" class="hover:text-emerald-600 transition-colors">Home</a>
                     </li>
                     <li><span class="mx-2 text-gray-400">></span></li>
-
                     <li>
-                        <a [routerLink]="['/noticias']" class="hover:text-emerald-600 transition-colors">
-                            Notícias
-                        </a>
+                        <a [routerLink]="['/noticias']" class="hover:text-emerald-600 transition-colors">Notícias</a>
                     </li>
                     <li><span class="mx-2 text-gray-400">></span></li>
-
                     <li class="text-gray-800 font-medium truncate max-w-[150px] md:max-w-[300px]">
-                        {{ noticia.titulo }}
+                        {{ item.titulo }}
                     </li>
                 </ol>
             </nav>
+
             <header class="mb-8">
                 <h1 class="text-3xl md:text-4xl font-bold text-azul-coe-escurissimo leading-tight mb-4">
-                    {{ noticia.titulo }}
+                    {{ item.titulo }}
                 </h1>
+
+                @if (item.subtitulo) {
                 <p class="text-lg text-texto-conteudo-terciario font-normal leading-relaxed mb-4">
-                    {{ noticia.subtitulo }}
+                    {{ item.subtitulo }}
                 </p>
-                <div class="flex items-center gap-4 text-sm text-gray-500 uppercase font-extrabold  pb-4">
-                    <span>Por {{ noticia.autor }}</span>
+                }
+
+                <div class="flex items-center gap-4 text-sm text-gray-500 uppercase font-extrabold pb-4">
+                    <span>Por {{ item.autor }}</span>
                 </div>
                 <div
                     class="flex items-center gap-4 text-sm text-gray-500 uppercase font-bold border-b border-gray-200 pb-6">
-                    <span> {{ noticia.data }}</span>
+                    <span>{{ item.data | date: "d 'de' MMMM 'de' y" }}</span>
                 </div>
             </header>
-            <figure class="mb-2 overflow-hidden">
-                <img [src]="noticia.imagem" alt="Imagem da notícia" class="w-full object-cover">
+
+            <figure class="mb-2 overflow-hidden rounded-xl">
+                <img [src]="item.imagem" [alt]="item.titulo" class="w-full object-cover max-h-[500px]">
                 <figcaption class="mt-3 text-sm text-gray-500 text-left leading-snug">
                     Divulgação/TCU
                 </figcaption>
             </figure>
-            <article class="text-texto-conteudo-primario text-lg leading-relaxed text-justify space-y-6 mt-8"
-                [innerHTML]="noticia.conteudo">
+
+            <article
+                class="text-texto-conteudo-primario text-lg leading-relaxed text-justify space-y-6 mt-8 whitespace-pre-line"
+                [innerHTML]="item.conteudo">
             </article>
+
             <div class="mt-12 pt-8 border-t border-gray-200">
                 <a routerLink="/noticias">
                     <button
@@ -62,31 +71,46 @@
         </main>
 
         <aside class="hidden lg:block lg:col-span-4 space-y-8 sticky top-[168px] self-start">
+            @if (proximoEvento(); as evento) {
             <div class="bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+
                 <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">
                     Próximo evento
                 </span>
-                <img src="assets/imagens/banner-evento.jpg" class="w-full h-40 object-cover rounded-lg mb-3">
-                <h4 class="font-bold text-gray-900 leading-tight mb-2">Copa e Sarau Sindilegis</h4>
+
+                <a [routerLink]="['/eventos', evento.slug]" class="block group overflow-hidden rounded-lg mb-3 h-40">
+                    <img [src]="evento.imagemUrl" [alt]="evento.titulo"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </a>
+
+                <h4 class="font-bold text-gray-900 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
+                    <a [routerLink]="['/eventos', evento.slug]">
+                        {{ evento.titulo }}
+                    </a>
+                </h4>
+
                 <div class="text-sm text-gray-600 space-y-1 mb-4">
-                    <p>📅 17 a 23/11/2025</p>
-                    <p>📍 Salvador - BA</p>
+                    <p>📅 {{ evento.dataInicio | date:'dd/MM/yyyy' }}</p>
+                    <p>📍 {{ evento.local }}</p>
                 </div>
-                <button
-                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 rounded text-sm transition-colors">
+
+                <a [routerLink]="['/eventos', evento.slug]"
+                    class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 rounded text-sm transition-colors cursor-pointer">
                     Inscrever-se
-                </button>
+                </a>
 
             </div>
-            <div class="flex justify-center w-full">
-
-                <div
-                    class="w-full max-w-[280px] bg-blue-600 rounded-xl overflow-hidden shadow-md text-white transition-transform hover:scale-105 cursor-pointer">
-                    <img src="assets/imagens/brasal.jpg" alt="Propaganda Brasal" class="w-full h-auto object-cover">
-                </div>
-
-            </div>
+            }
 
         </aside>
 
     </div>
+
+    } @else {
+    <div class="flex flex-col items-center justify-center py-32 text-center">
+        <h2 class="text-2xl font-bold text-gray-700">Notícia não encontrada</h2>
+        <a routerLink="/noticias" class="text-emerald-600 hover:underline mt-4">Voltar para a lista</a>
+    </div>
+    }
+
+</app-container-padrao>

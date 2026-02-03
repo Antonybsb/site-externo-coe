@@ -4,6 +4,7 @@ import { ContainerPadrao } from '../../container-padrao/container-padrao';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api';
 import { NoticiaModel } from '../../../models/noticia.model';
+import { Evento } from '../../../models/evento';
 
 @Component({
   selector: 'app-noticias-lista',
@@ -16,16 +17,27 @@ export class NoticiasLista implements OnInit {
 
   // Estados reativos (Signals)
   listaNoticias = signal<NoticiaModel[]>([]);
+  proximoEvento = signal<Evento | null>(null);
   isLoading = signal(true);
 
   // Variáveis de Paginação
   paginaAtual = 1;
-  itensPorPagina = 1;
+  itensPorPagina = 5;
   totalItens = 0;
   paginasArray: number[] = [];
 
   ngOnInit() {
     this.carregarDados(1);
+    this.carregarProximoEvento();
+  }
+
+  carregarProximoEvento() {
+    this.apiService.getProximoEvento().subscribe({
+      next: (evento) => {
+        this.proximoEvento.set(evento);
+      },
+      error: (err) => console.error('Erro ao carregar evento lateral', err),
+    });
   }
 
   carregarDados(pagina: number) {
