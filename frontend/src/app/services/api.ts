@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { ModalidadeModel } from '../models/modalidade.model';
 import { Evento } from '../models/evento';
+import { NoticiaModel } from '../models/noticia.model';
+import { RespostaPaginadaModel } from '../models/resposta-paginada.model';
 
 @Injectable({
   providedIn: 'root',
@@ -217,4 +219,54 @@ export class ApiService {
   }
 
   /*  Fim Métodos relacionados aos eventos Eventos */
+
+  /* --- MÉTODOS DE NOTÍCIAS --- */
+
+  getNoticias(
+    pagina: number = 1,
+    itensPorPagina: number = 5,
+  ): Observable<RespostaPaginadaModel<NoticiaModel>> {
+    // Montamos a Query String:
+    // 1. populate=*: Traz a imagem
+    // 2. sort=data_publicacao:desc : Traz as mais novas primeiro
+    // 3. pagination[page] : Qual página queremos
+    // 4. pagination[pageSize] : Quantos itens
+    const query = `?populate=*&sort=data_publicacao:desc&pagination[page]=${pagina}&pagination[pageSize]=${itensPorPagina}`;
+
+    return this.http.get<any>(`${this.apiUrl}/noticias${query}`).pipe(
+      map((response) => {
+        const dadosRaw = response.data || [];
+        const meta = response.meta || {};
+
+        // Mapeia os dados usando a lógica de formatação
+        const noticiasFormatadas = dadosRaw.map((item: any) => this.formatarNoticia(item));
+
+        return {
+          dados: noticiasFormatadas,
+          meta: meta,
+        };
+      }),
+    );
+  }
+
+  // Helper para formatar Notícia (Blindado v4/v5)
+  private formatarNoticia(item: any): NoticiaModel {
+    const dados = item.attributes || item;
+    const baseUrl = 'http://localhost:1337';
+
+    // Reutiliza seu método extrairUrl que já criamos antes
+    const urlRelativa = this.extrairUrl(dados.imagem_capa);
+
+    return {
+      id: item.id,
+      titulo: dados.titulo,
+      resumo: dados.resumo,
+      data: dados.data_publicacao,
+      imagem: urlRelativa
+        ? urlRelativa.startsWith('http')
+          ? urlRelativa
+          : `${baseUrl}${urlRelativa}`
+        : '', // Coloque uma imagem placeholder aqui se quiser
+    };
+  }
 }

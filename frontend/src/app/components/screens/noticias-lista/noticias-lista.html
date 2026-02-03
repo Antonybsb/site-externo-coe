@@ -4,7 +4,7 @@
 
         <div class="lg:col-span-8 flex flex-col gap-10">
 
-            @for (item of listaNoticias; track item.titulo) {
+            @for (item of listaNoticias(); track item.titulo) {
             <a [routerLink]="['/noticia-artigo', item.id]">
                 <div class="flex flex-col md:flex-row gap-6 group cursor-pointer ">
 
@@ -22,7 +22,7 @@
                             {{ item.resumo }}
                         </p>
                         <span class="text-xs font-bold text-gray-400 uppercase mt-auto">
-                            {{ item.data }}
+                            {{ item.data | date: "d 'de' MMMM 'de' y" }}
                         </span>
                     </div>
                 </div>
@@ -39,20 +39,23 @@
                 </span>
 
                 <div class="flex items-center gap-2">
-                    <button class="p-2 rounded hover:bg-gray-100 disabled:opacity-50" [disabled]="paginaAtual === 1">
+                    <button (click)="carregarDados(1)" class="p-2 rounded hover:bg-gray-100 disabled:opacity-50"
+                        [disabled]="paginaAtual === 1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button class="p-2 rounded hover:bg-gray-100 disabled:opacity-50" [disabled]="paginaAtual === 1">
+                    <button (click)="carregarDados(paginaAtual - 1)"
+                        class="p-2 rounded hover:bg-gray-100 disabled:opacity-50" [disabled]="paginaAtual === 1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
 
                     @for (pag of paginasArray; track pag) {
-                    <button class="w-8 h-8 rounded border flex items-center justify-center transition-colors"
+                    <button (click)="carregarDados(pag)"
+                        class="w-8 h-8 rounded border flex items-center justify-center transition-colors"
                         [class.bg-blue-50]="pag === paginaAtual" [class.text-blue-600]="pag === paginaAtual"
                         [class.border-blue-200]="pag === paginaAtual" [class.border-gray-200]="pag !== paginaAtual"
                         [class.hover:bg-gray-50]="pag !== paginaAtual">
@@ -60,12 +63,16 @@
                     </button>
                     }
 
-                    <button class="p-2 rounded hover:bg-gray-100">
+                    <button (click)="carregarDados(paginaAtual + 1)" [disabled]="paginaAtual === paginasArray.length"
+                        class="p-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
-                    <button class="p-2 rounded hover:bg-gray-100">
+
+                    <button (click)="carregarDados(paginasArray.length)"
+                        [disabled]="paginaAtual === paginasArray.length"
+                        class="p-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 5l7 7-7 7M5 5l7 7-7 7" />
@@ -74,7 +81,7 @@
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <select
+                    <select (change)="mudarItensPorPagina($event)"
                         class="border border-gray-300 rounded px-2 py-1 bg-white focus:outline-none focus:border-blue-500">
                         <option value="5">5</option>
                         <option value="10">10</option>
