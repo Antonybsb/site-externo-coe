@@ -5,6 +5,7 @@ import { ModalidadeModel } from '../models/modalidade.model';
 import { Evento } from '../models/evento';
 import { NoticiaModel } from '../models/noticia.model';
 import { RespostaPaginadaModel } from '../models/resposta-paginada.model';
+import { MembroModel } from '../models/membro.model';
 
 @Injectable({
   providedIn: 'root',
@@ -377,5 +378,38 @@ export class ApiService {
         }
       })
       .join('');
+  }
+
+  /* --- MÉTODOS DE EQUIPE / SOBRE --- */
+
+  getEquipe(): Observable<MembroModel[]> {
+    // Busca todos e ordena por nome ou por ordem
+    /* const url = `${this.apiUrl}/membros?populate=*&sort=nome:asc`; */ // Ordem alfabética
+    const url = `${this.apiUrl}/membros?populate=*&sort[0]=ordem:asc&sort[1]=nome:asc`; // Ordem numérica
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const lista = response.data || [];
+        return lista.map((item: any) => this.formatarMembro(item));
+      }),
+    );
+  }
+
+  private formatarMembro(item: any): MembroModel {
+    const dados = item.attributes || item;
+    const baseUrl = 'http://localhost:1337';
+    const urlRelativa = this.extrairUrl(dados.foto);
+
+    return {
+      id: item.id,
+      nome: dados.nome,
+      cargo: dados.cargo,
+      categoria: dados.categoria,
+      imagem: urlRelativa
+        ? urlRelativa.startsWith('http')
+          ? urlRelativa
+          : `${baseUrl}${urlRelativa}`
+        : 'assets/imagens/avatar-placeholder.jpg', // Fallback se não tiver foto
+    };
   }
 }

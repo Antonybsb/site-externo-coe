@@ -29,6 +29,7 @@ import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoi
 import { CarrosselEventosHome } from './components/carrossel-eventos-home/carrossel-eventos-home';
 import { DepoimentosCta } from './components/depoimentos-cta/depoimentos-cta';
 import { CardEvento } from './components/card-evento/card-evento';
+import { SobreComponent } from './components/screens/sobre.component/sobre.component';
 
 @Component({
   selector: 'app-root',
@@ -59,6 +60,7 @@ import { CardEvento } from './components/card-evento/card-evento';
     CarrosselEventosHome,
     DepoimentosCta,
     CardEvento,
+    SobreComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

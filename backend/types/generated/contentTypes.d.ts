@@ -547,6 +547,38 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
+  collectionName: 'membros';
+  info: {
+    displayName: 'Membro';
+    pluralName: 'membros';
+    singularName: 'membro';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cargo: Schema.Attribute.String;
+    categoria: Schema.Attribute.Enumeration<['comite', 'voluntario']>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    foto: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::membro.membro'
+    > &
+      Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
+    ordem: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
   collectionName: 'modalidades';
   info: {
@@ -1134,6 +1166,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::banner.banner': ApiBannerBanner;
       'api::evento.evento': ApiEventoEvento;
+      'api::membro.membro': ApiMembroMembro;
       'api::modalidade.modalidade': ApiModalidadeModalidade;
       'api::noticia.noticia': ApiNoticiaNoticia;
       'plugin::content-releases.release': PluginContentReleasesRelease;
