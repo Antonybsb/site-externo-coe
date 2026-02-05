@@ -7,9 +7,22 @@ import { Evento } from '../../../models/evento';
 import { ApiService } from '../../../services/api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {
+  BreadcrumbComponent,
+  BreadcrumbItem,
+} from '../../breadcrumb.component/breadcrumb.component';
 @Component({
   selector: 'app-eventos-detalhes',
-  imports: [HeroPadrao, SectionHeader, ContainerPadrao, Calendario, CommonModule, RouterLink],
+  standalone: true,
+  imports: [
+    HeroPadrao,
+    SectionHeader,
+    ContainerPadrao,
+    Calendario,
+    CommonModule,
+    RouterLink,
+    BreadcrumbComponent,
+  ],
   templateUrl: './eventos-detalhes.html',
   styleUrl: './eventos-detalhes.css',
 })
@@ -26,6 +39,7 @@ export class EventosDetalhes implements OnInit {
   evento = signal<Evento | null>(null);
   outrosEventos = signal<Evento[]>([]);
   isLoading = signal(true);
+  breadcrumbItems = signal<BreadcrumbItem[]>([]);
 
   // Para o Calendário (Sidebar)
   diasDoEvento: { dia: number; mes: number; ano: number }[] = [];
@@ -46,6 +60,11 @@ export class EventosDetalhes implements OnInit {
     this.apiService.getEventoPorSlug(slug).subscribe({
       next: (ev) => {
         this.evento.set(ev);
+        this.breadcrumbItems.set([
+          { label: 'Home', url: '/' },
+          { label: 'Eventos', url: '/eventos' }, // Ou a rota da sua listagem
+          { label: ev.titulo }, // Último item sem URL (página atual)
+        ]);
         this.gerarDiasDoEvento(ev);
         this.carregarOutrosEventos(ev.id); // Busca os outros, exceto este
         this.isLoading.set(false);

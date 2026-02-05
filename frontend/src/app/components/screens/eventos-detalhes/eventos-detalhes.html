@@ -3,9 +3,16 @@
 <app-hero-padrao titulo="" [imagemUrl]="evt.imagemUrl || ''" classeCorOverlay="bg-[#2B2171]/30" posicaoImagem="top">
 </app-hero-padrao>
 
+
+<app-container-padrao>
+    <div class="mt-8 mb-4">
+        <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+    </div>
+</app-container-padrao>
 <app-section-header [titulo]="evt.titulo" /> <app-container-padrao>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+
 
         <main class="lg:col-span-2 space-y-12">
 

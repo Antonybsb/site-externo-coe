@@ -8,21 +8,9 @@
     @else if (noticia(); as item) { <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-[168px] mb-12">
 
         <main class="lg:col-span-8">
-            <nav class="w-full mb-6 text-sm">
-                <ol class="list-reset flex text-gray-500">
-                    <li>
-                        <a [routerLink]="['/']" class="hover:text-emerald-600 transition-colors">Home</a>
-                    </li>
-                    <li><span class="mx-2 text-gray-400">></span></li>
-                    <li>
-                        <a [routerLink]="['/noticias']" class="hover:text-emerald-600 transition-colors">Notícias</a>
-                    </li>
-                    <li><span class="mx-2 text-gray-400">></span></li>
-                    <li class="text-gray-800 font-medium truncate max-w-[150px] md:max-w-[300px]">
-                        {{ item.titulo }}
-                    </li>
-                </ol>
-            </nav>
+            <div class="mt-8 mb-4">
+                <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+            </div>
 
             <header class="mb-8">
                 <h1 class="text-3xl md:text-4xl font-bold text-azul-coe-escurissimo leading-tight mb-4">

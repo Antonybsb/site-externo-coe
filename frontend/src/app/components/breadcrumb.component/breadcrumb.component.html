@@ -1,0 +1,24 @@
+<nav class="w-full mb-6 text-sm">
+    <ol class="list-reset flex text-gray-500 flex-wrap">
+
+        @for (crumb of items(); track crumb.label; let isLast = $last) {
+
+        <li>
+            @if (!isLast && crumb.url) {
+            <a [routerLink]="[crumb.url]" class="hover:text-emerald-600 transition-colors">
+                {{ crumb.label }}
+            </a>
+            } @else {
+            <span class="text-gray-800 font-medium truncate max-w-[150px] md:max-w-[300px] block" [title]="crumb.label">
+                {{ crumb.label }}
+            </span>
+            }
+        </li>
+
+        @if (!isLast) {
+        <li><span class="mx-2 text-gray-400">/</span></li>
+        }
+
+        }
+    </ol>
+</nav>

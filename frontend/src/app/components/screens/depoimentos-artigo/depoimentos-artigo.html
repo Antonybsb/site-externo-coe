@@ -2,7 +2,11 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-[168px] mb-20">
 
+
         <article class="lg:col-span-8 lg:col-start-3 flex flex-col gap-8">
+            <div class="mt-8">
+                <app-breadcrumb [items]="breadcrumbItems()"></app-breadcrumb>
+            </div>
 
             <header class="border-b border-gray-100 pb-6">
                 <h1 class="text-3xl md:text-4xl font-bold text-azul-coe-escurissimo leading-tight mb-3">

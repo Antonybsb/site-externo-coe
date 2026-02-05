@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContainerPadrao } from '../../container-padrao/container-padrao';
 import { RouterLink } from '@angular/router';
+import {
+  BreadcrumbComponent,
+  BreadcrumbItem,
+} from '../../breadcrumb.component/breadcrumb.component';
 
 @Component({
   selector: 'app-depoimentos-artigo',
-  imports: [CommonModule, ContainerPadrao, RouterLink],
+  imports: [CommonModule, ContainerPadrao, RouterLink, BreadcrumbComponent],
   templateUrl: './depoimentos-artigo.html',
   styleUrl: './depoimentos-artigo.css',
 })
-export class DepoimentosArtigo {
+export class DepoimentosArtigo implements OnInit {
+  ngOnInit(): void {
+    this.breadcrumbItems.set([
+      { label: 'Home', url: '/' },
+      { label: 'Depoimentos', url: '/depoimentos' },
+      { label: this.artigo.titulo }, // Último item sem URL (página atual)
+    ]);
+  }
+  breadcrumbItems = signal<BreadcrumbItem[]>([]);
+
   artigo = {
     titulo: 'Uma nova rotina, um novo eu',
     autor: 'Ana Beatriz',
