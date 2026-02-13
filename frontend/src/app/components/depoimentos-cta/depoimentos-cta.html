@@ -1,204 +1,106 @@
-<!-- <section class="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
-
-    <div class="bg-azul-coe-escurissimo relative overflow-hidden flex items-center py-16 px-6 lg:px-20">
-
-        <div class="mb-2 text-yellow-400">
-            <svg width="35" height="30" viewBox="0 0 35 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M15.6867 15.2941V30H0V16.1345L7.6747 0H15.6867L9.6988 15.2941H15.6867ZM35 15.2941V30H19.3133V16.1345L26.988 0H35L29.0121 15.2941H35Z"
-                    fill="#FFEBA3" />
-                <path
-                    d="M15.6867 15.2941V30H0V16.1345L7.6747 0H15.6867L9.6988 15.2941H15.6867ZM35 15.2941V30H19.3133V16.1345L26.988 0H35L29.0121 15.2941H35Z"
-                    fill="#FFC72E" />
-            </svg>
-        </div>
-
-        <div class="w-full max-w-xl mx-auto overflow-hidden">
-
-            <div class="flex transition-transform duration-700 ease-in-out"
-                [style.transform]="'translateX(-' + (indiceAtual() * 100) + '%)'">
-
-                @for (item of depoimentosExibidos; track item.id) {
-                <div class="min-w-full flex flex-col gap-6 pt-12">
-
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-
-                        <div class="relative shrink-0">
-                            <img [src]="item.foto" [alt]="item.nome"
-                                class="w-20 h-20 rounded-full object-cover border-4 border-white/90 shadow-lg">
-                        </div>
-
-                        <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
-                            <div class="flex gap-1 text-yellow-400 mb-2">
-                                @for (star of estrelas; track star) {
-                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                                }
-                            </div>
-
-                            <div class="flex items-center gap-3">
-                                <h3 class="text-white font-bold text-lg">{{ item.nome }}</h3>
-                                <span class="hidden sm:block w-px h-4 bg-white/40"></span>
-                                <span class="text-white/60 text-sm font-light block sm:inline">{{ item.cargo }}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="text-white text-lg md:text-xl leading-relaxed font-light text-center sm:text-left">
-                        "{{ item.texto }}"
-                    </p>
-                </div>
-                }
-
-            </div>
-
-            <div class="flex justify-center sm:justify-start gap-2 mt-8">
-                @for (item of depoimentos; track item.id; let i = $index) {
-                <button (click)="indiceAtual.set(i); iniciarCarrossel()"
-                    class="h-1.5 rounded-full transition-all duration-300" [class.w-8]="i === indiceAtual()"
-                    [class.bg-yellow-400]="i === indiceAtual()" [class.w-2]="i !== indiceAtual()"
-                    [class.bg-white/30]="i !== indiceAtual()">
-                </button>
-                }
-            </div>
-
-        </div>
-    </div>
-
-    <div class="bg-[#407C5F] relative flex items-center justify-center p-8 lg:p-16">
-
-        <div
-            class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[length:20px_20px]">
-        </div>
-
-        <div
-            class="bg-white/95 backdrop-blur-sm w-full max-w-md rounded-3xl p-8 shadow-2xl relative z-10 text-center lg:text-left">
-
-            <div class="mb-6 flex justify-center lg:justify-start">
-                <img src="assets/logo/logoCOE.svg" alt="COE Logo" class="h-12">
-            </div>
-
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 leading-tight">
-                Inspire-se nos depoimentos e venha fortalecer sua saúde
-            </h2>
-
-            <p class="text-gray-600 mb-8 leading-relaxed">
-                Faça parte de uma comunidade que valoriza o bem-estar e a integração. O COE-TCU espera por você.
-            </p>
-
-            <button [routerLink]="['/contatos']"
-                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 shadow-md">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                        d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0 1 1 0 002 0zM16 9a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Junte-se agora
-            </button>
-        </div>
-
-    </div>
-
-</section> -->
-
-
-
 <div class="w-full overflow-x-hidden">
 
     <app-container-padrao>
 
-        <section class="grid grid-cols-3 relative min-h-[400px]">
+        <section class="grid grid-cols-[55%_45%] min-h-[600px]">
 
-            <div
-                class="bg-[#E0EBFF] backdrop-blur-sm w-full max-w-md rounded-3xl p-8 shadow-2xl z-30 text-center lg:text-left absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2">
-                <div class="mb-6 flex justify-center lg:justify-start">
-                    <img src="assets/logo/logoCOEFundoBranco.svg" alt="COE Logo" class="h-8">
-                </div>
-                <h2 class="text-2xl md:text-1xl font-medium text-gray-800 mb-4 leading-tight">
-                    Inspire-se nos depoimentos e venha fortalecer sua saúde
-                </h2>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Faça parte de uma comunidade que valoriza o bem-estar e a integração. O COE-TCU espera por você.
-                </p>
-                <button [routerLink]="['/contatos']"
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 shadow-md cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                            d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0 1 1 0 002 0zM16 9a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    Junte-se agora
-                </button>
-            </div>
+            <div class="relative py-20 pr-8  flex flex-col justify-center z-0">
 
-            <div class="col-span-2 py-32 pr-32 relative flex flex-col justify-center z-10">
+                <div class="absolute inset-y-0 right-0 w-screen bg-azul-coe-escurissimo -z-10"></div>
 
-                <div class="absolute top-0 bottom-0 right-0 w-[200vw] bg-azul-coe-escurissimo -z-10"></div>
+                <div class="w-full overflow-hidden">
 
-                <div class="flex transition-transform duration-700 ease-in-out w-full"
-                    [style.transform]="'translateX(-' + (indiceAtual() * 100) + '%)'">
+                    <div class="flex transition-transform duration-700 ease-in-out w-full"
+                        [style.transform]="'translateX(-' + (indiceAtual() * 100) + '%)'">
 
-                    @for (item of depoimentos; track item.id) {
-                    <div class="min-w-full">
-                        <div class="flex flex-row gap-6">
-                            <div class="basis-[66.4px] shrink-0 pt-2">
-                                <svg width="39" height="35" viewBox="0 0 29 25" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.9976 12.7451V25H0V13.4454L6.35904 0H12.9976L8.03614 12.7451H12.9976ZM29 12.7451V25H16.0024V13.4454L22.3614 0H29L24.0386 12.7451H29Z"
-                                        fill="#FFEBA3" />
-                                    <path
-                                        d="M12.9976 12.7451V25H0V13.4454L6.35904 0H12.9976L8.03614 12.7451H12.9976ZM29 12.7451V25H16.0024V13.4454L22.3614 0H29L24.0386 12.7451H29Z"
-                                        fill="#FFC72E" />
-                                </svg>
-                            </div>
+                        @for (item of depoimentos; track item.id) {
+                        <div class="min-w-full">
+                            <div class="flex flex-row gap-6">
 
-                            <div class="basis-[172px] shrink-0">
-                                <div class="flex flex-col gap-6 text-white">
-                                    <div class="relative shrink-0">
-                                        <img [src]="item.foto" [alt]="item.nome"
-                                            class="w-32 h-32 rounded-full object-cover border-4 border-white/90 shadow-lg">
-                                    </div>
-                                    <div class="border-l-2 border-white pl-3">
-                                        <h1 class="font-semibold text-lg leading-tight">{{ item.nome }}</h1>
-                                        <h2 class="text-sm font-light opacity-80 mt-1">{{ item.cargo }}</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="basis-[385.6px] shrink-0 pt-1">
-                                <div class="flex gap-1 text-yellow-400 mb-4">
-                                    @for (star of estrelas; track star) {
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <div class="basis-[66.4px] shrink-0 pt-2">
+                                    <svg width="39" height="35" viewBox="0 0 29 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            d="M12.9976 12.7451V25H0V13.4454L6.35904 0H12.9976L8.03614 12.7451H12.9976ZM29 12.7451V25H16.0024V13.4454L22.3614 0H29L24.0386 12.7451H29Z"
+                                            fill="#FFEBA3" />
+                                        <path
+                                            d="M12.9976 12.7451V25H0V13.4454L6.35904 0H12.9976L8.03614 12.7451H12.9976ZM29 12.7451V25H16.0024V13.4454L22.3614 0H29L24.0386 12.7451H29Z"
+                                            fill="#FFC72E" />
                                     </svg>
-                                    }
                                 </div>
-                                <div class="max-w-80 max-h-48 line-clamp-5">
-                                    <p class="text-white text-lg md:text-xl font-light text-left leading-6">
-                                        "{{ item.texto }}"
-                                    </p>
+
+                                <div class="basis-[172px] shrink-0">
+                                    <div class="flex flex-col gap-6 text-white">
+                                        <div class="relative shrink-0">
+                                            <img [src]="item.foto" [alt]="item.nome"
+                                                class="w-32 h-32 rounded-full object-cover border-4 border-white/90 shadow-lg">
+                                        </div>
+                                        <div class="border-l-2 border-white pl-3">
+                                            <h1 class="font-semibold text-lg leading-tight">{{ item.nome }}</h1>
+                                            <h2 class="text-sm font-light opacity-80 mt-1">{{ item.cargo }}</h2>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div class="grow shrink-0 pt-1">
+                                    <div class="flex gap-1 text-yellow-400 mb-4">
+                                        @for (star of estrelas; track star) {
+                                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                        }
+                                    </div>
+                                    <div class="max-w-xl line-clamp-6 w-[350px] lg:max-w-[500px]">
+                                        <p class="text-white text-lg md:text-xl font-light text-left leading-relaxed">
+                                            "{{ item.texto }}"
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+                        }
                     </div>
-                    }
-                </div>
 
-                <div class="flex justify-start gap-2 mt-12 pl-[calc(66.4px+172px+24px)]">
-                    @for (item of depoimentos; track item.id; let i = $index) {
-                    <button (click)="indiceAtual.set(i); iniciarCarrossel()"
-                        class="h-1.5 rounded-full transition-all duration-300" [class.w-8]="i === indiceAtual()"
-                        [class.bg-yellow-400]="i === indiceAtual()" [class.w-2]="i !== indiceAtual()"
-                        [class.bg-white/30]="i !== indiceAtual()">
-                    </button>
-                    }
+                    <div class="flex justify-start gap-2 mt-12 pl-[calc(66.4px+172px+24px)]">
+                        @for (item of depoimentos; track item.id; let i = $index) {
+                        <button (click)="indiceAtual.set(i)"
+                            class="h-1.5 rounded-full transition-all duration-300 cursor-pointer"
+                            [class.w-8]="i === indiceAtual()" [class.bg-yellow-400]="i === indiceAtual()"
+                            [class.w-2]="i !== indiceAtual()" [class.bg-white/30]="i !== indiceAtual()">
+                        </button>
+                        }
+                    </div>
+
                 </div>
             </div>
 
-            <div class="col-span-1 relative z-10">
-                <div class="absolute top-0 bottom-0 left-0 w-[200vw] bg-green-400 -z-10"></div>
+            <div class="relative flex items-center justify-end z-0">
+
+                <div class="absolute inset-y-0 left-0 w-screen bg-green-400 -z-10"></div>
+
+                <div
+                    class="bg-[#E0EBFF] backdrop-blur-sm w-full max-w-md rounded-3xl p-8 shadow-2xl text-center lg:text-left">
+                    <div class="mb-6 flex justify-center lg:justify-start">
+                        <img src="assets/logo/logoCOEFundoBranco.svg" alt="COE Logo" class="h-8">
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 leading-tight">
+                        Inspire-se nos depoimentos e venha fortalecer sua saúde
+                    </h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Faça parte de uma comunidade que valoriza o bem-estar e a integração. O COE-TCU espera por você.
+                    </p>
+                    <button [routerLink]="['/contatos']"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 shadow-md cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0 1 1 0 002 0zM16 9a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Junte-se agora
+                    </button>
+                </div>
+
             </div>
 
         </section>
