@@ -35,10 +35,45 @@
   --color-brand-dark: #1E40AF;
 }
 
-/* 4. Estilos Globais */
+/* Estilos Globais */
 body {
+  margin: 0;
   font-family: var(--font-sans);
+  background-color: #e5e7eb;
 }
+
+/* As Seções: Ocupam 100% da largura */
+  section {
+    width: 100%;
+    padding: 40px 0;
+  }
+
+  /* O Container: Centraliza o conteúdo (ex: máx 1200px) */
+  .container {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  /* --- VARIAÇÕES DE FUNDO --- */
+
+  /* Seção "Padrão" (usa o fundo do body ou força transparente) */
+  .secao-padrao {
+    /* Fundo transparente, deixa vazar o cinza do body */
+  }
+
+  /* Seção "Destaque" (fundo branco para leitura) */
+  .secao-conteudo {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  /* Seção "Institucional" (Azul do TCU) */
+  .secao-azul {
+    background-color: #0c326f; /* Azul escuro institucional */
+    color: white;
+  }
 
 @keyframes slide-track {
   0% {
