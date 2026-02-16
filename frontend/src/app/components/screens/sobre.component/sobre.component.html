@@ -61,11 +61,13 @@
         </div>
     </div>
 </div>
-<app-section-header titulo="Membros do Comitê" />
+<app-section-header titulo="Membros do Comitê" variante="branco" class="borda-container" />
 
-<app-container-padrao>
-    @if (membrosComite().length > 0) {
-    <section class="mb-20">
+
+@if (membrosComite().length > 0) {
+<section class="secao-conteudo borda-container">
+    <div class="container">
+
         <div class="mb-12">
             <h3 class="text-2xl font-bold text-azul-coe-escurissimo">Comece a fazer a diferença hoje mesmo!</h3>
             <p class="text-gray-500 mt-4 text-justify lg:text-left">
@@ -101,9 +103,8 @@
             </div>
             }
         </div>
-
         @if (membrosComite().length > 4) {
-        <div class="flex justify-center mt-10">
+        <div class="flex justify-center mt-10 mb-12">
             <button (click)="toggleComite()"
                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors flex items-center gap-2">
                 {{ mostrarTodosComite() ? 'Ver menos' : 'Ver mais' }}
@@ -115,11 +116,14 @@
             </button>
         </div>
         }
-    </section>
-    }
+    </div>
 
-    @if (voluntarios().length > 0) {
-    <section class="mb-20 border-t border-gray-300 pt-12">
+</section>
+}
+
+@if (voluntarios().length > 0) {
+<section class="pt-12 secao-conteudo ">
+    <div class="container">
         <div class="mb-12">
             <h3 class="text-xl font-bold text-azul-coe-escurissimo">Equipe de Suporte Voluntário</h3>
             <p class="text-gray-500 text-sm mt-2">
@@ -154,25 +158,28 @@
             </div>
             }
         </div>
+    </div>
 
-        @if (voluntarios().length > 4) {
-        <div class="flex justify-center mt-10">
-            <button (click)="toggleVoluntarios()"
-                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors flex items-center gap-2">
-                {{ mostrarTodosVoluntarios() ? 'Ver menos' : 'Ver mais' }}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" class="w-4 h-4 transition-transform duration-300"
-                    [class.rotate-180]="mostrarTodosVoluntarios()">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
-            </button>
-        </div>
-        }
-    </section>
+    @if (voluntarios().length > 4) {
+    <div class="flex justify-center mt-10">
+        <button (click)="toggleVoluntarios()"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors flex items-center gap-2">
+            {{ mostrarTodosVoluntarios() ? 'Ver menos' : 'Ver mais' }}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-4 h-4 transition-transform duration-300"
+                [class.rotate-180]="mostrarTodosVoluntarios()">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+        </button>
+    </div>
     }
-</app-container-padrao>
-<app-container-padrao>
-    <section class="mb-20 bg-gray-50 p-8 lg:p-12 rounded-3xl border border-gray-100">
+</section>
+}
+
+
+
+<section>
+    <div class="container mb-20 bg-gray-50 p-8 lg:p-12 rounded-3xl border border-gray-100 ">
         <h3 class="text-2xl font-bold text-azul-coe-escurissimo mb-8 mt-2">Competências do comitê</h3>
 
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
@@ -249,12 +256,17 @@
                 forma integradora e articulada, sem excluir iniciativas paralelas.
             </div>
         </div>
-    </section>
-</app-container-padrao>
-<app-section-header titulo="Parcerias" />
+    </div>
+</section>
 
-<section class="w-full bg-background-superficie py-12 lg:py-16">
-    <app-container-padrao>
+
+
+
+<app-section-header titulo="Parcerias" variante="branco" />
+
+<section class="w-full secao-conteudo">
+
+    <div class="container">
 
         <div class="flex flex-col gap-8">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 w-full">
@@ -306,8 +318,9 @@
 
             </div>
         </div>
+    </div>
 
-    </app-container-padrao>
+
 </section>
 
 <!-- <app-parceiros></app-parceiros> -->
