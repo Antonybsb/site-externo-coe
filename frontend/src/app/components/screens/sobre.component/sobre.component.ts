@@ -21,9 +21,14 @@ export class SobreComponent implements OnInit {
   voluntarios = signal<MembroModel[]>([]);
   mostrarTodosComite = signal(false);
   mostrarTodosVoluntarios = signal(false);
+  videoReproduzindo = false;
 
   ngOnInit() {
     this.carregarEquipe();
+  }
+
+  iniciarVideo() {
+    this.videoReproduzindo = true;
   }
 
   carregarEquipe() {
