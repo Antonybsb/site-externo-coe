@@ -131,6 +131,19 @@ export class ApiService {
     );
   }
 
+  getEventosPorCategoria(slugCategoria: string): Observable<Evento[]> {
+    // O filtro acessa a relação 'categoria_evento', pega o campo 'slug' e checa se é igual ($eq) ao parâmetro
+    const url = `${this.apiUrl}/eventos?populate=*&filters[categoria_evento][slug][$eq]=${slugCategoria}&sort=dataInicio:asc`;
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const lista = response.data || [];
+        return lista.map((item: any) => this.formatarEvento(item));
+        // Nota: Certifique-se de que o nome da sua função de formatação está correto aqui
+      }),
+    );
+  }
+
   // Helper para transformar o JSON do Strapi na Interface Evento
   private formatarEvento(item: any): Evento {
     const dados = item.attributes || item;

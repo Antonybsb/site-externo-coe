@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ContainerPadrao } from '../container-padrao/container-padrao';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
-  imports: [ContainerPadrao],
+  imports: [ContainerPadrao, CommonModule, RouterLink],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer {}
+export class Footer {
+  mostrarMapa = signal(false);
+
+  alternarMapa() {
+    this.mostrarMapa.update((valorAtual) => !valorAtual);
+  }
+}

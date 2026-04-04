@@ -9,12 +9,14 @@ import { NoticiaArtigo } from './components/screens/noticia-artigo/noticia-artig
 import { DepoimentosLista } from './components/screens/depoimentos-lista/depoimentos-lista';
 import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
 import { SobreComponent } from './components/screens/sobre.component/sobre.component';
+import { EventosVitrineComponent } from './components/screens/eventos-vitrine.component/eventos-vitrine.component';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'modalidades/:slug', component: Modalidades },
   { path: 'contatos', component: Contatos },
-  { path: 'eventos', component: Eventos },
+  // { path: 'eventos', component: Eventos },
+  { path: 'eventosVitrine', component: EventosVitrineComponent },
   { path: 'eventos/:slug', component: EventosDetalhes },
   { path: 'noticias', component: NoticiasLista },
   { path: 'noticia-artigo/:id', component: NoticiaArtigo },

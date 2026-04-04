@@ -74,6 +74,12 @@
         "videos",
         "audios"
       ]
+    },
+    "categoria_evento": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::categoria-evento.categoria-evento",
+      "inversedBy": "eventos"
     }
   }
 }

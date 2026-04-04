@@ -1,0 +1,35 @@
+<app-hero-padrao titulo="Eventos" imagemUrl="assets/imagens/eventos.jpg" classeCorOverlay="bg-[#2B2171]/30"
+    posicaoImagem="top">
+</app-hero-padrao>
+<div class=" container ">
+    <app-section-header titulo="O que vem por ai" />
+    <h3 class=" text-2xl font-medium text-azul-coe-escurissimo dark:text-neutral-300 px-6 lg:px-0">
+        Eventos gerais
+    </h3>
+
+    <app-carrossel-cards [totalItens]="eventosGerais().length">
+        @for (evento of eventosGerais(); track evento.id) {
+        <div class="w-full md:w-1/2 lg:w-1/3 flex-none px-3">
+            <app-card-evento-vitrine [data]="evento" />
+        </div>
+        } @empty {
+        <p class="w-full text-center text-gray-500 py-10">Nenhum evento geral agendado.</p>
+        }
+    </app-carrossel-cards>
+
+    <div class="mt-8">
+        <h3 class=" text-2xl font-medium text-azul-coe-escurissimo dark:text-neutral-300 px-6 lg:px-0">
+            Eventos anuais
+        </h3>
+
+        <app-carrossel-cards [totalItens]="eventosAnuais().length">
+            @for (evento of eventosAnuais(); track evento.id) {
+            <div class="w-full md:w-1/2 lg:w-1/3 flex-none px-3">
+                <app-card-evento-vitrine [data]="evento" />
+            </div>
+            } @empty {
+            <p class="w-full text-center text-gray-500 py-10">Nenhum evento anual agendado.</p>
+            }
+        </app-carrossel-cards>
+    </div>
+</div>

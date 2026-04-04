@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categoria_eventos",
+  "info": {
+    "singularName": "categoria-evento",
+    "pluralName": "categoria-eventos",
+    "displayName": "CategoriaEvento"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nome"
+    },
+    "eventos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::evento.evento",
+      "mappedBy": "categoria_evento"
+    }
+  }
+}

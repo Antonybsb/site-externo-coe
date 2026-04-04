@@ -30,6 +30,7 @@ import { CarrosselEventosHome } from './components/carrossel-eventos-home/carros
 import { DepoimentosCta } from './components/depoimentos-cta/depoimentos-cta';
 import { CardEvento } from './components/card-evento/card-evento';
 import { SobreComponent } from './components/screens/sobre.component/sobre.component';
+import { EventosVitrineComponent } from './components/screens/eventos-vitrine.component/eventos-vitrine.component';
 
 @Component({
   selector: 'app-root',
@@ -61,6 +62,7 @@ import { SobreComponent } from './components/screens/sobre.component/sobre.compo
     DepoimentosCta,
     CardEvento,
     SobreComponent,
+    EventosVitrineComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

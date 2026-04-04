@@ -1,0 +1,42 @@
+<div class="relative w-full overflow-hidden py-4">
+
+    <div class="flex flex-nowrap w-full transition-transform duration-500 ease-out"
+        [style.transform]="'translateX(-' + (indiceAtual() * (100 / itensPorVez())) + '%)'">
+
+        <ng-content></ng-content>
+
+    </div>
+
+    <div class="flex items-center justify-center gap-6 mt-6">
+
+        <button (click)="anterior()"
+            class="p-2 text-gray-400 hover:text-azul-coe-escurissimo transition-colors hover:bg-gray-100 rounded-full disabled:opacity-30 disabled:cursor-not-allowed"
+            [disabled]="indiceAtual() === 0" aria-label="Anterior">
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none">
+                <path d="M8.5 15L1.5 8L8.5 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+
+        <div class="flex items-center gap-2">
+            @for (dot of gerarArrayDots(); track $index) {
+            <button (click)="irPara($index)" class="rounded-full transition-all duration-300"
+                [class.w-8]="indiceAtual() === $index" [class.h-2]="indiceAtual() === $index"
+                [class.bg-azul-coe-escurissimo]="indiceAtual() === $index" [class.w-2]="indiceAtual() !== $index"
+                [class.h-2]="indiceAtual() !== $index" [class.bg-gray-300]="indiceAtual() !== $index"
+                [class.hover:bg-gray-400]="indiceAtual() !== $index" [aria-label]="'Ir para a página ' + ($index + 1)">
+            </button>
+            }
+        </div>
+
+        <button (click)="proximo()"
+            class="p-2 text-gray-400 hover:text-azul-coe-escurissimo transition-colors hover:bg-gray-100 rounded-full disabled:opacity-30 disabled:cursor-not-allowed"
+            [disabled]="indiceAtual() >= totalItens - itensPorVez()" aria-label="Próximo">
+            <svg width="10" height="16" viewBox="0 0 10 16" fill="none">
+                <path d="M1.5 1L8.5 8L1.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+
+    </div>
+</div>

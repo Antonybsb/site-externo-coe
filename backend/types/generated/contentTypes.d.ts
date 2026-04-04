@@ -500,6 +500,37 @@ export interface ApiBannerBanner extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCategoriaEventoCategoriaEvento
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'categoria_eventos';
+  info: {
+    displayName: 'CategoriaEvento';
+    pluralName: 'categoria-eventos';
+    singularName: 'categoria-evento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    eventos: Schema.Attribute.Relation<'oneToMany', 'api::evento.evento'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::categoria-evento.categoria-evento'
+    > &
+      Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'nome'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   collectionName: 'eventos';
   info: {
@@ -513,6 +544,10 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   attributes: {
     banner_carrossel_home: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
+    >;
+    categoria_evento: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::categoria-evento.categoria-evento'
     >;
     contato: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
@@ -1165,6 +1200,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::banner.banner': ApiBannerBanner;
+      'api::categoria-evento.categoria-evento': ApiCategoriaEventoCategoriaEvento;
       'api::evento.evento': ApiEventoEvento;
       'api::membro.membro': ApiMembroMembro;
       'api::modalidade.modalidade': ApiModalidadeModalidade;
