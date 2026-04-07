@@ -103,7 +103,7 @@
                     <a href="mailto:coe@tcu.gov.br" class="hover:underline">coe@tcu.gov.br</a>
                 </div>
 
-                <button (click)="alternarMapa()" [attr.aria-expanded]="mostrarMapa()"
+                <!-- <button (click)="alternarMapa()" [attr.aria-expanded]="mostrarMapa()"
                     class="flex items-center gap-2 px-4 py-1.5 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-azul-coe-escurissimo font-bold rounded transition-colors text-xs">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -111,7 +111,20 @@
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                     {{ mostrarMapa() ? 'Ocultar mapa' : 'Mapa do site' }}
-                </button>
+                </button> -->
+
+                <div>
+                    <app-botao-padrao (click)="alternarMapa()" [attr.aria-expanded]="mostrarMapa()"
+                        [label]="mostrarMapa() ? 'Ocultar mapa' : 'Mapa do site'" tamanho="sm" tipo="alerta">
+
+                        <svg icone-esq width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+
+                    </app-botao-padrao>
+                </div>
 
             </div>
 

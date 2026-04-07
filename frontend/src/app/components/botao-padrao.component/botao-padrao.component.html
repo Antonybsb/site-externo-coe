@@ -1,0 +1,7 @@
+<button [class]="classesBase() + ' ' + classesTamanho() + ' ' + classesTipo()" [disabled]="disabled()">
+    <ng-content select="[icone-esq]"></ng-content>
+
+    <span>{{ label() }}</span>
+
+    <ng-content select="[icone-dir]"></ng-content>
+</button>

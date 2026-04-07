@@ -11,6 +11,7 @@ import { Parceiros } from '../../parceiros/parceiros';
 import { NoticiasHome } from '../../noticias-home/noticias-home';
 import { CarrosselEventosHome } from '../../carrossel-eventos-home/carrossel-eventos-home';
 import { DepoimentosCta } from '../../depoimentos-cta/depoimentos-cta';
+import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.component';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ import { DepoimentosCta } from '../../depoimentos-cta/depoimentos-cta';
     NoticiasHome,
     CarrosselEventosHome,
     DepoimentosCta,
+    BotaoPadraoComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

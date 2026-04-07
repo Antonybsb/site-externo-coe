@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api';
 import { NoticiaModel } from '../../models/noticia.model';
+import { BotaoPadraoComponent } from '../botao-padrao.component/botao-padrao.component';
 
 @Component({
   selector: 'app-noticias-home',
   standalone: true,
-  imports: [ContainerPadrao, CommonModule, RouterLink],
+  imports: [ContainerPadrao, CommonModule, RouterLink, BotaoPadraoComponent],
   templateUrl: './noticias-home.html',
   styleUrl: './noticias-home.css',
 })
