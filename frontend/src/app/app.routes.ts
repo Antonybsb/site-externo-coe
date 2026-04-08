@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'modalidades/:slug', component: Modalidades },
   { path: 'contatos', component: Contatos },
-  // { path: 'eventos', component: Eventos },
+  { path: 'eventos/timeLine', component: Eventos },
   { path: 'eventosVitrine', component: EventosVitrineComponent },
   { path: 'eventos/:slug', component: EventosDetalhes },
   { path: 'noticias', component: NoticiasLista },

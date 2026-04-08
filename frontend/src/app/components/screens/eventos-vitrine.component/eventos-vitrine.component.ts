@@ -7,6 +7,8 @@ import { ApiService } from '../../../services/api';
 import { Evento } from '../../../models/evento';
 import { CardEvento } from '../../card-evento/card-evento';
 import { CardEventoVitrineComponent } from '../../card-evento-vitrine.component/card-evento-vitrine.component';
+import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-eventos-vitrine',
@@ -17,6 +19,8 @@ import { CardEventoVitrineComponent } from '../../card-evento-vitrine.component/
     SectionHeader,
     CardEvento,
     CardEventoVitrineComponent,
+    BotaoPadraoComponent,
+    RouterLink,
   ],
   templateUrl: './eventos-vitrine.component.html',
   styleUrl: './eventos-vitrine.component.css',

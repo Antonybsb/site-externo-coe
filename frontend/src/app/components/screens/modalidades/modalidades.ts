@@ -9,6 +9,7 @@ import { SectionHeader } from '../../section-header/section-header';
 import { ModalidadeModel } from '../../../models/modalidade.model';
 import { HeroPadrao } from '../../hero-padrao/hero-padrao';
 import { Evento } from '../../../models/evento';
+import { CardEventoVitrineComponent } from '../../card-evento-vitrine.component/card-evento-vitrine.component';
 
 @Component({
   selector: 'app-modalidades',
@@ -20,6 +21,7 @@ import { Evento } from '../../../models/evento';
     SectionHeader,
     HeroPadrao,
     ContainerPadrao,
+    CardEventoVitrineComponent,
   ],
   templateUrl: './modalidades.html',
   styleUrl: './modalidades.css',

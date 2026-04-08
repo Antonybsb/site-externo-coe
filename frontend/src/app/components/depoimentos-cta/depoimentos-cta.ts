@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ContainerPadrao } from '../container-padrao/container-padrao';
 import { RouterModule } from '@angular/router';
+import { BotaoPadraoComponent } from '../botao-padrao.component/botao-padrao.component';
 
 @Component({
   selector: 'app-depoimentos-cta',
-  imports: [CommonModule, ContainerPadrao, RouterModule],
+  imports: [CommonModule, ContainerPadrao, RouterModule, BotaoPadraoComponent],
   templateUrl: './depoimentos-cta.html',
   styleUrl: './depoimentos-cta.css',
 })

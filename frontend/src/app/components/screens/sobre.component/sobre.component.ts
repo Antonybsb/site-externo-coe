@@ -7,10 +7,19 @@ import { EspacoIntegracao } from '../../espaco-integracao/espaco-integracao';
 import { ApiService } from '../../../services/api';
 import { MembroModel } from '../../../models/membro.model';
 import { Parceiros } from '../../parceiros/parceiros';
+import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.component';
 
 @Component({
   selector: 'app-sobre.component',
-  imports: [HeroPadrao, ContainerPadrao, CommonModule, SectionHeader, EspacoIntegracao, Parceiros],
+  imports: [
+    HeroPadrao,
+    ContainerPadrao,
+    CommonModule,
+    SectionHeader,
+    EspacoIntegracao,
+    Parceiros,
+    BotaoPadraoComponent,
+  ],
   templateUrl: './sobre.component.html',
   styleUrl: './sobre.component.css',
 })

@@ -3,9 +3,15 @@
 </app-hero-padrao>
 <div class=" container ">
     <app-section-header titulo="O que vem por ai" />
-    <h3 class=" text-2xl font-medium text-azul-coe-escurissimo dark:text-neutral-300 px-6 lg:px-0">
-        Eventos gerais
-    </h3>
+    <div class="flex justify-between items-center px-3">
+        <h3 class=" text-2xl font-medium text-azul-coe-escurissimo dark:text-neutral-300 px-6 lg:px-0">
+            Eventos gerais
+        </h3>
+        <div>
+            <app-botao-padrao [routerLink]="'/eventos/timeLine'" label="Veja mais" tamanho="md">
+            </app-botao-padrao>
+        </div>
+    </div>
 
     <app-carrossel-cards [totalItens]="eventosGerais().length">
         @for (evento of eventosGerais(); track evento.id) {

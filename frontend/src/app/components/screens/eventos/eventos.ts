@@ -8,6 +8,7 @@ import { Ripple, initTWE } from 'tw-elements';
 import { CommonModule } from '@angular/common';
 import { Evento } from '../../../models/evento';
 import { ApiService } from '../../../services/api';
+import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.component';
 
 interface GrupoMes {
   nomeMes: string;
@@ -25,6 +26,7 @@ interface GrupoMes {
     EspacoIntegracao,
     CommonModule,
     RouterLink,
+    BotaoPadraoComponent,
   ],
   templateUrl: './eventos.html',
   styleUrl: './eventos.css',

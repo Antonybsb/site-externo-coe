@@ -91,14 +91,10 @@
                     <p class="text-gray-600 mb-8 leading-relaxed">
                         Faça parte de uma comunidade que valoriza o bem-estar e a integração. O COE-TCU espera por você.
                     </p>
-                    <button [routerLink]="['/contatos']"
-                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 shadow-md cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path
-                                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0 1 1 0 002 0zM16 9a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        Junte-se agora
-                    </button>
+                    <div>
+                        <app-botao-padrao [routerLink]="['/sobre']" label="Veja mais" tamanho="lg" tipo="alerta">
+                        </app-botao-padrao>
+                    </div>
                 </div>
 
             </div>
