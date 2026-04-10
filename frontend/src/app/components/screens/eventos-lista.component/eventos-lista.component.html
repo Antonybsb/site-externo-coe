@@ -1,0 +1,10 @@
+<div class="container py-8 mt-36">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-3 lg:px-0 mt-6">
+        @for (evento of todosEventos(); track evento.id) {
+        <app-card-evento-vitrine [data]="evento" tamanho="fixo" />
+        } @empty {
+        <p class="col-span-full text-center text-gray-500 py-10">Nenhum evento agendado.</p>
+        }
+    </div>
+</div>

@@ -10,12 +10,14 @@ import { DepoimentosLista } from './components/screens/depoimentos-lista/depoime
 import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoimentos-artigo';
 import { SobreComponent } from './components/screens/sobre.component/sobre.component';
 import { EventosVitrineComponent } from './components/screens/eventos-vitrine.component/eventos-vitrine.component';
+import { EventosListaComponent } from './components/screens/eventos-lista.component/eventos-lista.component';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'modalidades/:slug', component: Modalidades },
   { path: 'contatos', component: Contatos },
-  { path: 'eventos/timeLine', component: Eventos },
+  // { path: 'eventos/timeLine', component: Eventos },
+  { path: 'eventos/lista', component: EventosListaComponent },
   { path: 'eventosVitrine', component: EventosVitrineComponent },
   { path: 'eventos/:slug', component: EventosDetalhes },
   { path: 'noticias', component: NoticiasLista },

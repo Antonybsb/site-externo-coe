@@ -1,5 +1,4 @@
-<article
-    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col h-full relative">
+<article [class]="classesBase + ' ' + classesDimensoes()">
 
     <div class="relative h-48 w-full bg-gray-200 shrink-0">
         <img [src]="data().imagemUrl" [alt]="data().titulo" class="w-full h-full object-cover">
