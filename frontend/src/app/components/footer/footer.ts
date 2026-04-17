@@ -10,10 +10,4 @@ import { BotaoPadraoComponent } from '../botao-padrao.component/botao-padrao.com
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer {
-  mostrarMapa = signal(false);
-
-  alternarMapa() {
-    this.mostrarMapa.update((valorAtual) => !valorAtual);
-  }
-}
+export class Footer {}
