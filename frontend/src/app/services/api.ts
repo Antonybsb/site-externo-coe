@@ -111,7 +111,7 @@ export class ApiService {
   }
 
   getEventoPorSlug(slug: string): Observable<Evento> {
-    const query = `?filters[slug][$eq]=${slug}&populate[0]=imagem&populate[1]=modalidades&populate[2]=regulamento`;
+    const query = `?filters[slug][$eq]=${slug}&populate[0]=imagem_card&populate[1]=imagem_hero&populate[2]=modalidades&populate[3]=regulamento`;
     const url = `${this.apiUrl}/eventos${query}`;
 
     return this.http.get<any>(url).pipe(
@@ -147,10 +147,15 @@ export class ApiService {
   // Helper para transformar o JSON do Strapi na Interface Evento
   private formatarEvento(item: any): Evento {
     const dados = item.attributes || item;
-
-    const imgParaUsar = dados.imagem || dados.banner_carrossel_home;
-    const urlRelativa = this.extrairUrl(imgParaUsar);
     const baseUrl = 'http://localhost:1337';
+
+    // 1. Pega as URLs dos campos novos
+    const urlCardBruta = this.extrairUrl(dados.imagem_card);
+    const urlHeroBruta = this.extrairUrl(dados.imagem_hero);
+
+    // 2. Cria o fallback de segurança
+    const urlCardSegura = urlCardBruta || urlHeroBruta;
+    const urlHeroSegura = urlHeroBruta || urlCardBruta;
 
     // LÓGICA HÍBRIDA PARA LISTA DE MODALIDADES
     // Tenta pegar .data (v4) ou pega direto (v5) ou array vazio
@@ -181,10 +186,15 @@ export class ApiService {
         };
       }),
 
-      imagemUrl: urlRelativa
-        ? urlRelativa.startsWith('http')
-          ? urlRelativa
-          : `${baseUrl}${urlRelativa}`
+      imagemCardUrl: urlCardSegura
+        ? urlCardSegura.startsWith('http')
+          ? urlCardSegura
+          : `${baseUrl}${urlCardSegura}`
+        : '',
+      imagemHeroUrl: urlHeroSegura
+        ? urlHeroSegura.startsWith('http')
+          ? urlHeroSegura
+          : `${baseUrl}${urlHeroSegura}`
         : '',
     };
   }

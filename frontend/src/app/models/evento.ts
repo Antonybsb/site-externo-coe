@@ -6,7 +6,8 @@ export interface Evento {
   descricao: string;
   dataInicio: string;
   local: string;
-  imagemUrl: string;
+  imagemCardUrl: string;
+  imagemHeroUrl: string;
   slug: string;
   dataFim?: string;
   horario?: string;

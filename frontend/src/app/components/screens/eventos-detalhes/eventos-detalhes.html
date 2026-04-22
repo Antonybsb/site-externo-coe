@@ -1,6 +1,6 @@
 @if (evento(); as evt) {
 
-<app-hero-padrao titulo="" [imagemUrl]="evt.imagemUrl || ''" classeCorOverlay="bg-[#2B2171]/30" posicaoImagem="top">
+<app-hero-padrao titulo="" [imagemUrl]="evt.imagemHeroUrl || ''" classeCorOverlay="" posicaoImagem="center">
 </app-hero-padrao>
 
 
@@ -120,7 +120,7 @@
 
                 <a [routerLink]="['/eventos', outrosEventos()[0].slug]" class="block group">
                     <div class="overflow-hidden rounded-lg mb-3 h-32">
-                        <img [src]="outrosEventos()[0].imagemUrl"
+                        <img [src]="outrosEventos()[0].imagemCardUrl"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             alt="">
                     </div>
@@ -153,7 +153,7 @@
             <a [routerLink]="['/eventos', outro.slug]"
                 class="min-w-[260px] lg:min-w-0 bg-white rounded-xl overflow-hidden shadow border border-gray-100 group block h-full">
                 <div class="h-32 bg-gray-200 overflow-hidden relative">
-                    <img [src]="outro.imagemUrl"
+                    <img [src]="outro.imagemCardUrl"
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         [alt]="outro.titulo">
 

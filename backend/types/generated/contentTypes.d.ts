@@ -557,7 +557,12 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     dataInicio: Schema.Attribute.Date;
     descricao: Schema.Attribute.Text;
     horario: Schema.Attribute.String;
-    imagem: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imagem_card: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    imagem_hero: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     local: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

@@ -27,7 +27,7 @@
     "local": {
       "type": "string"
     },
-    "imagem": {
+    "imagem_card": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -80,6 +80,16 @@
       "relation": "manyToOne",
       "target": "api::categoria-evento.categoria-evento",
       "inversedBy": "eventos"
+    },
+    "imagem_hero": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
