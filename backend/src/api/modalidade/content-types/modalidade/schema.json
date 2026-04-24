@@ -74,6 +74,12 @@
     },
     "link_whatsapp": {
       "type": "string"
+    },
+    "parceiros": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::parceiro.parceiro",
+      "inversedBy": "modalidades"
     }
   }
 }

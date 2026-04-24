@@ -77,6 +77,7 @@ export class Modalidades implements OnInit {
   carregarEsporteEspecifico(slug: string) {
     this.apiService.getModalidadePorSlug(slug).subscribe({
       next: (dadoLimpo) => {
+        console.log('DADOS RECEBIDOS DO STRAPI:', dadoLimpo);
         this.modalidadeDestaque = dadoLimpo;
         this.isLoading = false;
 
@@ -96,5 +97,20 @@ export class Modalidades implements OnInit {
 
   alternarTexto() {
     this.mostrarTextoCompleto.update((valor) => !valor);
+  }
+
+  obterLogoParceiro(parceiro: any): string {
+    // Cenário 1: O Strapi mandou a imagem como Objeto Único (Single Media)
+    if (parceiro?.logo?.url) {
+      return `${this.baseUrl}${parceiro.logo.url}`;
+    }
+
+    // Cenário 2: O Strapi mandou a imagem como Array (Multiple Media)
+    if (Array.isArray(parceiro?.logo) && parceiro.logo.length > 0 && parceiro.logo[0].url) {
+      return `${this.baseUrl}${parceiro.logo[0].url}`;
+    }
+
+    // Cenário 3: Fallback seguro (Vamos usar o UI Avatars, pois sabemos que a sua rede não bloqueia ele, já que funcionou nos Líderes)
+    return `https://ui-avatars.com/api/?name=${parceiro.nome}&background=f3f4f6&color=374151&font-size=0.33`;
   }
 }

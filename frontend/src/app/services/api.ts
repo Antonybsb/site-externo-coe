@@ -27,8 +27,7 @@ export class ApiService {
   }
 
   getModalidadePorSlug(slug: string): Observable<ModalidadeModel | null> {
-    const url = `${this.apiUrl}/modalidades?filters[slug][$eq]=${slug}&populate[0]=imagem_hero&populate[1]=lideres.foto&populate[2]=eventos`;
-
+    const url = `${this.apiUrl}/modalidades?filters[slug][$eq]=${slug}&populate[0]=imagem_hero&populate[1]=lideres.foto&populate[2]=eventos&populate[3]=parceiros.logo`;
     return this.http.get<any>(url).pipe(
       map((response) => {
         if (response.data && response.data.length > 0) {

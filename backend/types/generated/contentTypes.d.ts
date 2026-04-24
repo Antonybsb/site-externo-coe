@@ -659,6 +659,10 @@ export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nome: Schema.Attribute.String;
+    parceiros: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::parceiro.parceiro'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'nome'>;
     texto_historia: Schema.Attribute.Text;
@@ -698,6 +702,43 @@ export interface ApiNoticiaNoticia extends Struct.CollectionTypeSchema {
     resumo: Schema.Attribute.Text;
     subtitulo: Schema.Attribute.String;
     titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParceiroParceiro extends Struct.CollectionTypeSchema {
+  collectionName: 'parceiros';
+  info: {
+    displayName: 'Parceiro';
+    pluralName: 'parceiros';
+    singularName: 'parceiro';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parceiro.parceiro'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    modalidades: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::modalidade.modalidade'
+    >;
+    nome: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1221,6 +1262,7 @@ declare module '@strapi/strapi' {
       'api::membro.membro': ApiMembroMembro;
       'api::modalidade.modalidade': ApiModalidadeModalidade;
       'api::noticia.noticia': ApiNoticiaNoticia;
+      'api::parceiro.parceiro': ApiParceiroParceiro;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

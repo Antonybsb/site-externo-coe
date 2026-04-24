@@ -80,11 +80,34 @@
                 </div>
                 }
 
+                @if (modalidadeDestaque.parceiros && modalidadeDestaque.parceiros.length > 0) {
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+                    <h3 class="text-xl font-bold text-azul-coe-escurissimo mb-6 border-b pb-3">Parceiros</h3>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        @for (parceiro of modalidadeDestaque.parceiros; track parceiro.id) {
+
+                        <a [href]="parceiro.link || 'javascript:void(0)'"
+                            [attr.target]="parceiro.link ? '_blank' : null" class="group"
+                            [class.cursor-default]="!parceiro.link">
+                            <article
+                                class="bg-white border border-gray-200 rounded-2xl p-3 flex items-center justify-center aspect-[3/2] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                                <img [src]="obterLogoParceiro(parceiro)" [alt]="parceiro.nome"
+                                    class="h-10 w-auto object-contain mix-blend-multiply">
+                            </article>
+                        </a>
+
+                        }
+                    </div>
+                </div>
+                }
+
             </aside>
 
         </div>
     </div>
 </div>
+
 
 } @else if (isLoading) {
 <div class="w-full h-screen flex justify-center items-center bg-gray-100">

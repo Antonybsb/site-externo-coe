@@ -1,5 +1,6 @@
 import { Evento } from './evento';
 import { MembroModel } from './membro.model';
+import { ParceiroModel } from './parceiro.model';
 
 export interface ModalidadeModel {
   id: number;
@@ -22,4 +23,5 @@ export interface ModalidadeModel {
   link_whatsapp?: string;
   lideres?: MembroModel[];
   eventos?: Evento[];
+  parceiros?: ParceiroModel[];
 }
