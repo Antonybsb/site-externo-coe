@@ -599,7 +599,9 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
   };
   attributes: {
     cargo: Schema.Attribute.String;
-    categoria: Schema.Attribute.Enumeration<['comite', 'voluntario']>;
+    categoria: Schema.Attribute.Enumeration<
+      ['comite', 'voluntario', 'liderModalidades']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -610,6 +612,10 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
       'api::membro.membro'
     > &
       Schema.Attribute.Private;
+    modalidades: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::modalidade.modalidade'
+    >;
     nome: Schema.Attribute.String;
     ordem: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
@@ -633,6 +639,9 @@ export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    descricao: Schema.Attribute.Text;
+    dias_horarios: Schema.Attribute.String;
+    endereco: Schema.Attribute.String;
     eventos: Schema.Attribute.Relation<'manyToMany', 'api::evento.evento'>;
     icone: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imagem_hero: Schema.Attribute.Media<
@@ -641,6 +650,8 @@ export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
     imagem_historia: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    lideres: Schema.Attribute.Relation<'manyToMany', 'api::membro.membro'>;
+    link_whatsapp: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

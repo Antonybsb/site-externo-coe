@@ -27,15 +27,14 @@ export class ApiService {
   }
 
   getModalidadePorSlug(slug: string): Observable<ModalidadeModel | null> {
-    const url = `${this.apiUrl}/modalidades?filters[slug][$eq]=${slug}&populate=*`;
+    const url = `${this.apiUrl}/modalidades?filters[slug][$eq]=${slug}&populate[0]=imagem_hero&populate[1]=lideres.foto&populate[2]=eventos`;
 
     return this.http.get<any>(url).pipe(
       map((response) => {
-        const lista = response.data || [];
-        if (lista.length > 0) {
-          return this.formatarModalidade(lista[0]);
+        if (response.data && response.data.length > 0) {
+          return response.data[0];
         }
-        return null;
+        throw new Error('Modalidade não encontrada');
       }),
     );
   }

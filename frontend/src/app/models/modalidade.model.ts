@@ -1,3 +1,6 @@
+import { Evento } from './evento';
+import { MembroModel } from './membro.model';
+
 export interface ModalidadeModel {
   id: number;
   nome: string;
@@ -13,4 +16,10 @@ export interface ModalidadeModel {
   icone: {
     url: string;
   };
+  descricao?: string;
+  dias_horarios?: string;
+  endereco?: string;
+  link_whatsapp?: string;
+  lideres?: MembroModel[];
+  eventos?: Evento[];
 }

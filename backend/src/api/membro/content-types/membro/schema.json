@@ -31,11 +31,18 @@
       "type": "enumeration",
       "enum": [
         "comite",
-        "voluntario"
+        "voluntario",
+        "liderModalidades"
       ]
     },
     "ordem": {
       "type": "integer"
+    },
+    "modalidades": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::modalidade.modalidade",
+      "inversedBy": "lideres"
     }
   }
 }

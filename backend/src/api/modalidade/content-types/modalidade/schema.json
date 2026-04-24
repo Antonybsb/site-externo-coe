@@ -56,6 +56,24 @@
       "relation": "manyToMany",
       "target": "api::evento.evento",
       "mappedBy": "modalidades"
+    },
+    "lideres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::membro.membro",
+      "mappedBy": "modalidades"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "dias_horarios": {
+      "type": "string"
+    },
+    "endereco": {
+      "type": "string"
+    },
+    "link_whatsapp": {
+      "type": "string"
     }
   }
 }

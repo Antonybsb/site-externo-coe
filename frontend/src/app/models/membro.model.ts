@@ -3,5 +3,6 @@ export interface MembroModel {
   nome: string;
   cargo: string;
   imagem: string;
+  foto?: { url: string }; // <-- Mudou de 'imagem: string' para 'foto?: { url: string }'
   categoria: 'comite' | 'voluntario';
 }
