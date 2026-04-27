@@ -38,6 +38,33 @@ export class Modalidades implements OnInit {
 
   protected mostrarTextoCompleto = signal(false);
 
+  protected modalidadesSemGrupo: any[] = [
+    'Atletismo',
+    'Bocha',
+    'Pôquer',
+    'Bozó',
+    'Cabo de Guerra',
+    'Canoa Havaiana',
+    'Capoeira',
+    'Damas',
+    'Esqui',
+    'Futevôlei',
+    'Jogo Online',
+    'Mergulho',
+    'Pesca',
+    'Peteca',
+    'Sinuca',
+    'Stand UP',
+    'Tênis de Mesa',
+    'Tiro Esportivo',
+    'Trekking',
+    'Vôlei de Praia Masculino',
+  ].map((nome, index) => ({
+    id: index,
+    nome: nome,
+    icone: null, // Como é nulo, o HTML vai acionar automaticamente a imagem de fallback
+  })); // No futuro, tipar com a interface correta
+
   // Variável para controlar o estado de carregamento
   protected isLoading = true;
 

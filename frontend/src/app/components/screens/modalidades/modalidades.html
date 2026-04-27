@@ -2,15 +2,15 @@
 
 <app-hero-padrao [titulo]="modalidadeDestaque.nome"
     [imagemUrl]="modalidadeDestaque.imagem_hero?.url ? 'http://localhost:1337' + modalidadeDestaque.imagem_hero.url : ''"
-    posicaoImagem="center">
+    posicaoImagem="top">
 </app-hero-padrao>
 
 <div class="secao-padrao md:py-12 bg-white">
     <div class="container mb-12">
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
             <main class="lg:col-span-2 space-y-10">
-
                 @if (modalidadeDestaque.descricao) {
                 <section>
                     <h2 class="text-3xl font-bold text-azul-coe-escurissimo mb-6 border-l-4 border-green-500 pl-4">
@@ -40,12 +40,10 @@
             </main>
 
             <aside class="lg:col-span-1 space-y-8 sticky top-[168px] self-start mt-8 lg:mt-0">
-
                 @if (modalidadeDestaque.lideres && modalidadeDestaque.lideres.length > 0) {
                 <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                     <h3 class="text-xl font-bold text-azul-coe-escurissimo mb-6 border-b pb-3">Líderes de treinamento
                     </h3>
-
                     <div class="space-y-5">
                         @for (lider of modalidadeDestaque.lideres; track lider.id) {
                         <div class="flex items-center gap-4">
@@ -83,10 +81,8 @@
                 @if (modalidadeDestaque.parceiros && modalidadeDestaque.parceiros.length > 0) {
                 <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                     <h3 class="text-xl font-bold text-azul-coe-escurissimo mb-6 border-b pb-3">Parceiros</h3>
-
                     <div class="grid grid-cols-2 gap-4">
                         @for (parceiro of modalidadeDestaque.parceiros; track parceiro.id) {
-
                         <a [href]="parceiro.link || 'javascript:void(0)'"
                             [attr.target]="parceiro.link ? '_blank' : null" class="group"
                             [class.cursor-default]="!parceiro.link">
@@ -96,18 +92,40 @@
                                     class="h-10 w-auto object-contain mix-blend-multiply">
                             </article>
                         </a>
-
                         }
                     </div>
                 </div>
                 }
-
             </aside>
 
-        </div>
+        </div> @if (modalidadesSemGrupo && modalidadesSemGrupo.length > 0) {
+        <section class="mt-16 border-t border-gray-100 pt-12 w-full">
+            <h2 class="text-3xl font-bold text-azul-coe-escurissimo mb-8">
+                Modalidades sem grupos consolidados
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @for (item of modalidadesSemGrupo; track item.id) {
+                <div
+                    class="bg-white h-[80px] flex items-center justify-start px-6 py-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300 gap-4 cursor-pointer group">
+                    <div
+                        class="w-8 h-8 flex-shrink-0 text-[#407C5F] flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <span class="font-medium text-[#2D2D2F] text-lg group-hover:text-[#407C5F] transition-colors">
+                        {{ item.nome }}
+                    </span>
+                </div>
+                }
+            </div>
+        </section>
+        }
+
     </div>
 </div>
-
 
 } @else if (isLoading) {
 <div class="w-full h-screen flex justify-center items-center bg-gray-100">
