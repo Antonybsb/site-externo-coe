@@ -11,6 +11,7 @@ import { DepoimentosArtigo } from './components/screens/depoimentos-artigo/depoi
 import { SobreComponent } from './components/screens/sobre.component/sobre.component';
 import { EventosVitrineComponent } from './components/screens/eventos-vitrine.component/eventos-vitrine.component';
 import { EventosListaComponent } from './components/screens/eventos-lista.component/eventos-lista.component';
+import { CodigoCondutaComponent } from './components/screens/codigo-conduta.component/codigo-conduta.component';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -25,4 +26,5 @@ export const routes: Routes = [
   { path: 'depoimentos', component: DepoimentosLista },
   { path: 'depoimento-artigo/:id', component: DepoimentosArtigo },
   { path: 'sobre', component: SobreComponent },
+  { path: 'codigo-conduta', component: CodigoCondutaComponent },
 ];

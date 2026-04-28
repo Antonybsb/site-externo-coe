@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../../services/api';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Parceiros } from '../../parceiros/parceiros';
 import { ContainerPadrao } from '../../container-padrao/container-padrao';
 import { CardEvento } from '../../card-evento/card-evento';
@@ -22,6 +22,7 @@ import { CardEventoVitrineComponent } from '../../card-evento-vitrine.component/
     HeroPadrao,
     ContainerPadrao,
     CardEventoVitrineComponent,
+    RouterModule,
   ],
   templateUrl: './modalidades.html',
   styleUrl: './modalidades.css',
