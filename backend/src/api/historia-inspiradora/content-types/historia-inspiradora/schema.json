@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "historia_inspiradoras",
+  "info": {
+    "singularName": "historia-inspiradora",
+    "pluralName": "historia-inspiradoras",
+    "displayName": "HistoriaInspiradora"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "resumo": {
+      "type": "string"
+    },
+    "imagem_card": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imagem_conteudo": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "conteudo": {
+      "type": "string"
+    },
+    "data": {
+      "type": "datetime"
+    }
+  }
+}

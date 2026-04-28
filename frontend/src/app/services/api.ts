@@ -6,6 +6,7 @@ import { Evento } from '../models/evento';
 import { NoticiaModel } from '../models/noticia.model';
 import { RespostaPaginadaModel } from '../models/resposta-paginada.model';
 import { MembroModel } from '../models/membro.model';
+import { HistoriaInspiradoraModel } from '../models/historia-inspiradora.model';
 
 @Injectable({
   providedIn: 'root',
@@ -439,5 +440,30 @@ export class ApiService {
           : `${baseUrl}${urlRelativa}`
         : 'assets/imagens/avatar-placeholder.jpg', // Fallback se não tiver foto
     };
+  }
+
+  getHistorias(): Observable<HistoriaInspiradoraModel[]> {
+    const url = `${this.apiUrl}/historia-inspiradoras?populate=*`;
+
+    return this.http.get<any>(url).pipe(
+      map((response) => {
+        const lista = response.data || [];
+        return lista.map((item: any) => {
+          // Usa o seu helper de segurança para extrair as URLs
+          const urlCard = this.extrairUrl(item.imagem_card);
+          const urlConteudo = this.extrairUrl(item.imagem_conteudo);
+
+          return {
+            id: item.id,
+            nome: item.nome,
+            resumo: item.resumo,
+            data: item.data,
+            conteudo: item.conteudo,
+            imagemCardUrl: urlCard,
+            imagemConteudoUrl: urlConteudo,
+          };
+        });
+      }),
+    );
   }
 }

@@ -590,6 +590,46 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHistoriaInspiradoraHistoriaInspiradora
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'historia_inspiradoras';
+  info: {
+    displayName: 'HistoriaInspiradora';
+    pluralName: 'historia-inspiradoras';
+    singularName: 'historia-inspiradora';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    conteudo: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.DateTime;
+    imagem_card: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    imagem_conteudo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::historia-inspiradora.historia-inspiradora'
+    > &
+      Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    resumo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
   collectionName: 'membros';
   info: {
@@ -1262,6 +1302,7 @@ declare module '@strapi/strapi' {
       'api::banner.banner': ApiBannerBanner;
       'api::categoria-evento.categoria-evento': ApiCategoriaEventoCategoriaEvento;
       'api::evento.evento': ApiEventoEvento;
+      'api::historia-inspiradora.historia-inspiradora': ApiHistoriaInspiradoraHistoriaInspiradora;
       'api::membro.membro': ApiMembroMembro;
       'api::modalidade.modalidade': ApiModalidadeModalidade;
       'api::noticia.noticia': ApiNoticiaNoticia;
