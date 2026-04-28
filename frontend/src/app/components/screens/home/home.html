@@ -180,25 +180,15 @@
         <div
             class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 md:overflow-visible mt-4">
 
-            <a routerLink="/eventos/copa-sarau"
+            @for (evento of eventosAnuais(); track evento.id) {
+            <a [routerLink]="['/eventos', evento.slug]"
                 class="min-w-[85vw] md:min-w-0 snap-center shrink-0 block rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <img src="assets/bannerEventosHome/copaEsarau.png" alt="Copa e Sarau" class="w-full h-auto">
-            </a>
 
-            <a routerLink="/eventos/mes-integracao"
-                class="min-w-[85vw] md:min-w-0 snap-center shrink-0 block rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <img src="assets/bannerEventosHome/oit.png" alt="Mês de Integração" class="w-full h-auto bg-yellow-400">
-            </a>
+                <img [src]="evento.imagemAcessoRapidoUrl || 'assets/placeholder-banner.png'" [alt]="evento.titulo"
+                    class="w-full h-auto object-cover">
 
-            <a routerLink="/eventos/oit"
-                class="min-w-[85vw] md:min-w-0 snap-center shrink-0 block rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <img src="assets/bannerEventosHome/otc.png" alt="OIT" class="w-full h-auto bg-blue-500">
             </a>
-
-            <a routerLink="/eventos/otc"
-                class="min-w-[85vw] md:min-w-0 snap-center shrink-0 block rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <img src="assets/bannerEventosHome/semanaIntegracao2.png" alt="OTC" class="w-full h-auto bg-green-500">
-            </a>
+            }
 
         </div>
     </div>

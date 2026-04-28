@@ -135,6 +135,7 @@ export class ApiService {
 
     return this.http.get<any>(url).pipe(
       map((response) => {
+        console.log('Resposta exata do Strapi:', response.data[0]);
         const lista = response.data || [];
         return lista.map((item: any) => this.formatarEvento(item));
         // Nota: Certifique-se de que o nome da sua função de formatação está correto aqui
@@ -150,6 +151,7 @@ export class ApiService {
     // 1. Pega as URLs dos campos novos
     const urlCardBruta = this.extrairUrl(dados.imagem_card);
     const urlHeroBruta = this.extrairUrl(dados.imagem_hero);
+    const urlAcessoRapido = this.extrairUrl(dados.imagem_acesso_rapido);
 
     // 2. Cria o fallback de segurança
     const urlCardSegura = urlCardBruta || urlHeroBruta;
@@ -193,6 +195,11 @@ export class ApiService {
         ? urlHeroSegura.startsWith('http')
           ? urlHeroSegura
           : `${baseUrl}${urlHeroSegura}`
+        : '',
+      imagemAcessoRapidoUrl: urlAcessoRapido
+        ? urlAcessoRapido.startsWith('http')
+          ? urlAcessoRapido
+          : `${baseUrl}${urlAcessoRapido}`
         : '',
     };
   }

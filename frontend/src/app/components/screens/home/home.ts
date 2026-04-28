@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { SectionHeader } from '../../section-header/section-header';
 
 // Initialization for ES Users
@@ -12,6 +12,8 @@ import { NoticiasHome } from '../../noticias-home/noticias-home';
 import { CarrosselEventosHome } from '../../carrossel-eventos-home/carrossel-eventos-home';
 import { DepoimentosCta } from '../../depoimentos-cta/depoimentos-cta';
 import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.component';
+import { Evento } from '../../../models/evento';
+import { ApiService } from '../../../services/api';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +32,27 @@ import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements AfterViewInit {
+export class Home implements OnInit, AfterViewInit {
+  private apiService = inject(ApiService);
+  private cd = inject(ChangeDetectorRef);
+
+  eventosAnuais = signal<Evento[]>([]);
+
   ngAfterViewInit() {
     initTWE({ Carousel, Ripple });
+  }
+
+  ngOnInit() {
+    this.carregarEventos('eventos-anuais', this.eventosAnuais);
+  }
+
+  carregarEventos(slug: string, signalDestino: any) {
+    this.apiService.getEventosPorCategoria(slug).subscribe({
+      next: (eventos) => {
+        signalDestino.set(eventos);
+        this.cd.detectChanges();
+      },
+      error: (erro) => console.error(`Erro ao carregar eventos da categoria ${slug}:`, erro),
+    });
   }
 }

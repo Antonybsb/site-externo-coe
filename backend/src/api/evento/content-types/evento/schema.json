@@ -90,6 +90,16 @@
         "videos",
         "audios"
       ]
+    },
+    "imagem_acesso_rapido": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

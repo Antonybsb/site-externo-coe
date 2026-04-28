@@ -8,6 +8,7 @@ export interface Evento {
   local: string;
   imagemCardUrl: string;
   imagemHeroUrl: string;
+  imagemAcessoRapidoUrl: string;
   slug: string;
   dataFim?: string;
   horario?: string;
