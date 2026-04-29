@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { ContainerPadrao } from '../../container-padrao/container-padrao';
 import { SectionHeader } from '../../section-header/section-header';
@@ -8,7 +8,7 @@ import { HistoriaInspiradoraModel } from '../../../models/historia-inspiradora.m
 
 @Component({
   selector: 'app-depoimentos-lista',
-  imports: [CommonModule, ContainerPadrao, SectionHeader, RouterLink],
+  imports: [CommonModule, ContainerPadrao, SectionHeader, RouterLink, TitleCasePipe],
   templateUrl: './depoimentos-lista.html',
   styleUrl: './depoimentos-lista.css',
 })
