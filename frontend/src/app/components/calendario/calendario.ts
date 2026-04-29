@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 
 @Component({
   selector: 'app-calendario',
@@ -9,6 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class Calendario implements OnInit {
   private _diasEvento: { dia: number; mes: number; ano: number }[] = [];
+
+  dataSelecionada = output<Date>(); //Sintaxe nova para Output em Angular 16+.
+  mesAlterado = output<Date>();
 
   @Input() set dataEvento(dias: { dia: number; mes: number; ano: number }[]) {
     this._diasEvento = dias;
@@ -73,6 +76,8 @@ export class Calendario implements OnInit {
     for (let i = 1; i <= daysInMonth; i++) {
       this.arrayDias.push(i);
     }
+
+    this.mesAlterado.emit(new Date(year, month, 1));
   }
 
   changeMonth(step: number) {
@@ -87,5 +92,17 @@ export class Calendario implements OnInit {
     const month = this.dataCorrente.getMonth(); // 0 a 11 (Ex: Agosto = 7)
 
     return this._diasEvento.some((e) => e.ano === year && e.mes === month && e.dia === day);
+  }
+
+  selecionarDia(day: number | null) {
+    if (!day) return;
+    const dataClicada = new Date(
+      this.dataCorrente.getFullYear(),
+      this.dataCorrente.getMonth(),
+      day,
+    );
+    // Na nova API do Angular o emit continua sendo .emit, mas a tipagem por trás mudou.
+    // O erro real aqui é que você está passando uma variável com o MESMO NOME da propriedade da classe.
+    this.dataSelecionada.emit(dataClicada);
   }
 }

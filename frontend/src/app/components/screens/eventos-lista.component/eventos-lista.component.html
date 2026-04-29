@@ -1,5 +1,65 @@
 <div class="container py-8 mt-36">
 
+    <div class="container px-3 lg:px-0 mt-8 relative z-30">
+        <div class="flex gap-4">
+            <div class="relative">
+                <button (click)="toggleFiltro()"
+                    class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:border-azul-coe-escurissimo hover:bg-gray-50 transition-colors font-medium bg-white"
+                    [class.border-azul-coe-escurissimo]="filtroAberto()" [class.bg-blue-50]="labelFiltro() !== 'Data'">
+                    {{ labelFiltro() }}
+                    <svg class="w-4 h-4 transition-transform duration-200" [class.rotate-180]="filtroAberto()"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                @if (filtroAberto()) {
+                <div
+                    class="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 w-[350px] overflow-hidden">
+
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                        <span class="font-bold text-azul-coe-escurissimo">Filtre por data</span>
+                        <button (click)="aplicarFiltroRapido('limpar')"
+                            class="text-sm text-gray-500 hover:text-red-500 underline">Limpar</button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 p-4 pb-0">
+                        <button (click)="aplicarFiltroRapido('semana')"
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo transition-colors">Nesta
+                            semana</button>
+                        <button (click)="aplicarFiltroRapido('fds')"
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo transition-colors">Fim
+                            de semana</button>
+                        <button (click)="aplicarFiltroRapido('mes')"
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo col-span-2 transition-colors">Neste
+                            mês</button>
+                    </div>
+
+                    <div class="p-2 transform scale-90 origin-top">
+                        <app-calendario #meuCalendario (dataSelecionada)="filtrarPorDiaExato($event)"></app-calendario>
+                    </div>
+
+                    <div class="p-3 border-t border-gray-100 bg-gray-50 text-center">
+                        <button (click)="filtrarPorMesVisualizado(meuCalendario.dataCorrente)"
+                            class="w-full bg-azul-coe-escurissimo text-white hover:bg-blue-800 font-medium py-2 rounded-lg transition-colors text-sm">
+                            Buscar no mês inteiro
+                        </button>
+                    </div>
+
+                </div>
+                }
+            </div>
+
+            <button
+                class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium bg-white">
+                Todas as modalidades
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-3 lg:px-0 mt-6">
         @for (evento of todosEventos(); track evento.id) {
         <app-card-evento-vitrine [data]="evento" tamanho="fixo" />

@@ -31,7 +31,8 @@
         <ng-container *ngFor="let day of arrayDias">
             <div *ngIf="!day" class="p-2"></div>
 
-            <div *ngIf="day" class="p-2 rounded-lg cursor-pointer transition-colors" [ngClass]="{
+            <div *ngIf="day" (click)="selecionarDia(day)" class="p-2 rounded-lg cursor-pointer transition-colors"
+                [ngClass]="{
              'bg-backgroud-suporte-sucesso-base text-white font-bold shadow-md scale-110 hover:bg-emerald-600': isEventDate(day),
              'hover:bg-gray-50': !isEventDate(day)
            }">
