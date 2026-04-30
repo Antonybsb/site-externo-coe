@@ -7,6 +7,7 @@ import { NoticiaModel } from '../models/noticia.model';
 import { RespostaPaginadaModel } from '../models/resposta-paginada.model';
 import { MembroModel } from '../models/membro.model';
 import { HistoriaInspiradoraModel } from '../models/historia-inspiradora.model';
+import { DsaudModel } from '../models/dsaud.model';
 
 @Injectable({
   providedIn: 'root',
@@ -465,5 +466,39 @@ export class ApiService {
         });
       }),
     );
+  }
+
+  getDicasSaude(limit: number = 4): Observable<DsaudModel[]> {
+    const query = `?populate=*&sort=data:desc&pagination[limit]=${limit}`;
+    return this.http.get<any>(`${this.apiUrl}/dica-dsauds${query}`).pipe(
+      map((response) => {
+        const lista = response.data || [];
+        return lista.map((item: any) => this.formatarDica(item));
+      }),
+    );
+  }
+
+  private formatarDica(item: any): DsaudModel {
+    const dados = item.attributes || item;
+    const baseUrl = 'http://localhost:1337';
+
+    // Agora, com Single Media, você usa seu helper diretamente como no getHistorias
+    const urlImagem = this.extrairUrl(dados.imagem_capa);
+    const urlPdf = this.extrairUrl(dados.arquivo_pdf);
+
+    return {
+      id: item.id,
+      titulo: dados.titulo,
+      resumo: dados.resumo,
+      data: dados.data,
+      conteudo: dados.conteudo,
+      // Lógica de URL idêntica ao seu formatarEvento
+      imagem: urlImagem
+        ? urlImagem.startsWith('http')
+          ? urlImagem
+          : `${baseUrl}${urlImagem}`
+        : '',
+      pdfUrl: urlPdf ? (urlPdf.startsWith('http') ? urlPdf : `${baseUrl}${urlPdf}`) : '',
+    };
   }
 }

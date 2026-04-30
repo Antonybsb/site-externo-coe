@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dica_dsauds",
+  "info": {
+    "singularName": "dica-dsaud",
+    "pluralName": "dica-dsauds",
+    "displayName": "DicaDsaud"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "resumo": {
+      "type": "string"
+    },
+    "conteudo": {
+      "type": "text"
+    },
+    "data": {
+      "type": "datetime"
+    },
+    "imagem_capa": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "arquivo_pdf": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

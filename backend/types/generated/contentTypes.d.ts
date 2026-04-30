@@ -531,6 +531,43 @@ export interface ApiCategoriaEventoCategoriaEvento
   };
 }
 
+export interface ApiDicaDsaudDicaDsaud extends Struct.CollectionTypeSchema {
+  collectionName: 'dica_dsauds';
+  info: {
+    displayName: 'DicaDsaud';
+    pluralName: 'dica-dsauds';
+    singularName: 'dica-dsaud';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    arquivo_pdf: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    conteudo: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.DateTime;
+    imagem_capa: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dica-dsaud.dica-dsaud'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    resumo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   collectionName: 'eventos';
   info: {
@@ -1301,6 +1338,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::banner.banner': ApiBannerBanner;
       'api::categoria-evento.categoria-evento': ApiCategoriaEventoCategoriaEvento;
+      'api::dica-dsaud.dica-dsaud': ApiDicaDsaudDicaDsaud;
       'api::evento.evento': ApiEventoEvento;
       'api::historia-inspiradora.historia-inspiradora': ApiHistoriaInspiradoraHistoriaInspiradora;
       'api::membro.membro': ApiMembroMembro;

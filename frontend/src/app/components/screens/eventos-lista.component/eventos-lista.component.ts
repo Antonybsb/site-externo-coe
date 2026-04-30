@@ -112,7 +112,8 @@ export class EventosListaComponent implements OnInit {
     this.filtroAberto.set(false);
   }
 
-  filtrarPorMesVisualizado(dataDoCalendario: Date) {
+  filtrarPorMesVisualizado(dataDoCalendario: Date | undefined | null) {
+    if (!dataDoCalendario) return;
     // Pega o primeiro e o último dia baseados na data exata que o calendário está exibindo
     const inicio = new Date(dataDoCalendario.getFullYear(), dataDoCalendario.getMonth(), 1);
     const fim = new Date(dataDoCalendario.getFullYear(), dataDoCalendario.getMonth() + 1, 0);
@@ -136,5 +137,14 @@ export class EventosListaComponent implements OnInit {
 
     this.labelFiltro.set(nomeFormatado);
     this.executarFiltro(inicio, fim);
+  }
+
+  verificarMesAtual(dataVisualizada: Date | undefined | null): boolean {
+    if (!dataVisualizada) return true;
+    const hoje = new Date();
+    return (
+      dataVisualizada.getMonth() === hoje.getMonth() &&
+      dataVisualizada.getFullYear() === hoje.getFullYear()
+    );
   }
 }

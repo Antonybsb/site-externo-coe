@@ -25,38 +25,50 @@
 
                     <div class="grid grid-cols-2 gap-2 p-4 pb-0">
                         <button (click)="aplicarFiltroRapido('semana')"
-                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo transition-colors">Nesta
-                            semana</button>
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo transition-colors">
+                            Nesta semana
+                        </button>
+
                         <button (click)="aplicarFiltroRapido('fds')"
-                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo transition-colors">Fim
-                            de semana</button>
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo transition-colors">
+                            Fim de semana
+                        </button>
+
                         <button (click)="aplicarFiltroRapido('mes')"
-                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 hover:border-azul-coe-escurissimo hover:text-azul-coe-escurissimo col-span-2 transition-colors">Neste
-                            mês</button>
+                            [disabled]="!verificarMesAtual(meuCalendario?.dataCorrente)"
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 transition-colors disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed hover:not(:disabled):border-azul-coe-escurissimo hover:not(:disabled):text-azul-coe-escurissimo">
+                            Neste mês
+                        </button>
+
+                        <button (click)="filtrarPorMesVisualizado(meuCalendario?.dataCorrente)"
+                            [disabled]="verificarMesAtual(meuCalendario?.dataCorrente)"
+                            class="border border-gray-200 rounded-lg px-2 py-2 text-sm text-gray-600 transition-colors disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed hover:not(:disabled):border-azul-coe-escurissimo hover:not(:disabled):text-azul-coe-escurissimo">
+                            Buscar no mês
+                        </button>
                     </div>
 
                     <div class="p-2 transform scale-90 origin-top">
                         <app-calendario #meuCalendario (dataSelecionada)="filtrarPorDiaExato($event)"></app-calendario>
                     </div>
 
-                    <div class="p-3 border-t border-gray-100 bg-gray-50 text-center">
+                    <!-- <div class="p-3 border-t border-gray-100 bg-gray-50 text-center">
                         <button (click)="filtrarPorMesVisualizado(meuCalendario.dataCorrente)"
                             class="w-full bg-azul-coe-escurissimo text-white hover:bg-blue-800 font-medium py-2 rounded-lg transition-colors text-sm">
                             Buscar no mês inteiro
                         </button>
-                    </div>
+                    </div> -->
 
                 </div>
                 }
             </div>
 
-            <button
+            <!-- <button
                 class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium bg-white">
                 Todas as modalidades
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
-            </button>
+            </button> -->
         </div>
     </div>
 

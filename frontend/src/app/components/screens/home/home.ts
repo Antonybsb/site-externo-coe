@@ -14,9 +14,11 @@ import { DepoimentosCta } from '../../depoimentos-cta/depoimentos-cta';
 import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.component';
 import { Evento } from '../../../models/evento';
 import { ApiService } from '../../../services/api';
+import { DsaudHomeComponent } from '../../dsaud-home.component/dsaud-home.component';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     SectionHeader,
     Footer,
@@ -28,6 +30,7 @@ import { ApiService } from '../../../services/api';
     CarrosselEventosHome,
     DepoimentosCta,
     BotaoPadraoComponent,
+    DsaudHomeComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',
