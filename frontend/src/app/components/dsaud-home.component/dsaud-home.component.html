@@ -1,7 +1,7 @@
-<section class="py-12 bg-gray-50 w-full">
+<section class="py-12 secao-padraow-full ">
     <div class="container px-4 lg:px-0">
 
-        <app-section-header titulo="Dicas de Saúde - Disaud" variante="branco" />
+        <app-section-header titulo="Dicas de Saúde - Disaud" />
 
         @if (isLoading()) {
         <div class="flex justify-center py-10">
@@ -53,6 +53,12 @@
             } @empty {
             <p class="col-span-full text-center text-gray-500 py-10">Nenhuma dica disponível no momento.</p>
             }
+        </div>
+        <div class="flex justify-center mt-8 ">
+            <div>
+                <app-botao-padrao [routerLink]="'/dicas-saude'" label="Veja mais" tamanho="lg">
+                </app-botao-padrao>
+            </div>
         </div>
     </div>
 </section>

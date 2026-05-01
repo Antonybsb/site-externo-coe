@@ -12,6 +12,7 @@ import { SobreComponent } from './components/screens/sobre.component/sobre.compo
 import { EventosVitrineComponent } from './components/screens/eventos-vitrine.component/eventos-vitrine.component';
 import { EventosListaComponent } from './components/screens/eventos-lista.component/eventos-lista.component';
 import { CodigoCondutaComponent } from './components/screens/codigo-conduta.component/codigo-conduta.component';
+import { DsaudListaComponent } from './components/screens/dsaud-lista.component/dsaud-lista.component';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -27,4 +28,5 @@ export const routes: Routes = [
   { path: 'depoimento-artigo/:id', component: DepoimentosArtigo },
   { path: 'sobre', component: SobreComponent },
   { path: 'codigo-conduta', component: CodigoCondutaComponent },
+  { path: 'dicas-saude', component: DsaudListaComponent },
 ];

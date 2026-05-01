@@ -2,10 +2,12 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../services/api';
 import { CommonModule } from '@angular/common';
 import { SectionHeader } from '../section-header/section-header';
+import { BotaoPadraoComponent } from '../botao-padrao.component/botao-padrao.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dsaud-home',
-  imports: [CommonModule, SectionHeader],
+  imports: [CommonModule, SectionHeader, BotaoPadraoComponent, DsaudHomeComponent, RouterLink],
   templateUrl: './dsaud-home.component.html',
   styleUrl: './dsaud-home.component.css',
 })
