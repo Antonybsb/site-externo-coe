@@ -5,7 +5,7 @@
 <app-section-header titulo="Quem somos" />
 
 <div class="w-full flex justify-center py-12">
-    <div class="flex justify-between w-full max-w-7xl items-stretch px-6 lg:px-0 gap-12">
+    <div class="flex flex-col lg:flex-row justify-between w-full max-w-7xl items-stretch px-6 lg:px-0 gap-8 gap-12">
         <div class="w-full lg:w-1/2 flex justify-center items-center">
 
             @if (!videoReproduzindo) {
@@ -43,8 +43,9 @@
 
         </div>
 
-        <div class="w-1/2 flex flex-col justify-between h-full py-4">
-            <div>
+        <div class="w-full lg:w-1/2 flex flex-col justify-center h-full py-4 lg:py-0">
+
+            <div class="hidden lg:block mb-8">
                 <svg width="213" height="60" viewBox="0 0 213 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M98.043 1L42.5264 57.7363H2.45117L60.4082 1H98.043Z" stroke="#68C99A" stroke-width="2" />
                     <path d="M154.253 1.63184L98.7363 58.3682H58.6611L116.618 1.63184H154.253Z" stroke="#68C99A"
@@ -54,21 +55,22 @@
                 </svg>
             </div>
 
-            <div class="flex-1 flex flex-col justify-center py-8">
+            <div class="flex-1 flex flex-col justify-center py-2 lg:py-8">
                 <p class="text-texto-conteudo-terciario text-sm font-semibold uppercase tracking-wider mb-2">Bem-vindo
                     ao COE!</p>
-                <h1 class="font-bold text-4xl lg:text-5xl text-azul-coe-escurissimo mb-6 leading-tight">
-                    O Comitê de <br> Esportes do TCU
+
+                <h1 class="font-bold text-3xl lg:text-5xl text-azul-coe-escurissimo mb-4 lg:mb-6 leading-tight">
+                    O Comitê de <br class="hidden lg:block"> Esportes do TCU
                 </h1>
-                <p class="text-texto-conteudo-terciario text-lg leading-relaxed text-justify">
-                    Tem a missão de promover a saúde, o bem-estar e a integração de autoridades, servidores ativos e
+
+                <p class="text-texto-conteudo-terciario text-base lg:text-lg leading-relaxed text-left lg:text-justify">
+                    O Comitê de Esportes do Tribunal de Contas da União (COE-TCU) é um órgão permanente, criado com a
+                    missão de promover a integração, saúde e bem-estar de autoridades, servidores ativos e
                     aposentados, colaboradores e estagiários por meio da prática esportiva. Atuamos incentivando hábitos
-                    saudáveis, a valorização
-                    da diversidade e o fortalecimento do espírito de equipe no ambiente institucional.
+                    saudáveis, fortalecendo o sentimento de pertencimento, inclusão e valorização da diversidade,
+                    contribuindo diretamente para um ambiente institucional mais saudável e harmonioso.
                 </p>
             </div>
-
-
         </div>
     </div>
 </div>
