@@ -53,11 +53,13 @@ body {
 }
 
   /* O Container: Centraliza o conteúdo (ex: máx 1200px) */
-  .container {
+ .container {
   width: 100%;
-  max-width: 80rem;
+  max-width: 80rem; /* 1280px */
   margin-left: auto;
   margin-right: auto;
+  /* Adiciona padding horizontal de 24px (px-6) no mobile e remove (px-0) no desktop (md) */
+  @apply px-6 md:px-0;
 }
 
   /* --- VARIAÇÕES DE FUNDO --- */
