@@ -24,7 +24,7 @@
 
             <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-black/60 via-black/20 to-transparent">
                 <div class="flex h-full items-center justify-center lg:justify-start pt-[144px]">
-                    <div class="w-full max-w-7xl  mx-auto">
+                    <div class="w-full max-w-7xl  mx-auto px-6 md:px-0">
 
                         <div class="text-white max-w-5xl relative z-10 flex flex-col items-start gap-8">
 
@@ -171,18 +171,18 @@
         </div>
     </div>
 </div>
-<section class="secao-conteudo py-2 w-full">
+<section class="secao-conteudo w-full">
 
-    <div class="container px-4 lg:px-0">
+    <app-section-header titulo="Eventos anuais" />
+    <div class="container px-6 lg:px-0">
 
-        <app-section-header titulo="Eventos anuais" />
 
         <div
-            class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 md:overflow-visible mt-4">
+            class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-2 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 md:overflow-visible mt-4 -mx-2 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
             @for (evento of eventosAnuais(); track evento.id) {
             <a [routerLink]="['/eventos', evento.slug]"
-                class="min-w-[85vw] md:min-w-0 snap-center shrink-0 block rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                class="w-[85vw] sm:w-[60vw] md:w-auto shrink-0 snap-start block rounded-xl overflow-hidden shadow-sm hover:shadow-lg md:hover:-translate-y-1 transition-all duration-300">
 
                 <img [src]="evento.imagemAcessoRapidoUrl || 'assets/placeholder-banner.png'" [alt]="evento.titulo"
                     class="w-full h-auto object-cover">
