@@ -444,7 +444,7 @@ export class ApiService {
   }
 
   getHistorias(): Observable<HistoriaInspiradoraModel[]> {
-    const url = `${this.apiUrl}/historia-inspiradoras?populate=*`;
+    const url = `${this.apiUrl}/historia-inspiradoras?populate=*&sort=data:desc`;
 
     return this.http.get<any>(url).pipe(
       map((response) => {
@@ -482,7 +482,6 @@ export class ApiService {
     const dados = item.attributes || item;
     const baseUrl = 'http://localhost:1337';
 
-    // Agora, com Single Media, você usa seu helper diretamente como no getHistorias
     const urlImagem = this.extrairUrl(dados.imagem_capa);
     const urlPdf = this.extrairUrl(dados.arquivo_pdf);
 
@@ -492,7 +491,6 @@ export class ApiService {
       resumo: dados.resumo,
       data: dados.data,
       conteudo: dados.conteudo,
-      // Lógica de URL idêntica ao seu formatarEvento
       imagem: urlImagem
         ? urlImagem.startsWith('http')
           ? urlImagem
