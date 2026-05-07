@@ -6,34 +6,43 @@
         <p class="text-gray-600 text-lg px-3 lg:px-0">Confira o relato de quem já faz parte dessa comunidade.</p>
     </div>
 
-    <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-3 lg:px-0 mb-16">
 
+    <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
         @for (item of historiasExibidas(); track item.id) {
-        <a [routerLink]="['/depoimento-artigo', item.id]"
-            class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 flex flex-col relative w-full h-[395px] group cursor-pointer">
+        <div
+            class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-gray-100 flex flex-col h-full">
 
-            <div class="relative h-[70%] w-full bg-gray-200 shrink-0 overflow-hidden">
+            <div class="relative h-44 overflow-hidden">
                 <img [src]="item.imagemCardUrl ? 'http://localhost:1337' + item.imagemCardUrl : 'assets/logo/logoTCU.svg'"
-                    [alt]="item.nome"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    [alt]="item.nome">
             </div>
 
-            <div class="p-4 flex flex-col flex-grow justify-center">
-
-                <h3 class="text-base font-bold text-azul-coe-escurissimo mb-1 line-clamp-1">
+            <div class="p-5 flex flex-col flex-1">
+                <h3
+                    class="font-bold text-gray-900 leading-tight mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors">
                     {{ item.nome | titlecase }}
                 </h3>
 
-                <p class="text-sm text-gray-600 line-clamp-3">
-                    "{{ item.resumo }}"
+                <p class="text-sm text-gray-600 line-clamp-3 mb-4 flex-1">
+                    {{ item.resumo }}{{ item.nome.endsWith('.') ? '' : '.' }}
                 </p>
 
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase">
+                        {{ item.data | date: "dd/MM/yyyy" }}
+                    </span>
+
+                </div>
             </div>
-
-        </a>
+        </div>
+        } @empty {
+        <p class="col-span-full text-center text-gray-500 py-10">Nenhuma história disponível no momento.</p>
         }
-
     </div>
+
+
+
 
     <div
         class="container flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-gray-200 text-sm text-gray-500 gap-4 px-3 lg:px-0">
