@@ -1,5 +1,5 @@
 import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 
@@ -16,5 +16,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled', // Garante o comportamento do fragmento
+        scrollPositionRestoration: 'enabled', // Volta ao topo ao mudar de página
+      }),
+    ),
   ],
 };
