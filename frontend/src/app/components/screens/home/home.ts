@@ -15,6 +15,7 @@ import { BotaoPadraoComponent } from '../../botao-padrao.component/botao-padrao.
 import { Evento } from '../../../models/evento';
 import { ApiService } from '../../../services/api';
 import { DsaudHomeComponent } from '../../dsaud-home.component/dsaud-home.component';
+import { CodigoCondutaCtaComponent } from '../../codigo-conduta-cta.component/codigo-conduta-cta.component';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,7 @@ import { DsaudHomeComponent } from '../../dsaud-home.component/dsaud-home.compon
     DepoimentosCta,
     BotaoPadraoComponent,
     DsaudHomeComponent,
+    CodigoCondutaCtaComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

@@ -22,12 +22,28 @@
   --color-azul-coe-escurissimo: #1C519B;
   --color-texto-info: #3A71C7;
   --color-borda-neutro-claro: #B6B6B7;
-  --color-backgroud-superficie: #F2F2F2;
+  --color-background-superficie: #F2F2F2;
   --color-backgroud-suporte-alerta: #FFC72E;
   --color-backgroud-suporte-sucesso: #68C99A;
   --color-backgroud-suporte-sucesso-base: #55A37D;
   --color-borda-neutro-claro: #B6B6B7;
   --color-azul-hero: #2B2171;
+  --color-background-support-alert-lightest: #FFF7DA;
+  --color-background-support-alert-base: #FFC72E;
+  --color-background-support-brand-lightest: #F2F7FF;
+
+  /* Border Colors */
+  /* Neutral */
+  --color-border-neutral-light: #B6B6B7;
+  --color-background-support-neutral-lightest: #F2F2F2;
+
+
+  /* Background Colors */
+  /* Neutral */
+  --color-background-support-neutral-lightest: #F2F2F2;
+  --color-background-support-neutral-light: #EBEBEB;
+
+
 
   /* Cores da Marca */
   --color-brand-light: #60A5FA;
