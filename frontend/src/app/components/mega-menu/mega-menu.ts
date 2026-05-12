@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api';
@@ -19,16 +19,27 @@ export class MegaMenu implements OnInit {
 
   listaEsportes = signal<ModalidadeModel[]>([]);
 
+  consolidados = computed(() =>
+    this.listaEsportes().filter((e) => e.status_consolidacao === 'consolidado'),
+  );
+
+  emFormacao = computed(() =>
+    this.listaEsportes().filter((e) => e.status_consolidacao === 'em_formacao'),
+  );
+
   ngOnInit() {
-    // Inicializa o TWE (componentes visuais)
     initTWE({ Collapse, Dropdown, Ripple });
 
     this.apiService.getModalidades().subscribe({
       next: (dadosLimpos) => {
-        // 1. Atualizamos os dados
         this.listaEsportes.set(dadosLimpos);
 
-        console.log('Menu carregado:', this.listaEsportes);
+        console.log(
+          'Status recebidos:',
+          this.listaEsportes().map((e) => e.status_consolidacao),
+        );
+
+        console.log('Menu carregado:', this.listaEsportes());
       },
       error: (erro) => console.error('Erro no Menu:', erro),
     });

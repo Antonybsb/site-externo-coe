@@ -67,6 +67,7 @@ export class ApiService {
       id: item.id,
       nome: dados.nome,
       slug: dados.slug,
+      status_consolidacao: dados.status_consolidacao,
       texto_historia: dados.texto_historia,
 
       imagem_hero: {
