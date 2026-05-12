@@ -80,6 +80,13 @@
       "relation": "manyToMany",
       "target": "api::parceiro.parceiro",
       "inversedBy": "modalidades"
+    },
+    "status_consolidacao": {
+      "type": "enumeration",
+      "enum": [
+        "consolidado",
+        "em_formacao"
+      ]
     }
   }
 }

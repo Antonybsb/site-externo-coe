@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api';
@@ -17,10 +17,7 @@ initTWE({ Collapse, Dropdown, Ripple });
 export class MegaMenu implements OnInit {
   private apiService = inject(ApiService);
 
-  // Injetamos o "Fiscal" manual para poder avisar quando mudarmos coisas fora de hora
-  private cd = inject(ChangeDetectorRef);
-
-  listaEsportes: ModalidadeModel[] = [];
+  listaEsportes = signal<ModalidadeModel[]>([]);
 
   ngOnInit() {
     // Inicializa o TWE (componentes visuais)
@@ -29,14 +26,9 @@ export class MegaMenu implements OnInit {
     this.apiService.getModalidades().subscribe({
       next: (dadosLimpos) => {
         // 1. Atualizamos os dados
-        this.listaEsportes = dadosLimpos;
+        this.listaEsportes.set(dadosLimpos);
 
         console.log('Menu carregado:', this.listaEsportes);
-
-        // 2. A CORREÇÃO DO ERRO NG0100
-        // Como a atualização dos dados pode afetar o layout que o TWE controla,
-        // forçamos o Angular a verificar as mudanças IMEDIATAMENTE.
-        this.cd.detectChanges();
       },
       error: (erro) => console.error('Erro no Menu:', erro),
     });

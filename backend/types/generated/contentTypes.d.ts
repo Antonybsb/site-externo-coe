@@ -745,6 +745,9 @@ export interface ApiModalidadeModalidade extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'nome'>;
+    status_consolidacao: Schema.Attribute.Enumeration<
+      ['consolidado', 'em_formacao']
+    >;
     texto_historia: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

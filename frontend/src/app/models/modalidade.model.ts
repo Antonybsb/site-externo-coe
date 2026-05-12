@@ -6,6 +6,7 @@ export interface ModalidadeModel {
   id: number;
   nome: string;
   slug: string;
+  status_consolidacao?: 'consolidado' | 'em_formacao';
   texto_historia: string;
   imagem_hero: {
     url: string;
