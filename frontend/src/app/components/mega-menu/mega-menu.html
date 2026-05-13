@@ -62,35 +62,56 @@
                             </a>
                             <div class="absolute left-0 right-0 top-full z-[1000] mt-0 hidden w-full border-none bg-white bg-clip-padding shadow-lg data-[twe-dropdown-show]:block"
                                 aria-labelledby="megaMenuDropdown" data-twe-dropdown-menu-ref>
-                                <div class="container py-6">
+                                <div class="container mx-auto px-6">
+                                    <div class="grid grid-cols-1 lg:grid-cols-4 shadow-xl overflow-hidden bg-white">
 
-
-                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-
-                                        <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-2">
+                                        <div
+                                            class="lg:col-span-3 p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1">
                                             @for (esporte of consolidados(); track esporte.id) {
                                             <a [routerLink]="['/modalidades', esporte.slug]"
-                                                class="flex items-center px-6 py-2 hover:bg-zinc-100">
-                                                {{ esporte.nome }}
-                                                <img src="/assets/icons/arrow-right.svg" class="ml-2 h-3" />
+                                                class="flex items-center px-4 py-2 hover:bg-zinc-100 transition-all group">
+                                                <div
+                                                    class="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[#E0EBFF] mr-3 rounded-lg">
+                                                    <img [src]="esporte.icone?.url" class="w-4 h-3 object-contain"
+                                                        [alt]="esporte.nome" />
+                                                </div>
+                                                <span class="text-[14px] font-medium text-[#2D2D2F]">{{ esporte.nome
+                                                    }}</span>
                                             </a>
                                             }
                                         </div>
 
-                                        <div class="border-l pl-4">
-                                            <span class="text-[10px] font-bold uppercase text-gray-400 block mb-2">Em
-                                                Formação</span>
-                                            @for (esporte of emFormacao(); track esporte.id) {
-                                            <a [routerLink]="['/modalidades', esporte.slug]"
-                                                class="flex items-center py-1 text-sm text-gray-500">
-                                                {{ esporte.nome }}
-                                                <span
-                                                    class="ml-2 text-[8px] bg-amber-100 text-amber-700 px-1 rounded">Novo</span>
-                                            </a>
-                                            } @empty {
-                                            <p class="text-xs text-gray-400 italic">Nenhuma modalidade nova.</p>
-                                            }
+                                        <div
+                                            class="bg-[#F2F2F2] p-8 shadow-[-10px_0_10px_-10px_rgba(0,0,0,0.2)] h-full">
+                                            <h3
+                                                class="text-[12px] font-bold text-[#2D2D2F] mb-6 uppercase tracking-tight">
+                                                Modalidades em Formação
+                                            </h3>
+
+                                            <div class="flex flex-col gap-3">
+                                                @for (esporte of emFormacao(); track esporte.id) {
+                                                <a [routerLink]="['/modalidades', esporte.slug]"
+                                                    class="flex items-center group py-1">
+                                                    <div
+                                                        class="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[#E0EBFF] mr-3 rounded-lg">
+                                                        <img [src]="esporte.icone?.url" class="w-4 h-3 object-contain"
+                                                            [alt]="esporte.nome" />
+                                                    </div>
+                                                    <span
+                                                        class="text-[13px] font-medium text-[#2D2D2F] group-hover:text-[#3A71C7]">
+                                                        {{ esporte.nome }}
+                                                    </span>
+                                                    <span
+                                                        class="ml-2 px-1 py-0.5 bg-[#FFC72E] text-[#950F0F] text-[8px] font-bold rounded uppercase">
+                                                        Novo
+                                                    </span>
+                                                </a>
+                                                } @empty {
+                                                <p class="text-xs text-gray-400 italic">Nenhuma modalidade nova.</p>
+                                                }
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
