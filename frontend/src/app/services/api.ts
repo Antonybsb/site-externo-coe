@@ -444,27 +444,35 @@ export class ApiService {
     };
   }
 
+  private formatarHistoria(item: any): HistoriaInspiradoraModel {
+    const baseUrl = 'http://localhost:1337';
+
+    const urlCard = this.extrairUrl(item.imagem_card);
+    const urlConteudo = this.extrairUrl(item.imagem_conteudo);
+
+    return {
+      id: item.id,
+      nome: item.nome,
+      resumo: item.resumo,
+      data: item.data,
+      conteudo: item.conteudo,
+      imagemCardUrl: urlCard ? (urlCard.startsWith('http') ? urlCard : `${baseUrl}${urlCard}`) : '',
+      imagemConteudoUrl: urlConteudo
+        ? urlConteudo.startsWith('http')
+          ? urlConteudo
+          : `${baseUrl}${urlConteudo}`
+        : '',
+    };
+  }
+
   getHistorias(): Observable<HistoriaInspiradoraModel[]> {
     const url = `${this.apiUrl}/historia-inspiradoras?populate=*&sort=data:desc`;
 
     return this.http.get<any>(url).pipe(
       map((response) => {
         const lista = response.data || [];
-        return lista.map((item: any) => {
-          // Usa o seu helper de segurança para extrair as URLs
-          const urlCard = this.extrairUrl(item.imagem_card);
-          const urlConteudo = this.extrairUrl(item.imagem_conteudo);
-
-          return {
-            id: item.id,
-            nome: item.nome,
-            resumo: item.resumo,
-            data: item.data,
-            conteudo: item.conteudo,
-            imagemCardUrl: urlCard,
-            imagemConteudoUrl: urlConteudo,
-          };
-        });
+        // Passa a função de formatação limpa no map do array
+        return lista.map((item: any) => this.formatarHistoria(item));
       }),
     );
   }
