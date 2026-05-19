@@ -1,22 +1,36 @@
 <nav class="w-full mb-6 text-sm">
-    <ol class="list-reset flex text-gray-500 flex-wrap">
+    <ol class="list-reset flex items-center text-gray-500 flex-wrap gap-y-2">
 
-        @for (crumb of items(); track crumb.label; let isLast = $last) {
+        @for (crumb of items(); track crumb.label; let isLast = $last; let isFirst = $first) {
 
-        <li>
+        <li class="flex items-center">
             @if (!isLast && crumb.url) {
-            <a [routerLink]="[crumb.url]" class="hover:text-emerald-600 transition-colors">
+            <a [routerLink]="[crumb.url]"
+                class="text-[#3A71C7] font-bold hover:underline flex items-center gap-1.5 transition-all">
+                @if (isFirst) {
+                <svg class="w-4 h-4 text-[#3A71C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                } @else {
                 {{ crumb.label }}
+                }
             </a>
             } @else {
-            <span class="text-gray-800 font-medium truncate max-w-[150px] md:max-w-[300px] block" [title]="crumb.label">
+            <span class="text-[#49494B] font-bold truncate max-w-[150px] md:max-w-[300px] block" [title]="crumb.label">
                 {{ crumb.label }}
             </span>
             }
         </li>
 
         @if (!isLast) {
-        <li><span class="mx-2 text-gray-400">/</span></li>
+        <li class="flex items-center mx-2.5">
+            <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </li>
         }
 
         }

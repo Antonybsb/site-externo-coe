@@ -62,8 +62,8 @@ export class EventosDetalhes implements OnInit {
         this.evento.set(ev);
         this.breadcrumbItems.set([
           { label: 'Home', url: '/' },
-          { label: 'Eventos', url: '/eventos' }, // Ou a rota da sua listagem
-          { label: ev.titulo }, // Último item sem URL (página atual)
+          { label: 'Eventos', url: '/eventos/lista' },
+          { label: ev.titulo },
         ]);
         this.gerarDiasDoEvento(ev);
         this.carregarOutrosEventos(ev.id); // Busca os outros, exceto este
