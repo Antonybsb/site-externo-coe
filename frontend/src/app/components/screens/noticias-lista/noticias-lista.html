@@ -1,6 +1,12 @@
-<app-container-padrao>
+<div class="pt-[180px]">
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-[200px] mb-12">
+    <app-section-header titulo="Notícias" />
+</div>
+
+<div class="container secao-padrao">
+
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
 
         <div class="lg:col-span-8 flex flex-col gap-10">
 
@@ -94,35 +100,21 @@
 
         </div>
 
-        <aside class="lg:col-span-4 space-y-8 sticky top-[168px] self-start">
+        <aside class="lg:col-span-4 space-y-6 sticky top-[168px] lg:flex lg:flex-col lg:items-center self-start w-full">
 
             @if (proximoEvento(); as evento) {
-            <div class="bg-white rounded-xl shadow-lg p-4 border border-gray-100">
+            <div class="flex flex-col relative group w-full max-w-[250px]">
 
-                <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">
-                    Próximo evento
-                </span>
-
-                <a [routerLink]="['/eventos', evento.slug]" class="block group overflow-hidden rounded-lg mb-3 h-40">
-                    <img [src]="evento.imagemCardUrl" [alt]="evento.titulo"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </a>
-
-                <h4 class="font-bold text-gray-900 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
-                    <a [routerLink]="['/eventos', evento.slug]">
-                        {{ evento.titulo }}
-                    </a>
-                </h4>
-
-                <div class="text-sm text-gray-600 space-y-1 mb-4">
-                    <p>📅 {{ evento.dataInicio | date:'dd/MM/yyyy' }}</p>
-                    <p>📍 {{ evento.local }}</p>
+                <div class="mb-3">
+                    <span
+                        class="bg-yellow-400 text-yellow-900 text-[11px] font-bold px-2.5 py-1 rounded-md inline-block">
+                        Próximo evento
+                    </span>
                 </div>
 
-                <a [routerLink]="['/eventos', evento.slug]"
-                    class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 rounded text-sm transition-colors cursor-pointer">
-                    Inscrever-se
-                </a>
+                <div class="w-full mb-4">
+                    <app-card-evento-vitrine [data]="evento" />
+                </div>
 
             </div>
             }
@@ -131,4 +123,4 @@
 
     </div>
 
-</app-container-padrao>
+</div>

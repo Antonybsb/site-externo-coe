@@ -5,10 +5,12 @@ import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api';
 import { NoticiaModel } from '../../../models/noticia.model';
 import { Evento } from '../../../models/evento';
+import { SectionHeader } from '../../section-header/section-header';
+import { CardEventoVitrineComponent } from '../../card-evento-vitrine.component/card-evento-vitrine.component';
 
 @Component({
   selector: 'app-noticias-lista',
-  imports: [CommonModule, ContainerPadrao, RouterLink],
+  imports: [CommonModule, ContainerPadrao, RouterLink, SectionHeader, CardEventoVitrineComponent],
   templateUrl: './noticias-lista.html',
   styleUrl: './noticias-lista.css',
 })
