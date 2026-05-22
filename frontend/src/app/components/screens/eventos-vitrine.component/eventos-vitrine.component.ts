@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { HeroPadrao } from '../../hero-padrao/hero-padrao';
 import { SectionHeader } from '../../section-header/section-header';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './eventos-vitrine.component.css',
 })
 export class EventosVitrineComponent implements OnInit {
+  // Cria um sinal para controlar a largura da tela de forma reativa
+  windowWidth = window.innerWidth;
+
   private apiService = inject(ApiService);
   private cd = inject(ChangeDetectorRef);
 
@@ -37,6 +40,13 @@ export class EventosVitrineComponent implements OnInit {
     // this.carregarEventos();
     this.carregarEventos('eventos-gerais', this.eventosGerais);
     this.carregarEventos('eventos-anuais', this.eventosAnuais);
+    this.windowWidth = window.innerWidth;
+  }
+
+  // Escuta o redimensionamento da tela do usuário
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.windowWidth = window.innerWidth;
   }
 
   carregarEventos(slug: string, signalDestino: any) {
